@@ -122,13 +122,14 @@
       box-shadow: 0 4px 32px #b8000044;
       max-width: 340px;
       transition: transform 0.18s, box-shadow 0.18s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
     .card:hover {
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 10px 44px #b80000bb;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 8px;
     }
     .btn, .btn-gold, .learn-more-btn {
       background: #ffd700;
@@ -141,11 +142,38 @@
       font-size: 1em;
       cursor: pointer;
       transition: background 0.22s, color 0.18s;
-      align-self: flex-start;
     }
     .btn-gold:hover, .btn:hover, .learn-more-btn:hover {
       background: #b80000;
       color: #fff;
+    }
+    .team-card {
+      background: #262626;
+      border-radius: 8px;
+      padding: 1em 2.5em 1.4em;
+      text-align: center;
+      width: 594px;
+      max-width: 95vw;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+    .team-card img {
+      width: 200px;
+      height: 200px;
+      border-radius: 0;
+      object-fit: cover;
+      margin-bottom: 8px;
+    }
+    .team-card b {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 6px;
+      color: #ffd700;
+    }
+    .team-card .role {
+      font-size: 0.9em;
+      color: #ddd;
+      margin-top: 2px;
     }
     footer {
       background: #111;
@@ -154,45 +182,44 @@
       padding: 30px 5px;
       margin-top: 36px;
     }
-    #articleModal {
+    #productionModal {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      color: #fff;
-      overflow: auto;
-      padding: 2rem;
-      z-index: 10000;
+      background: rgba(34,20,68,0.95);
+      z-index: 9999;
+      align-items: center; justify-content: center;
     }
-    #articleModal > div {
-      max-width: 900px;
-      margin: 0 auto;
+    #productionModal > div {
       background: #222144;
       border-radius: 16px;
-      padding: 24px;
+      padding: 32px;
+      max-width: 90vw; max-height: 86vh;
+      overflow: auto;
+      color: #fff;
+      box-shadow: 0 12px 48px #0008;
       position: relative;
+      animation: scalePulse 1.7s;
     }
-    #articleModal button.close-button {
-      position: absolute;
-      top: 12px;
-      right: 20px;
-      font-size: 2em;
-      background: none;
-      border: none;
-      color: #ffd700;
-      cursor: pointer;
+    #productionModal img {
+      max-width: 220px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: contain;
+      margin: 0 10px 10px 0;
+      box-shadow: 0 2px 18px #1118;
     }
-    @media (max-width:700px) {
+    @media(max-width:700px) {
       .card-grid, .team-grid {
         flex-direction: column;
         align-items: center;
       }
       .card { max-width: 100%; }
-      #articleModal > div {
-        width: 95vw;
-        max-height: 95vh;
+      header {
+        flex-direction: column; align-items: flex-start; gap: 0.5em;
       }
+      nav { margin: 0; }
     }
   </style>
 </head>
@@ -209,178 +236,151 @@
     <a href="#join">Join Us</a>
   </nav>
 </header>
-
 <main>
 <section id="home" class="hero">
-  <h1>Take It to the Next Level!</h1>
-  <div class="events-upcoming">
-    <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
-    <div class="events-message">No updates, check back later</div>
-  </div>
-  <a class="btn btn-gold" href="#join">Join Us Today</a>
+<h1>Take It to the Next Level!</h1>
+<div class="events-upcoming">
+  <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
+  <div class="events-message">No updates, check back later</div>
+</div>
+<a class="btn btn-gold" href="#join">Join Us Today</a>
 </section>
 <section id="about" class="section">
-  <h2>About Us</h2>
-  <div class="card-grid">
-    <div class="card">
-      <h3>Our Mission</h3>
-      <p>To enhance and encourage teamwork, improve the quality of life by building, developing and nurturing talent through social, theatrical and community life at large.</p>
-    </div>
-    <div class="card">
-      <h3>Our Vision</h3>
-      <p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
-    </div>
-    <div class="card">
-      <h3>Our Motto</h3>
-      <p>“Take it to the next level!”</p>
-    </div>
-  </div>
+<h2>About Us</h2>
+<div class="card-grid">
+<div class="card">
+<h3>Our Mission</h3>
+<p>To enhance and encourage teamwork, improve the quality of life by building, developing and nurturing talent through social, theatrical and community life at large.</p>
+</div>
+<div class="card">
+<h3>Our Vision</h3>
+<p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
+</div>
+<div class="card">
+<h3>Our Motto</h3>
+<p>“Take it to the next level!”</p>
+</div>
+</div>
 </section>
 <section id="productions" class="section">
-  <h2>Recent Productions</h2>
-  <div class="card-grid">
-    <div class="card">
-      <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" />
-      <h3>The Waiting Room</h3>
-      <p>Family secrets unravel in a hospital waiting room.</p>
-      <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
-    </div>
-    <div class="card">
-      <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" />
-      <h3>The Homecoming</h3>
-      <p>A comedic but tense family reunion in Nairobi.</p>
-      <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
-    </div>
-    <div class="card">
-      <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" />
-      <h3>The Samaritan</h3>
-      <p>When justice meets corruption, who wins?</p>
-      <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
-    </div>
-  </div>
-  <p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
-  <div id="productionModal">
-    <div>
-      <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
-      <div id="productionModalContent"></div>
-    </div>
-  </div>
+<h2>Recent Productions</h2>
+<div class="card-grid">
+<div class="card">
+  <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" />
+  <h3>The Waiting Room</h3>
+  <p>Family secrets unravel in a hospital waiting room.</p>
+  <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
+</div>
+<div class="card">
+  <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" />
+  <h3>The Homecoming</h3>
+  <p>A comedic but tense family reunion in Nairobi.</p>
+  <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
+</div>
+<div class="card">
+  <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" />
+  <h3>The Samaritan</h3>
+  <p>When justice meets corruption, who wins?</p>
+  <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
+</div>
+</div>
+<p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
+<div id="productionModal">
+<div>
+  <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
+  <div id="productionModalContent"></div>
+</div>
+</div>
 </section>
 <section id="team" class="section">
-  <h2>Society's Governing Body</h2>
-  <div class="team-grid">
-    <div class="team-card">
-      <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
-      <b>Dan Kakuru</b>
-      <div class="role">President: Oversees the society's activities and represents members.</div>
-    </div>
-    <div class="team-card">
-      <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
-      <b>Leila Kaisa</b>
-      <div class="role">Vice President: Assists the President and coordinates programs.</div>
-    </div>
-    <div class="team-card">
-      <img src="images/team/Joe Abala.png" alt="Joe Abala" />
-      <b>Joe Abala</b>
-      <div class="role">Organizing Secretary: Manages meetings, communications, and logistics.</div>
-    </div>
-    <div class="team-card">
-      <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
-      <b>Cherise Chomba</b>
-      <div class="role">Secretary General: Oversees administration and record keeping.</div>
-    </div>
-    <div class="team-card">
-      <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
-      <b>Paula Nimurungi</b>
-      <div class="role">Financial Manager: Handles funds, budgeting, and financial reports.</div>
-    </div>
-  </div>
+<h2>Society's Governing Body</h2>
+<div class="team-grid">
+<div class="team-card">
+  <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
+  <b>Dan Kakuru</b>
+  <div class="role">President: Oversees the society's activities and represents members.</div>
+</div>
+<div class="team-card">
+  <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
+  <b>Leila Kaisa</b>
+  <div class="role">Vice President: Assists the President and coordinates programs.</div>
+</div>
+<div class="team-card">
+  <img src="images/team/Joe Abala.png" alt="Joe Abala" />
+  <b>Joe Abala</b>
+  <div class="role">Organizing Secretary: Manages meetings, communications, and logistics.</div>
+</div>
+<div class="team-card">
+  <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
+  <b>Cherise Chomba</b>
+  <div class="role">Secretary General: Oversees administration and record keeping.</div>
+</div>
+<div class="team-card">
+  <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
+  <b>Paula Nimurungi</b>
+  <div class="role">Financial Manager: Handles funds, budgeting, and financial reports.</div>
+</div>
+</div>
 </section>
 <section id="articles" class="section">
-  <h2>Articles & Updates</h2>
-  <div class="card-grid">
-    <div class="card">
-      <h3>The Rise of Contemporary Theatre in Kenya</h3>
-      <p>Discover how modern Kenyan playwrights are transforming traditional stage with innovative stories and styles that connect with the youth while celebrating heritage.</p>
-      <button class="btn learn-more-btn" onclick="showArticle('contemporary-theatre')">Read More</button>
-    </div>
-    <div class="card">
-      <h3>Behind the Scenes: Crafting a Stage Play</h3>
-      <p>Go behind the curtains with our directors and stage managers as they share insights into script adaptation, set design, and stage coordination for a successful production.</p>
-      <button class="btn learn-more-btn" onclick="showArticle('crafting-stage-play')">Read More</button>
-    </div>
-    <div class="card">
-      <h3>The Power of Drama in Social Change</h3>
-      <p>Explore how drama in Kenya is addressing social issues, inspiring community discussions, and influencing positive change through powerful storytelling.</p>
-      <button class="btn learn-more-btn" onclick="showArticle('drama-social-change')">Read More</button>
-    </div>
+<h2>Articles & Updates</h2>
+<div class="card-grid">
+  <div class="card">
+    <h3>The Rise of Contemporary Theatre in Kenya</h3>
+    <p>Discover how modern Kenyan playwrights are transforming traditional stage with innovative stories and styles that connect with the youth while celebrating heritage.</p>
+    <button class="btn learn-more-btn" onclick="alert('Read more about The Rise of Contemporary Theatre in Kenya')">Read More</button>
   </div>
+  <div class="card">
+    <h3>Behind the Scenes: Crafting a Stage Play</h3>
+    <p>Go behind the curtains with our directors and stage managers as they share insights into script adaptation, set design, and stage coordination for a successful production.</p>
+    <button class="btn learn-more-btn" onclick="alert('Read more about Behind the Scenes: Crafting a Stage Play')">Read More</button>
+  </div>
+  <div class="card">
+    <h3>The Power of Drama in Social Change</h3>
+    <p>Explore how drama in Kenya is addressing social issues, inspiring community discussions, and influencing positive change through powerful storytelling.</p>
+    <button class="btn learn-more-btn" onclick="alert('Read more about The Power of Drama in Social Change')">Read More</button>
+  </div>
+</div>
+</section>
+<section id="contact" class="section">
+<h2>Contact Us</h2>
+<div class="card">
+  <b>Email:</b> <a href="mailto:strathmoreDramaSociety@strathmore.edu" style="color:#FFD700;">strathmoreDramaSociety@strathmore.edu</a><br />
+  <b>Instagram:</b> <a href="https://instagram.com/strathmore.drama.society" style="color:#FFD700;">@strathmore.drama.society</a><br />
+  <b>YouTube:</b> StrathmoreDramaSociety<br />
+  <b>TikTok:</b> @strathmore.drama.society<br />
+</div>
+<form>
+  <input type="text" class="btn" placeholder="Your Name" /><br />
+  <input type="email" class="btn" placeholder="Your Email" /><br />
+  <textarea class="btn" placeholder="Message"></textarea><br />
+  <button class="btn btn-gold">Send Message</button>
+</form>
+</section>
+<section id="join" class="section">
+<h2>Join Us!</h2>
+<form>
+  <input type="text" class="btn" placeholder="Full Name" /><br />
+  <input type="email" class="btn" placeholder="Email" /><br />
+  <button class="btn btn-gold">Register</button>
+</form>
+<div class="card">
+  <b>Upcoming Auditions:</b><br />
+  Week 1, March 2025: Open Acting Auditions<br />
+  Week 3, March 2025: Tech Team Onboarding
+</div>
 </section>
 </main>
 <footer>
   &copy; 2025 Strathmore Drama Society (DRAMSOC)
 </footer>
-<div id="articleModal">
-  <div>
-    <button class="close-button" onclick="closeArticle()">&times;</button>
-    <div id="articleModalContent"></div>
-  </div>
-</div>
 <script>
-const articles = {
-  "contemporary-theatre": {
-    title: "The Rise of Contemporary Theatre in Kenya",
-    author: "Wangudi Lameck",
-    date: "March 14, 2025",
-    content: \`
-      <p>Kenya's theatrical landscape has witnessed a revolutionary growth over the past decade. Young playwrights and theatre groups are pushing boundaries, creating innovative narratives that blend the rich tapestry of traditional storytelling with modern themes.</p>
-      <p>These contemporary plays address a broad spectrum of topics—from generational conflicts and urbanization to politics and identity—resonating deeply with new audiences. Through bold experimentation in performance styles and technology integration, Kenyan theatre is carving a distinct voice on the global stage.</p>
-      <p>The homegrown talent is supported by a recent surge in creative workshops, festivals, and collaborations that nourish artistic expression beyond Nairobi’s traditional spaces. This movement not only promotes original Kenyan stories but also enhances accessibility, providing diverse audiences the chance to engage meaningfully with their culture through performance.</p>
-      <p>Despite challenges such as funding deficits and infrastructural limitations, enthusiasm and resourcefulness keep pushing the art forward. This renaissance signals a bright future where theatre serves as both entertainment and societal mirror for Kenya's evolving identity.</p>\`
-  },
-  "crafting-stage-play": {
-    title: "Behind the Scenes: Crafting a Stage Play",
-    author: "Wangudi Lameck",
-    date: "June 2, 2025",
-    content: \`
-      <p>Bringing a stage play from script to spotlight is a complex, collaborative journey. It involves a talented mix of playwrights, directors, designers, and actors working in harmony to transform words into vibrant experiences.</p>
-      <p>The process starts with deep script analysis, involving several revisions to ensure authentic dialogue and engaging pacing. Playwrights work closely with directors to adapt stories that resonate with the target audience, respecting cultural nuances and contemporary themes.</p>
-      <p>Creative teams, from set designers to costume and lighting technicians, translate written words into evocative visuals. This multidisciplinary approach requires meticulous coordination, where communication and shared vision ensure an immersive theatrical experience.</p>
-      <p>Rehearsals are where the magic unfolds. Actors embody characters, while directors shape performances to balance emotional depth with audience connection. Stage managers orchestrate logistics, timing, and technical runs, ensuring seamless execution during live shows.</p>
-      <p>Successful productions are a testament to this painstaking yet rewarding effort, showcasing the power of theatre not only to entertain but to reflect and challenge society.</p>\`
-  },
-  "drama-social-change": {
-    title: "The Power of Drama in Social Change",
-    author: "Wangudi Lameck",
-    date: "October 21, 2025",
-    content: \`
-      <p>Drama has long been a formidable tool for social change, and in Kenya, its impact continues to expand. Theatre performances open spaces to tackle tough topics such as governance, corruption, gender equality, and cultural identity.</p>
-      <p>By weaving compelling narratives with relatable characters, plays invoke empathy and inspire audiences to critically reflect on societal issues. Community theatre especially reaches marginalized groups, initiating dialogues that might otherwise be inaccessible in conventional forums.</p>
-      <p>Kenyan playwrights and dramatists embrace vernacular languages and local traditions, which enhances authenticity and audience engagement. This culturally rooted approach fosters inclusion, enabling diverse voices to be heard and validated.</p>
-      <p>Beyond awareness raising, drama mobilizes communities towards action, influencing policy discussions and social norms. Through performances in schools, town halls, and open-air venues, drama operates as a bridge between art and activism, empowering people to envision and build better futures.</p>\`
-  }
-};
-function showArticle(key) {
-  const article = articles[key];
-  if (!article) return;
-  const modal = document.getElementById("articleModal");
-  const contentDiv = document.getElementById("articleModalContent");
-  contentDiv.innerHTML = \`
-    <h2>\${article.title}</h2>
-    <p><em>By \${article.author} | \${article.date}</em></p>
-    \${article.content}
-  \`;
-  modal.style.display = "block";
-}
-function closeArticle() {
-  document.getElementById("articleModal").style.display = "none";
-}
 function showProduction(prod) {
   var modal = document.getElementById("productionModal");
   var content = document.getElementById("productionModalContent");
   var html = "";
   if (prod === "waiting-room") {
-    html = \`<h2>The Waiting Room</h2>
+    html = `<h2>The Waiting Room</h2>
   <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
     <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
   </p>
@@ -398,9 +398,9 @@ function showProduction(prod) {
   </div>
   <p style="margin-top:18px; font-size:1.13em;">
     In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
-  </p>\`;
+  </p>`;
   } else if (prod === "homecoming") {
-    html = \`<h2>The Homecoming</h2>
+    html = `<h2>The Homecoming</h2>
   <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
     <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
   </p>
@@ -415,9 +415,9 @@ function showProduction(prod) {
   </div>
   <p style="margin-top:18px; font-size:1.13em;">
     A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
-  </p>\`;
+  </p>`;
   } else if (prod === "samaritan") {
-    html = \`<h2>The Samaritan</h2>
+    html = `<h2>The Samaritan</h2>
   <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
     <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
   </p>
@@ -434,7 +434,7 @@ function showProduction(prod) {
   </div>
   <p style="margin-top:18px; font-size:1.13em;">
     This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
-  </p>\`;
+  </p>`;
   }
   content.innerHTML = html;
   modal.style.display = "flex";
