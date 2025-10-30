@@ -1,0 +1,76 @@
+/* DramSoc Website - responsive.css
+   Mobile-first responsive adjustments, touch-friendly interactions,
+   and optimized layouts for mobile and tablet.
+*/
+
+/* Breakpoints */
+/* Base/mobile defaults are inherited from styles.css. Add overrides below. */
+
+/***** Small phones (up to 360px) *****/
+@media (max-width: 360px) {
+  .container { width: min(100% - 1.25rem, 100%); }
+  .navbar-inner { padding: .7rem .75rem; }
+}
+
+/***** Phones (<= 599px) *****/
+@media (max-width: 599px) {
+  body { font-size: 15px; }
+  .section { padding: 2rem 0; }
+
+  /* Nav: use hamburger, hide inline links */
+  .hamburger { display: inline-flex; }
+  .nav-links { display: none; position: absolute; inset: 60px 0 auto 0; background: #11151a; border-bottom: 1px solid rgba(255,255,255,.08); padding: .5rem; flex-direction: column; gap: .25rem; }
+  .nav-links a { padding: .9rem 1rem; border-radius: 10px; }
+  .nav-open .nav-links { display: flex; }
+
+  /* Hero stacks */
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-graphic { min-height: 220px; }
+
+  /* Grids stack into 1 column */
+  .grid.cols-4, .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+
+  /* Card spacing */
+  .card-body { padding: .9rem; }
+
+  /* Forms */
+  .input-row { grid-template-columns: 1fr; }
+  input, select, textarea, button { font-size: 16px; } /* avoid iOS zoom */
+
+  /* Footer */
+  .footer-inner { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/***** Tablets (600px - 959px) *****/
+@media (min-width: 600px) and (max-width: 959px) {
+  body { font-size: 16px; }
+
+  /* Nav */
+  .hamburger { display: inline-flex; }
+  .nav-links { display: none; position: absolute; inset: 64px 0 auto 0; background: #11151a; border-bottom: 1px solid rgba(255,255,255,.08); padding: .75rem; flex-direction: column; }
+  .nav-open .nav-links { display: flex; }
+
+  /* Hero two-thirds emphasis */
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-graphic { min-height: 280px; }
+
+  /* Grids: 2 columns */
+  .grid.cols-4, .grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/***** Small laptops (960px - 1279px) *****/
+@media (min-width: 960px) and (max-width: 1279px) {
+  .grid.cols-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) and (pointer: coarse) {
+  a, button, .btn, .socials a { min-height: 44px; min-width: 44px; }
+  .btn { padding: .9rem 1.1rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
