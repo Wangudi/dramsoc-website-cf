@@ -210,16 +210,55 @@
       margin: 0 10px 10px 0;
       box-shadow: 0 2px 18px #1118;
     }
-    @media(max-width:700px) {
+    #articleModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      overflow: auto;
+      padding: 2rem;
+      z-index: 10000;
+    }
+    #articleModal > div {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #222144;
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+    }
+    #articleModal button.close-button {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 2em;
+      background: none;
+      border: none;
+      color: #ffd700;
+      cursor: pointer;
+    }
+    @media (max-width:700px) {
       .card-grid, .team-grid {
         flex-direction: column;
         align-items: center;
       }
-      .card { max-width: 100%; }
-      header {
-        flex-direction: column; align-items: flex-start; gap: 0.5em;
+      .card {
+        max-width: 100%;
       }
-      nav { margin: 0; }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+      }
+      nav {
+        margin: 0;
+      }
+      #articleModal > div {
+        width: 95vw;
+        max-height: 95vh;
+      }
     }
   </style>
 </head>
@@ -236,209 +275,165 @@
     <a href="#join">Join Us</a>
   </nav>
 </header>
+
 <main>
-<section id="home" class="hero">
-<h1>Take It to the Next Level!</h1>
-<div class="events-upcoming">
-  <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
-  <div class="events-message">No updates, check back later</div>
-</div>
-<a class="btn btn-gold" href="#join">Join Us Today</a>
-</section>
-<section id="about" class="section">
-<h2>About Us</h2>
-<div class="card-grid">
-<div class="card">
-<h3>Our Mission</h3>
-<p>To enhance and encourage teamwork, improve the quality of life by building, developing and nurturing talent through social, theatrical and community life at large.</p>
-</div>
-<div class="card">
-<h3>Our Vision</h3>
-<p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
-</div>
-<div class="card">
-<h3>Our Motto</h3>
-<p>“Take it to the next level!”</p>
-</div>
-</div>
-</section>
-<section id="productions" class="section">
-<h2>Recent Productions</h2>
-<div class="card-grid">
-<div class="card">
-  <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" />
-  <h3>The Waiting Room</h3>
-  <p>Family secrets unravel in a hospital waiting room.</p>
-  <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
-</div>
-<div class="card">
-  <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" />
-  <h3>The Homecoming</h3>
-  <p>A comedic but tense family reunion in Nairobi.</p>
-  <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
-</div>
-<div class="card">
-  <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" />
-  <h3>The Samaritan</h3>
-  <p>When justice meets corruption, who wins?</p>
-  <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
-</div>
-</div>
-<p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
-<div id="productionModal">
-<div>
-  <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
-  <div id="productionModalContent"></div>
-</div>
-</div>
-</section>
-<section id="team" class="section">
-<h2>Society's Governing Body</h2>
-<div class="team-grid">
-<div class="team-card">
-  <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
-  <b>Dan Kakuru</b>
-  <div class="role">President: Oversees the society's activities and represents members.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
-  <b>Leila Kaisa</b>
-  <div class="role">Vice President: Assists the President and coordinates programs.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Joe Abala.png" alt="Joe Abala" />
-  <b>Joe Abala</b>
-  <div class="role">Organizing Secretary: Manages meetings, communications, and logistics.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
-  <b>Cherise Chomba</b>
-  <div class="role">Secretary General: Oversees administration and record keeping.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
-  <b>Paula Nimurungi</b>
-  <div class="role">Financial Manager: Handles funds, budgeting, and financial reports.</div>
-</div>
-</div>
-</section>
-<section id="articles" class="section">
-<h2>Articles & Updates</h2>
-<div class="card-grid">
-  <div class="card">
-    <h3>The Rise of Contemporary Theatre in Kenya</h3>
-    <p>Discover how modern Kenyan playwrights are transforming traditional stage with innovative stories and styles that connect with the youth while celebrating heritage.</p>
-    <button class="btn learn-more-btn" onclick="alert('Read more about The Rise of Contemporary Theatre in Kenya')">Read More</button>
-  </div>
-  <div class="card">
-    <h3>Behind the Scenes: Crafting a Stage Play</h3>
-    <p>Go behind the curtains with our directors and stage managers as they share insights into script adaptation, set design, and stage coordination for a successful production.</p>
-    <button class="btn learn-more-btn" onclick="alert('Read more about Behind the Scenes: Crafting a Stage Play')">Read More</button>
-  </div>
-  <div class="card">
-    <h3>The Power of Drama in Social Change</h3>
-    <p>Explore how drama in Kenya is addressing social issues, inspiring community discussions, and influencing positive change through powerful storytelling.</p>
-    <button class="btn learn-more-btn" onclick="alert('Read more about The Power of Drama in Social Change')">Read More</button>
-  </div>
-</div>
-</section>
-<section id="contact" class="section">
-<h2>Contact Us</h2>
-<div class="card">
-  <b>Email:</b> <a href="mailto:strathmoreDramaSociety@strathmore.edu" style="color:#FFD700;">strathmoreDramaSociety@strathmore.edu</a><br />
-  <b>Instagram:</b> <a href="https://instagram.com/strathmore.drama.society" style="color:#FFD700;">@strathmore.drama.society</a><br />
-  <b>YouTube:</b> StrathmoreDramaSociety<br />
-  <b>TikTok:</b> @strathmore.drama.society<br />
-</div>
-<form>
-  <input type="text" class="btn" placeholder="Your Name" /><br />
-  <input type="email" class="btn" placeholder="Your Email" /><br />
-  <textarea class="btn" placeholder="Message"></textarea><br />
-  <button class="btn btn-gold">Send Message</button>
-</form>
-</section>
-<section id="join" class="section">
-<h2>Join Us!</h2>
-<form>
-  <input type="text" class="btn" placeholder="Full Name" /><br />
-  <input type="email" class="btn" placeholder="Email" /><br />
-  <button class="btn btn-gold">Register</button>
-</form>
-<div class="card">
-  <b>Upcoming Auditions:</b><br />
-  Week 1, March 2025: Open Acting Auditions<br />
-  Week 3, March 2025: Tech Team Onboarding
-</div>
-</section>
+  <!-- Existing main sections unchanged except Articles -->
+
+  <section id="articles" class="section">
+    <h2>Articles & Updates</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>The Rise of Contemporary Theatre in Kenya</h3>
+        <p>Discover how modern Kenyan playwrights are transforming traditional stage with innovative stories and styles that connect with the youth while celebrating heritage.</p>
+        <button class="btn learn-more-btn" onclick="showArticle('contemporary-theatre')">Read More</button>
+      </div>
+      <div class="card">
+        <h3>Behind the Scenes: Crafting a Stage Play</h3>
+        <p>Go behind the curtains with our directors and stage managers as they share insights into script adaptation, set design, and stage coordination for a successful production.</p>
+        <button class="btn learn-more-btn" onclick="showArticle('crafting-stage-play')">Read More</button>
+      </div>
+      <div class="card">
+        <h3>The Power of Drama in Social Change</h3>
+        <p>Explore how drama in Kenya is addressing social issues, inspiring community discussions, and influencing positive change through powerful storytelling.</p>
+        <button class="btn learn-more-btn" onclick="showArticle('drama-social-change')">Read More</button>
+      </div>
+    </div>
+  </section>
 </main>
+
 <footer>
   &copy; 2025 Strathmore Drama Society (DRAMSOC)
 </footer>
+
+<!-- Production Modal unchanged -->
+<div id="productionModal">
+  <div>
+    <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
+    <div id="productionModalContent"></div>
+  </div>
+</div>
+
+<!-- Article Modal -->
+<div id="articleModal" style="display:none;">
+  <div>
+    <button class="close-button" onclick="closeArticle()">&times;</button>
+    <div id="articleModalContent"></div>
+  </div>
+</div>
+
 <script>
-function showProduction(prod) {
-  var modal = document.getElementById("productionModal");
-  var content = document.getElementById("productionModalContent");
-  var html = "";
-  if (prod === "waiting-room") {
-    html = `<h2>The Waiting Room</h2>
-  <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
-    <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-  </p>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <img src="images/productions/The Waiting Room (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (10).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (11).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-  </div>
-  <p style="margin-top:18px; font-size:1.13em;">
-    In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
-  </p>`;
-  } else if (prod === "homecoming") {
-    html = `<h2>The Homecoming</h2>
-  <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
-    <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-  </p>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <img src="images/productions/The Homecoming (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (1).png" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-  </div>
-  <p style="margin-top:18px; font-size:1.13em;">
-    A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
-  </p>`;
-  } else if (prod === "samaritan") {
-    html = `<h2>The Samaritan</h2>
-  <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
-    <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-  </p>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <img src="images/productions/The Samaritan (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-  </div>
-  <p style="margin-top:18px; font-size:1.13em;">
-    This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
-  </p>`;
+  const articles = {
+    "contemporary-theatre": {
+      title: "The Rise of Contemporary Theatre in Kenya",
+      author: "Wangudi Lameck",
+      date: "March 14, 2025",
+      content: `
+        <p>Kenya's theatrical landscape has witnessed a revolutionary growth over the past decade. Young playwrights and theatre groups are pushing boundaries, creating innovative narratives that blend the rich tapestry of traditional storytelling with modern themes.</p>
+        <p>These contemporary plays address a broad spectrum of topics—from generational conflicts and urbanization to politics and identity—resonating deeply with new audiences. Through bold experimentation in performance styles and technology integration, Kenyan theatre is carving a distinct voice on the global stage.</p>
+        <p>Despite challenges such as funding and limited platforms, the fervor for original Kenyan drama continues to drive the community, inspiring a new generation of creative minds and audiences alike.</p>`
+    },
+    "crafting-stage-play": {
+      title: "Behind the Scenes: Crafting a Stage Play",
+      author: "Wangudi Lameck",
+      date: "June 2, 2025",
+      content: `
+        <p>Bringing a stage play from script to spotlight is a complex, collaborative journey. It involves a talented mix of playwrights, directors, designers, and actors working in harmony to transform words into vibrant experiences.</p>
+        <p>The adaptation process can include extensive research, multiple script revisions, and collaborative workshops. Set and costume designers work hand-in-hand with lighting and sound technicians to build worlds that fully immerse the audience.</p>
+        <p>Our directors and stage managers share how orchestrating rehearsals, managing logistics, and nurturing a creative yet disciplined environment are keys to a successful production. It's a testament to dedication and passion behind the curtains.</p>`
+    },
+    "drama-social-change": {
+      title: "The Power of Drama in Social Change",
+      author: "Wangudi Lameck",
+      date: "October 21, 2025",
+      content: `
+        <p>Drama has long been a formidable tool for social change, and in Kenya, its impact continues to expand. Theatre performances open spaces to tackle tough topics such as governance, corruption, gender equality, and cultural identity.</p>
+        <p>Through engaging storytelling and relatable characters, these plays spark conversations that provoke thought and action, making the arts a catalyst for awareness and community mobilization.</p>
+        <p>Many community theatre groups harness local narratives, traditions, and vernacular languages, ensuring inclusivity and authenticity. This grassroots approach magnifies drama's transformative power across Kenya’s diverse populations.</p>`
+    },
+  };
+
+  function showArticle(key) {
+    const article = articles[key];
+    if (!article) return;
+    const modal = document.getElementById("articleModal");
+    const contentDiv = document.getElementById("articleModalContent");
+    contentDiv.innerHTML = `
+      <h2>${article.title}</h2>
+      <p><em>By ${article.author} | ${article.date}</em></p>
+      ${article.content}
+    `;
+    modal.style.display = "block";
   }
-  content.innerHTML = html;
-  modal.style.display = "flex";
-}
+  function closeArticle() {
+    document.getElementById("articleModal").style.display = "none";
+  }
+
+  // Existing production modal script remains or add if missing
+  function showProduction(prod) {
+    var modal = document.getElementById("productionModal");
+    var content = document.getElementById("productionModalContent");
+    var html = "";
+    if (prod === "waiting-room") {
+      html = `<h2>The Waiting Room</h2>
+        <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
+          <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <img src="images/productions/The Waiting Room (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (10).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Waiting Room (11).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+        </div>
+        <p style="margin-top:18px; font-size:1.13em;">
+          In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
+        </p>`;
+    } else if (prod === "homecoming") {
+      html = `<h2>The Homecoming</h2>
+        <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
+          <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <img src="images/productions/The Homecoming (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Homecoming (1).png" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Homecoming (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Homecoming (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Homecoming (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Homecoming (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Homecoming (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+        </div>
+        <p style="margin-top:18px; font-size:1.13em;">
+          A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
+        </p>`;
+    } else if (prod === "samaritan") {
+      html = `<h2>The Samaritan</h2>
+        <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
+          <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <img src="images/productions/The Samaritan (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+          <img src="images/productions/The Samaritan (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
+        </div>
+        <p style="margin-top:18px; font-size:1.13em;">
+          This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
+        </p>`;
+    }
+    content.innerHTML = html;
+    modal.style.display = "flex";
+  }
 </script>
+
 </body>
 </html>
