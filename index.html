@@ -1,177 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strathmore Drama Society - DRAMSOC</title>
-    <meta name="description" content="Strathmore Drama Society - Where stories come alive at Strathmore University">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strathmore Drama Society (DRAMSOC)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400">
+  <style>
+    body { background:#111111; color:#fff; font-family:'Poppins', Arial, sans-serif; margin:0; }
+    header { background:#B80000; color:#FFF; display:flex; align-items:center; gap:1em; padding:1em 2em;}
+    .site-logo {width:48px;height:48px; background:#FFD700; border-radius:50%; display:inline-block;}
+    nav { margin-left:auto; }
+    nav a { color:#FFD700; text-decoration:none; margin-left:20px; font-weight:500;}
+    .hero { background:linear-gradient(135deg,#111,#B80000); min-height:45vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
+    h1 { font-size:2.7em; font-family:'Lora',serif; color:#FFD700;}
+    .motto { color:#B80000; font-size:1.2em; font-family:'Lora',serif; letter-spacing:2px;}
+    .section { padding:56px 18px;}
+    .card-grid, .team-grid {display:flex; gap:2em; flex-wrap:wrap; justify-content:center;}
+    .card {background:#222; border-radius:12px; padding:1.4em 1em; margin-bottom:22px; box-shadow:0 4px 32px #B8000044; max-width:340px;}
+    .card img {width:100%; border-radius:8px;}
+    .btn, .btn-gold { background:#FFD700; color:#111; border:none; border-radius:6px; padding:13px 2em; font-weight:700; margin-top:10px;}
+    .team-card { background:#262626; border-radius:8px; padding:1em 0; text-align:center; width:170px;}
+    .team-card img {width:84px; border-radius:50%; margin-bottom:7px;}
+    .socials a { margin:0 10px;}
+    footer {background:#111; color:#FFD700; text-align:center; padding:30px 5px; margin-top:36px;}
+    @media(max-width:700px){ 
+      .card-grid, .team-grid {flex-direction:column;align-items:center;}
+      .card{max-width:100%;}
+      header{flex-direction:column;align-items:flex-start;gap:0.5em;}
+      nav{margin:0;}
+    }
+  </style>
 </head>
 <body>
-    <div class="App">
-        <!-- Navigation -->
-        <nav class="navbar">
-            <div class="navbar-container">
-                <a href="#" class="navbar-logo">DRAMSOC</a>
-                <div class="navbar-content">
-                    <ul class="nav-menu" id="nav-menu">
-                        <li class="nav-item">
-                            <a href="#home" class="nav-button">🏠 Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#about" class="nav-button">ℹ️ About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#team" class="nav-button">Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#articles" class="nav-button">📰 Articles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#alumni" class="nav-button">Alumni</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#productions" class="nav-button">🎭 Productions</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#team" class="nav-button">👥 Our Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#contact" class="nav-button">📧 Contact Us</a>
-                        </li>
-                    </ul>
-                    <div class="social-media-buttons">
-                        <a href="https://instagram.com/strathmore.drama.society" target="_blank" class="social-button instagram-button">📷</a>
-                        <a href="https://youtube.com/@StrathmoreDramaSociety" target="_blank" class="social-button youtube-button">▶</a>
-                        <a href="https://tiktok.com/@strathmore.drama.society" target="_blank" class="social-button tiktok-button">♪</a>
-                    </div>
-                </div>
-                <div class="menu-icon" id="menu-icon">☰</div>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <img src="https://ext.same-assets.com/2822689574/2637141158.png" alt="DRAMSOC Logo" class="hero-logo">
-            <h1>Take It to the Next Level!</h1>
-            <p>Where stories come alive at Strathmore University</p>
-            <a href="#contact" class="cta-button">Join Us Today</a>
-
-            <!-- First row of buttons -->
-            <div class="hero-buttons-row">
-                <a href="#about" class="cta-button-outline">About Us</a>
-                <a href="#productions" class="cta-button-outline">Productions</a>
-                <a href="#articles" class="cta-button-outline">📰 Articles</a>
-                <a href="#alumni" class="cta-button-outline">🎭 Alumni</a>
-                <a href="#team" class="cta-button-outline">Our Team</a>
-                <a href="#contact" class="cta-button-outline">Contact Us</a>
-            </div>
-
-            <!-- Second row of buttons -->
-            <div class="hero-buttons-row">
-                <a href="#productions" class="cta-button-outline">🎭 Productions</a>
-                <a href="#team" class="cta-button-outline">👥 Our Team</a>
-                <a href="#contact" class="cta-button-outline">📧 Contact Us</a>
-            </div>
-        </section>
-
-        <!-- Upcoming Events Section -->
-        <section class="section">
-            <h2>Upcoming Plays/Events</h2>
-            <div class="upcoming-notice">
-                <p>No updates at the moment. Please check back later.</p>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="section" id="about">
-            <h2>About Us</h2>
-            <h3 class="section-subtitle">Our Mission</h3>
-            <p>to enhance and encourage teamwork, improve the quality of life by building, developing and nurturing talent through social, theatrical and community life at large.</p>
-
-            <h3 class="section-subtitle">Our Vision</h3>
-            <p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
-
-            <h3 class="section-subtitle">Our Motto</h3>
-            <p>"Take it to the next level!"</p>
-        </section>
-
-        <!-- Featured Productions Section -->
-        <section class="section" id="productions">
-            <h2>Featured Productions</h2>
-            <div class="card-grid">
-                <div class="production-card">
-                    <img src="https://ext.same-assets.com/2822689574/2056253239.jpeg" alt="The Homecoming" class="production-image">
-                    <h3>The Homecoming</h3>
-                    <p>A powerful tale of family dynamics, secrets, and the complexities of returning home.</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="production-card">
-                    <img src="https://ext.same-assets.com/2822689574/818014625.jpeg" alt="The Samaritan" class="production-image">
-                    <h3>The Samaritan</h3>
-                    <p>An inspiring story of kindness, morality, and the fight against corruption in modern society.</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="production-card">
-                    <img src="https://ext.same-assets.com/2822689574/1204273326.jpeg" alt="The Waiting Room" class="production-image">
-                    <h3>The Waiting Room</h3>
-                    <p>A compelling drama that explores the human experience through the lens of anticipation and uncertainty.</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Behind the Scenes Section -->
-        <section class="section">
-            <h2>Behind the Scenes</h2>
-            <div class="card-grid">
-                <img src="https://ext.same-assets.com/2822689574/2056253239.jpeg" alt="Behind the scenes 1" class="behind-scenes-image">
-                <img src="https://ext.same-assets.com/2822689574/2056253239.jpeg" alt="Behind the scenes 2" class="behind-scenes-image">
-                <img src="https://ext.same-assets.com/2822689574/818014625.jpeg" alt="Behind the scenes 3" class="behind-scenes-image">
-                <img src="https://ext.same-assets.com/2822689574/2056253239.jpeg" alt="Behind the scenes 4" class="behind-scenes-image">
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer" id="contact">
-            <div class="footer-container">
-                <div class="footer-section">
-                    <h3>DRAMSOC</h3>
-                    <p>Strathmore Drama Society</p>
-                    <p>Where stories come alive at Strathmore University</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#team">Team</a></li>
-                        <li><a href="#productions">Productions</a></li>
-                        <li><a href="#articles">Articles</a></li>
-                        <li><a href="#alumni">Alumni</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Email: strathmoreDramaSociety@strathmore.edu</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="footer-social-buttons">
-                        <a href="https://instagram.com/strathmore.drama.society" target="_blank" class="footer-social-button instagram-button">📷</a>
-                        <a href="https://youtube.com/@StrathmoreDramaSociety" target="_blank" class="footer-social-button youtube-button">▶</a>
-                        <a href="https://tiktok.com/@strathmore.drama.society" target="_blank" class="footer-social-button tiktok-button">♪</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 Strathmore Drama Society. All Rights Reserved.</p>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+  <header>
+    <span class="site-logo"></span>
+    <b style="font-size:1.2em; margin-left:10px;">DRAMSOC</b>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#productions">Productions</a>
+      <a href="#departments">Departments</a>
+      <a href="#team">Team</a>
+      <a href="#alumni">Alumni</a>
+      <a href="#articles">Articles</a>
+      <a href="#contact">Contact</a>
+      <a href="#join">Join Us</a>
+    </nav>
+  </header>
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <h1>Take It to the Next Level!</h1>
+      <p class="motto">Where stories come alive at Strathmore University</p>
+      <a class="btn btn-gold" href="#join">Join Us Today</a>
+    </section>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>About Us</h2>
+      <div class="card-grid">
