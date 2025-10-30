@@ -5,67 +5,14 @@ body {
   margin: 0;
 }
 header {
- <style>
-  /* Hamburger bars styling and animation */
-  #menu-toggle .bar {
-    display: block;
-    width: 30px;
-    height: 4px;
-    margin: 6px 0;
-    background-color: #FFD700;
-    border-radius: 2px;
-    transition: 0.4s;
-  }
-
-  /* Animate hamburger to X when open */
-  #menu-toggle.open .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-7px, 7px);
-  }
-  #menu-toggle.open .bar:nth-child(2) {
-    opacity: 0;
-  }
-  #menu-toggle.open .bar:nth-child(3) {
-    transform: rotate(45deg) translate(-6px, -6px);
-  }
-
-  /* Navigation menu styling */
-  #nav-menu {
-    display: none;
-    position: absolute;
-    top: 64px;
-    right: 32px;
-    background: #111111;
-    border-radius: 8px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    padding: 24px 32px;
-    z-index: 99;
-  }
-
-  /* Responsive styles for mobile */
-  @media (max-width: 768px) {
-    #nav-menu {
-      top: 56px;
-      right: 16px;
-      left: 16px;
-      width: auto;
-      border-radius: 0;
-      padding: 16px;
-      box-shadow: none;
-    }
-    #nav-menu ul {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    #menu-toggle {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 100;
-    }
-  }
-</style>
-
+  background: #B80000;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  padding: 1em 2em;
+  font-weight: bold;
+  font-size: 1.2em;
+  letter-spacing: 2px;
 }
 .site-logo {
   width: 100px;
@@ -180,4 +127,3 @@ footer {
   header{flex-direction:column;align-items:flex-start;gap:0.5em;}
   nav{margin:0;}
 }
-
