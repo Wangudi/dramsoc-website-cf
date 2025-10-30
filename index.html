@@ -68,11 +68,18 @@
     .card {background:#222; border-radius:12px; padding:1.4em 1em; margin-bottom:22px; box-shadow:0 4px 32px #B8000044; max-width:340px; transition:transform 0.18s, box-shadow 0.18s;}
     .card:hover { transform:translateY(-8px) scale(1.02); box-shadow:0 10px 44px #B80000bb;}
     .card img {width:100%; border-radius:8px;}
-    .btn, .btn-gold { background:#FFD700; color:#111; border:none; border-radius:6px; padding:13px 2em; font-weight:700; margin-top:10px; font-size:1em; cursor:pointer; transition:background 0.22s, color 0.18s;}
-    .btn-gold:hover, .btn:hover { background:#B80000; color:#fff;}
+    .btn, .btn-gold, .learn-more-btn { background:#FFD700; color:#111; border:none; border-radius:6px; padding:13px 2em; font-weight:700; margin-top:10px; font-size:1em; cursor:pointer; transition:background 0.22s, color 0.18s;}
+    .btn-gold:hover, .btn:hover, .learn-more-btn:hover { background:#B80000; color:#fff;}
     .team-card { background:#262626; border-radius:8px; padding:1em 0; text-align:center; width:170px;}
     .team-card img {width:84px; border-radius:50%; margin-bottom:7px; border:3px solid #FFD70088;}
     footer {background:#111; color:#FFD700; text-align:center; padding:30px 5px; margin-top:36px;}
+    /* Modal styling */
+    #productionModal {
+      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(34,20,68,0.95); z-index:9999; align-items:center; justify-content:center; }
+    #productionModal > div {
+      background:#222144; border-radius:16px; padding:32px; max-width:90vw; max-height:86vh; overflow:auto; color:#fff; box-shadow:0 12px 48px #0008; position:relative;
+      animation: scalePulse 1.7s;
+    }
     @media(max-width:700px){
       .card-grid,.team-grid{flex-direction:column;align-items:center;}
       .card{max-width:100%;}
@@ -130,19 +137,29 @@
           <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster">
           <h3>The Waiting Room</h3>
           <p>Gripping drama in a hospital waiting room—exploring life's transitions, anxiety, hope, and human connection.</p>
+          <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
         </div>
         <div class="card">
           <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster">
           <h3>The Homecoming</h3>
           <p>Contemporary drama about family, reconciliation, and the meaning of home after years apart.</p>
+          <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
         </div>
         <div class="card">
           <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster">
           <h3>The Samaritan</h3>
           <p>Modern social drama tackling corruption, integrity, and redemption in society.</p>
+          <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
         </div>
       </div>
       <p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
+      <!-- Modal for displaying production info -->
+      <div id="productionModal">
+        <div>
+          <span style="position:absolute; top:14px; right:34px; font-size:2.3em; color:#FFD700; cursor:pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
+          <div id="productionModalContent"></div>
+        </div>
+      </div>
     </section>
     <!-- TEAM -->
     <section id="team" class="section">
@@ -210,5 +227,39 @@
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
+  <script>
+    function showProduction(prod) {
+      var modal = document.getElementById('productionModal');
+      var content = document.getElementById('productionModalContent');
+      var html = '';
+      if (prod === 'waiting-room') {
+        html = `<h2>The Waiting Room</h2>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <img src="images/productions/The Waiting Room (2).jpg" style="width:180px; border-radius:10px;">
+            <img src="images/productions/The Waiting Room (3).jpg" style="width:180px; border-radius:10px;">
+            <img src="images/productions/The Waiting Room (4).jpg" style="width:180px; border-radius:10px;">
+          </div>
+          <p style="margin-top:18px;">A gripping drama that explores the anxiety and anticipation felt by individuals in life's transitional moments. Powerful performances and deep connection.</p>`;
+      } else if (prod === 'homecoming') {
+        html = `<h2>The Homecoming</h2>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <img src="images/productions/The Homecoming (1).jpg" style="width:180px; border-radius:10px;">
+            <img src="images/productions/The Homecoming (2).jpg" style="width:180px; border-radius:10px;">
+            <img src="images/productions/The Homecoming (3).jpg" style="width:180px; border-radius:10px;">
+          </div>
+          <p style="margin-top:18px;">A contemporary drama about family, reconciliation, and what home means. Nuanced character arcs and emotional scenes.</p>`;
+      } else if (prod === 'samaritan') {
+        html = `<h2>The Samaritan</h2>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <img src="images/productions/The Samaritan (1).jpg" style="width:180px; border-radius:10px;">
+            <img src="images/productions/The Samaritan (2).jpg" style="width:180px; border-radius:10px;">
+            <img src="images/productions/The Samaritan (3).jpg" style="width:180px; border-radius:10px;">
+          </div>
+          <p style="margin-top:18px;">A powerful contemporary drama about integrity, redemption and the struggle for justice in society.</p>`;
+      }
+      content.innerHTML = html;
+      modal.style.display = 'flex';
+    }
+  </script>
 </body>
 </html>
