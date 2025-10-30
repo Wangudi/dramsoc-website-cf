@@ -107,7 +107,7 @@
     }
     .section {
       padding: 90px 36px;
-      max-width: 1200px; /* increased max width for bigger sections */
+      max-width: 1200px;
       margin: 0 auto;
     }
     .card-grid,
@@ -157,9 +157,9 @@
     .team-card {
       background: #262626;
       border-radius: 8px;
-      padding: 1em 0;
+      padding: 1em 2.5em 1.4em; /* Increased horizontal padding */
       text-align: center;
-      width: 200px;
+      width: 220px;
       box-sizing: border-box;
     }
     .team-card img {
@@ -217,7 +217,8 @@
       box-shadow: 0 2px 18px #1118;
     }
     @media(max-width:700px){
-      .card-grid,.team-grid {
+      .card-grid,
+      .team-grid {
         flex-direction: column;
         align-items: center;
       }
@@ -438,8 +439,8 @@ function showProduction(prod) {
     This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
   </p>`;
   }
-  document.getElementById("productionModalContent").innerHTML = html;
-  document.getElementById("productionModal").style.display="flex";
+  content.innerHTML = html;
+  modal.style.display = "flex";
 }
 </script>
 </body>
