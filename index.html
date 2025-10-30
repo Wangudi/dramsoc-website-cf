@@ -12,31 +12,56 @@
     nav { margin-left:auto; }
     nav a { color:#FFD700; text-decoration:none; margin-left:20px; font-weight:500; font-size:1em; transition:color 0.2s;}
     nav a:hover { color:#FFF; text-shadow:0 0 8px #FFD700AA;}
-    .hero { background:linear-gradient(135deg,#111,#B80000 100%); min-height:45vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:64px 18px;}
+    .hero {
+      background:linear-gradient(135deg,#222144,#B80000 100%);
+      min-height:50vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:64px 18px;
+    }
     h1, h2, h3 { font-family: 'Lora', serif; color:#FFD700;}
     .motto { color:#B80000; font-size:1.2em; font-family:'Lora',serif; letter-spacing:2px; margin-bottom:18px;}
     .events-upcoming {
-      margin: 0 auto 24px auto;
-      padding: 20px 24px;
-      background: linear-gradient(120deg,#3949ab,#6d4aff 70%);
+      margin: 0 auto 32px auto;
+      padding: 40px 28px;
+      background: linear-gradient(120deg,#251544,#423b79 80%);
       color:#fff;
-      border-radius:14px;
-      font-size:1.18em;
-      animation: pulse 2s infinite;
-      box-shadow:0 6px 32px #6d4aff41;
-      max-width:420px;
-      font-family:'Poppins',sans-serif;
+      border-radius:24px;
+      min-width:270px;
+      min-height:130px;
+      max-width:680px;
+      font-family:'Lora',serif;
+      font-style: italic;
+      font-weight:600;
+      letter-spacing:1.5px;
+      font-size:1.6em;
+      box-shadow:0 8px 44px #22154488;
+      display: flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      animation: scalePulse 2.6s infinite;
+      text-shadow:0 1px 10px #22154488;
     }
     .events-upcoming-title {
-      font-weight:bold; font-size:1.22em; letter-spacing:2px;
       color:#FFD700;
-      margin-bottom:8px;
-      text-shadow:0 1px 6px #1114;
+      margin-bottom:20px;
+      font-size:1.3em;
+      font-family:inherit;
+      font-style:normal;
+      font-weight:bold;
+      letter-spacing:2px;
+      text-shadow:0 2px 12px #423b7977;
     }
-    @keyframes pulse {
-      0%   { box-shadow:0 6px 32px #6d4aff41;}
-      50%  { box-shadow:0 10px 54px #FFD70060;}
-      100% { box-shadow:0 6px 32px #6d4aff41;}
+    .events-message {
+      color:#e2d9ff;
+      font-size:1.06em;
+      font-family:inherit;
+      letter-spacing:1px;
+      font-weight:500;
+      opacity:.88;
+    }
+    @keyframes scalePulse {
+      0%   { transform: scale(1);}
+      50%  { transform: scale(1.03);}
+      100% { transform: scale(1);}
     }
     .section { padding:56px 18px;}
     .card-grid, .team-grid {display:flex; gap:2em; flex-wrap:wrap; justify-content:center;}
@@ -73,10 +98,9 @@
     <!-- HERO -->
     <section id="home" class="hero">
       <h1>Take It to the Next Level!</h1>
-      <p class="motto">“Take it to the next level!”</p>
       <div class="events-upcoming">
-        <div class="events-upcoming-title">UPCOMING SHOWS / EVENTS</div>
-        No updates, check back later
+        <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
+        <div class="events-message">No updates, check back later</div>
       </div>
       <a class="btn btn-gold" href="#join">Join Us Today</a>
     </section>
