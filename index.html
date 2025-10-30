@@ -165,15 +165,28 @@
     .team-card {
       background: #262626;
       border-radius: 8px;
-      padding: 1em 0;
+      padding: 1em 1em 1.4em;
       text-align: center;
-      width: 170px;
+      width: 180px;
+      box-sizing: border-box;
     }
     .team-card img {
-      width: 84px;
-      border-radius: 50%;
-      margin-bottom: 7px;
+      width: 100px;
+      height: 100px;
+      border-radius: 0;
+      object-fit: cover;
+      margin-bottom: 8px;
       border: 3px solid #ffd70088;
+    }
+    .team-card b {
+      display: block;
+      font-size: 1.1em;
+      margin-bottom: 6px;
+      color: #ffd700;
+    }
+    .team-card .role {
+      font-size: 0.9em;
+      color: #ddd;
     }
     footer {
       background: #111;
@@ -237,11 +250,7 @@
 </head>
 <body>
   <header>
-    <img
-      src="images/logo/No background white logo.png"
-      alt="DRAMSOC Logo"
-      class="site-logo"
-    />
+    <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
     <nav>
       <a href="#home">Home</a>
       <a href="#about">About Us</a>
@@ -253,7 +262,6 @@
     </nav>
   </header>
   <main>
-    <!-- HERO -->
     <section id="home" class="hero">
       <h1>Take It to the Next Level!</h1>
       <div class="events-upcoming">
@@ -262,26 +270,16 @@
       </div>
       <a class="btn btn-gold" href="#join">Join Us Today</a>
     </section>
-    <!-- ABOUT -->
     <section id="about" class="section">
       <h2>About Us</h2>
       <div class="card-grid">
         <div class="card">
           <h3>Our Mission</h3>
-          <p>
-            To enhance and encourage teamwork, improve the quality of life by
-            building, developing and nurturing talent through social,
-            theatrical and community life at large.
-          </p>
+          <p>To enhance and encourage teamwork, improve the quality of life by building, developing and nurturing talent through social, theatrical and community life at large.</p>
         </div>
         <div class="card">
           <h3>Our Vision</h3>
-          <p>
-            To be a premier arts institution in Kenya and beyond, inspiring
-            creativity, fostering cultural dialogue, and empowering
-            individuals to use the transformative power of theatre and film for
-            personal and societal growth.
-          </p>
+          <p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
         </div>
         <div class="card">
           <h3>Our Motto</h3>
@@ -289,114 +287,79 @@
         </div>
       </div>
     </section>
-    <!-- PRODUCTIONS -->
     <section id="productions" class="section">
       <h2>Recent Productions</h2>
       <div class="card-grid">
         <div class="card">
-          <img
-            src="images/productions/The Waiting Room (2).jpg"
-            alt="Waiting Room Poster"
-          />
+          <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" />
           <h3>The Waiting Room</h3>
           <p>Family secrets unravel in a hospital waiting room.</p>
-          <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">
-            Learn More
-          </button>
+          <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
         </div>
         <div class="card">
-          <img
-            src="images/productions/The Homecoming (1).jpg"
-            alt="Homecoming Poster"
-          />
+          <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" />
           <h3>The Homecoming</h3>
           <p>A comedic but tense family reunion in Nairobi.</p>
-          <button class="btn learn-more-btn" onclick="showProduction('homecoming')">
-            Learn More
-          </button>
+          <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
         </div>
         <div class="card">
-          <img
-            src="images/productions/The Samaritan (1).jpg"
-            alt="Samaritan Poster"
-          />
+          <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" />
           <h3>The Samaritan</h3>
           <p>When justice meets corruption, who wins?</p>
-          <button class="btn learn-more-btn" onclick="showProduction('samaritan')">
-            Learn More
-          </button>
+          <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
         </div>
       </div>
       <p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
       <div id="productionModal">
         <div>
-          <span
-            style="
-              position: absolute;
-              top: 14px;
-              right: 34px;
-              font-size: 2.3em;
-              color: #FFD700;
-              cursor: pointer;
-            "
-            onclick="document.getElementById('productionModal').style.display='none'"
-            >&times;</span
-          >
+          <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
           <div id="productionModalContent"></div>
         </div>
       </div>
     </section>
-    <!-- TEAM -->
     <section id="team" class="section">
-      <h2>Production Team</h2>
+      <h2>Society's Governing Body</h2>
       <div class="team-grid">
         <div class="team-card">
           <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
-          <b>Dan Kakuru</b><br />
-          President
+          <b>Dan Kakuru</b>
+          <div class="role">President</div>
         </div>
         <div class="team-card">
           <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
-          <b>Leila Kaisa</b><br />
-          Vice President
+          <b>Leila Kaisa</b>
+          <div class="role">Vice President</div>
         </div>
         <div class="team-card">
           <img src="images/team/Joe Abala.png" alt="Joe Abala" />
-          <b>Joe Abala</b><br />
-          Organizing Secretary
+          <b>Joe Abala</b>
+          <div class="role">Organizing Secretary</div>
         </div>
         <div class="team-card">
           <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
-          <b>Cherise Chomba</b><br />
-          Secretary General
+          <b>Cherise Chomba</b>
+          <div class="role">Secretary General</div>
         </div>
         <div class="team-card">
           <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
-          <b>Paula Nimurungi</b><br />
-          Financial Manager
+          <b>Paula Nimurungi</b>
+          <div class="role">Financial Manager</div>
         </div>
       </div>
     </section>
-    <!-- ARTICLES -->
     <section id="articles" class="section">
       <h2>Articles & Updates</h2>
       <div class="card-grid">
         <div class="card"><b>Welcome to DRAMSOC!</b><br />Official launch and news.</div>
-        <!-- More articles -->
       </div>
     </section>
-    <!-- CONTACT -->
     <section id="contact" class="section">
       <h2>Contact Us</h2>
       <div class="card">
         <b>Email:</b>
-        <a href="mailto:strathmoreDramaSociety@strathmore.edu" style="color: #ffd700"
-          >strathmoreDramaSociety@strathmore.edu</a
-        ><br />
+        <a href="mailto:strathmoreDramaSociety@strathmore.edu" style="color:#FFD700;">strathmoreDramaSociety@strathmore.edu</a><br />
         <b>Instagram:</b>
-        <a href="https://instagram.com/strathmore.drama.society" style="color: #ffd700"
-          >@strathmore.drama.society</a
-        ><br />
+        <a href="https://instagram.com/strathmore.drama.society" style="color:#FFD700;">@strathmore.drama.society</a><br />
         <b>YouTube:</b> StrathmoreDramaSociety<br />
         <b>TikTok:</b> @strathmore.drama.society<br />
       </div>
@@ -407,7 +370,6 @@
         <button class="btn btn-gold">Send Message</button>
       </form>
     </section>
-    <!-- JOIN US -->
     <section id="join" class="section">
       <h2>Join Us!</h2>
       <form>
@@ -582,3 +544,6 @@
       modal.style.display = "flex";
     }
   </script>
+</body>
+</html>
+
