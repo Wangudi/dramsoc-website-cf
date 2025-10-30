@@ -51,9 +51,7 @@
       text-align: center;
       padding: 64px 18px;
     }
-    h1,
-    h2,
-    h3 {
+    h1, h2, h3 {
       font-family: "Lora", serif;
       color: #ffd700;
     }
@@ -101,23 +99,16 @@
       opacity: 0.88;
     }
     @keyframes scalePulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.03);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
     }
     .section {
       padding: 90px 36px;
       max-width: 1200px;
       margin: 0 auto;
     }
-    .card-grid,
-    .team-grid {
+    .card-grid, .team-grid {
       display: flex;
       gap: 2em;
       flex-wrap: wrap;
@@ -140,9 +131,7 @@
       width: 100%;
       border-radius: 8px;
     }
-    .btn,
-    .btn-gold,
-    .learn-more-btn {
+    .btn, .btn-gold, .learn-more-btn {
       background: #ffd700;
       color: #111;
       border: none;
@@ -154,9 +143,7 @@
       cursor: pointer;
       transition: background 0.22s, color 0.18s;
     }
-    .btn-gold:hover,
-    .btn:hover,
-    .learn-more-btn:hover {
+    .btn-gold:hover, .btn:hover, .learn-more-btn:hover {
       background: #b80000;
       color: #fff;
     }
@@ -165,7 +152,7 @@
       border-radius: 8px;
       padding: 1em 2.5em 1.4em;
       text-align: center;
-      width: 594px; /* 2.7x 220px */
+      width: 594px;
       max-width: 95vw;
       box-sizing: border-box;
       margin: 0 auto;
@@ -195,7 +182,6 @@
       padding: 30px 5px;
       margin-top: 36px;
     }
-    /* Modal */
     #productionModal {
       display: none;
       position: fixed;
@@ -224,19 +210,16 @@
       margin: 0 10px 10px 0;
       box-shadow: 0 2px 18px #1118;
     }
-    @media(max-width:700px){
-      .card-grid,
-      .team-grid {
+    @media(max-width:700px) {
+      .card-grid, .team-grid {
         flex-direction: column;
         align-items: center;
       }
-      .card {
-        max-width: 100%;
-      }
+      .card { max-width: 100%; }
       header {
-        flex-direction: column; align-items: flex-start; gap:0.5em;
+        flex-direction: column; align-items: flex-start; gap: 0.5em;
       }
-      nav { margin:0; }
+      nav { margin: 0; }
     }
   </style>
 </head>
@@ -262,7 +245,6 @@
 </div>
 <a class="btn btn-gold" href="#join">Join Us Today</a>
 </section>
-
 <section id="about" class="section">
 <h2>About Us</h2>
 <div class="card-grid">
@@ -280,7 +262,6 @@
 </div>
 </div>
 </section>
-
 <section id="productions" class="section">
 <h2>Recent Productions</h2>
 <div class="card-grid">
@@ -311,7 +292,6 @@
 </div>
 </div>
 </section>
-
 <section id="team" class="section">
 <h2>Society's Governing Body</h2>
 <div class="team-grid">
@@ -342,21 +322,31 @@
 </div>
 </div>
 </section>
-
 <section id="articles" class="section">
 <h2>Articles & Updates</h2>
 <div class="card-grid">
-<div class="card"><b>Welcome to DRAMSOC!</b><br />Official launch and news.</div>
+  <div class="card">
+    <h3>The Rise of Contemporary Theatre in Kenya</h3>
+    <p>Discover how modern Kenyan playwrights are transforming traditional stage with innovative stories and styles that connect with the youth while celebrating heritage.</p>
+    <button class="btn learn-more-btn" onclick="alert('Read more about The Rise of Contemporary Theatre in Kenya')">Read More</button>
+  </div>
+  <div class="card">
+    <h3>Behind the Scenes: Crafting a Stage Play</h3>
+    <p>Go behind the curtains with our directors and stage managers as they share insights into script adaptation, set design, and stage coordination for a successful production.</p>
+    <button class="btn learn-more-btn" onclick="alert('Read more about Behind the Scenes: Crafting a Stage Play')">Read More</button>
+  </div>
+  <div class="card">
+    <h3>The Power of Drama in Social Change</h3>
+    <p>Explore how drama in Kenya is addressing social issues, inspiring community discussions, and influencing positive change through powerful storytelling.</p>
+    <button class="btn learn-more-btn" onclick="alert('Read more about The Power of Drama in Social Change')">Read More</button>
+  </div>
 </div>
 </section>
-
 <section id="contact" class="section">
 <h2>Contact Us</h2>
 <div class="card">
-  <b>Email:</b>
-  <a href="mailto:strathmoreDramaSociety@strathmore.edu" style="color:#FFD700;">strathmoreDramaSociety@strathmore.edu</a><br />
-  <b>Instagram:</b>
-  <a href="https://instagram.com/strathmore.drama.society" style="color:#FFD700;">@strathmore.drama.society</a><br />
+  <b>Email:</b> <a href="mailto:strathmoreDramaSociety@strathmore.edu" style="color:#FFD700;">strathmoreDramaSociety@strathmore.edu</a><br />
+  <b>Instagram:</b> <a href="https://instagram.com/strathmore.drama.society" style="color:#FFD700;">@strathmore.drama.society</a><br />
   <b>YouTube:</b> StrathmoreDramaSociety<br />
   <b>TikTok:</b> @strathmore.drama.society<br />
 </div>
@@ -367,7 +357,6 @@
   <button class="btn btn-gold">Send Message</button>
 </form>
 </section>
-
 <section id="join" class="section">
 <h2>Join Us!</h2>
 <form>
@@ -383,7 +372,7 @@
 </section>
 </main>
 <footer>
-&copy; 2025 Strathmore Drama Society (DRAMSOC)
+  &copy; 2025 Strathmore Drama Society (DRAMSOC)
 </footer>
 <script>
 function showProduction(prod) {
