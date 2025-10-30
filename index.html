@@ -1,7 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ... same head section, fonts, CSS ... -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strathmore Drama Society (DRAMSOC)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400">
+  <style>
+    body { background:#111111; color:#fff; font-family:'Poppins', Arial, sans-serif; margin:0; }
+    header { background:#B80000; color:#FFF; display:flex; align-items:center; gap:1em; padding:1em 2em;}
+    .site-logo {width:48px;height:48px; background:#FFD700; border-radius:50%; display:inline-block;}
+    nav { margin-left:auto; }
+    nav a { color:#FFD700; text-decoration:none; margin-left:20px; font-weight:500; font-size:1em; transition:color 0.2s;}
+    nav a:hover { color:#FFF; text-shadow:0 0 8px #FFD700AA;}
+    .hero { background:linear-gradient(135deg,#111,#B80000 100%); min-height:45vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:64px 18px;}
+    h1, h2, h3 { font-family: 'Lora', serif; color:#FFD700;}
+    .motto { color:#B80000; font-size:1.2em; font-family:'Lora',serif; letter-spacing:2px; margin-bottom:18px;}
+    .section { padding:56px 18px;}
+    .card-grid, .team-grid {display:flex; gap:2em; flex-wrap:wrap; justify-content:center;}
+    .card {background:#222; border-radius:12px; padding:1.4em 1em; margin-bottom:22px; box-shadow:0 4px 32px #B8000044; max-width:340px; transition:transform 0.18s, box-shadow 0.18s;}
+    .card:hover { transform:translateY(-8px) scale(1.02); box-shadow:0 10px 44px #B80000bb;}
+    .card img {width:100%; border-radius:8px;}
+    .btn, .btn-gold { background:#FFD700; color:#111; border:none; border-radius:6px; padding:13px 2em; font-weight:700; margin-top:10px; font-size:1em; cursor:pointer; transition:background 0.22s, color 0.18s;}
+    .btn-gold:hover, .btn:hover { background:#B80000; color:#fff;}
+    .team-card { background:#262626; border-radius:8px; padding:1em 0; text-align:center; width:170px;}
+    .team-card img {width:84px; border-radius:50%; margin-bottom:7px; border:3px solid #FFD70088;}
+    .socials a { margin:0 10px;}
+    footer {background:#111; color:#FFD700; text-align:center; padding:30px 5px; margin-top:36px;}
+    @media(max-width:700px){
+      .card-grid,.team-grid{flex-direction:column;align-items:center;}
+      .card{max-width:100%;}
+      header{flex-direction:column;align-items:flex-start;gap:0.5em;}
+      nav{margin:0;}
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -46,7 +77,6 @@
     <section id="productions" class="section">
       <h2>Recent Productions</h2>
       <div class="card-grid">
-        <!-- Repeat for each play as before -->
         <div class="card">
           <img src="images/productions/waiting-room.jpg" alt="Waiting Room Poster">
           <h3>The Waiting Room</h3>
@@ -69,11 +99,11 @@
     <section id="team" class="section">
       <h2>Production Team</h2>
       <div class="team-grid">
-        <!-- Add your team members as cards here -->
         <div class="team-card"><img src="images/team/kakuru.jpg" alt="Dan Kakuru"><b>Dan Kakuru</b><br>President</div>
         <div class="team-card"><img src="images/team/kaisa.jpg" alt="Leila Kaisa"><b>Leila Kaisa</b><br>Vice President</div>
         <div class="team-card"><img src="images/team/abala.jpg" alt="Joe Abala"><b>Joe Abala</b><br>Organizing Secretary</div>
-        <!-- more team members ... -->
+        <div class="team-card"><img src="images/team/chomba.jpg" alt="Cherise Chomba"><b>Cherise Chomba</b><br>Secretary General</div>
+        <div class="team-card"><img src="images/team/paula.jpg" alt="Paula Nimurungi"><b>Paula Nimurungi</b><br>Financial Manager</div>
       </div>
     </section>
     <!-- ARTICLES -->
