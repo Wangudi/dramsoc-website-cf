@@ -13,35 +13,12 @@
       margin: 0;
     }
     header {
-     <!-- Hamburger Toggle Button (top right) -->
-<div style="position: absolute; top: 24px; right: 32px; z-index: 99;">
-  <button id="menu-toggle" style="background: none; border: none; cursor: pointer; padding: 0;">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-</div>
-
-<!-- Hidden Navigation Menu -->
-<nav id="nav-menu" style="
-  display: none; 
-  position: absolute; 
-  top: 64px; right: 32px; 
-  background: #111111;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-  padding: 24px 32px;
-  z-index: 99;">
-  <ul style="list-style:none; margin:0; padding:0; color:#FFD700;">
-    <li style="padding:10px 0; font-size:18px;">Home</li>
-    <li style="padding:10px 0; font-size:18px;">About Us</li>
-    <li style="padding:10px 0; font-size:18px;">Team</li>
-    <li style="padding:10px 0; font-size:18px;">Alumni</li>
-    <li style="padding:10px 0; font-size:18px;">Join Us</li>
-    <li style="padding:10px 0; font-size:18px;">Articles</li>
-  </ul>
-</nav>
-
+      background: #b80000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding: 1em 2em;
     }
     .site-logo {
       width: 48px;
@@ -539,15 +516,5 @@ function showProduction(prod) {
   modal.style.display = "flex";
 }
 </script>
-  <script>
-  const toggleButton = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
-
-  toggleButton.addEventListener('click', () => {
-    navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
-    toggleButton.classList.toggle('open');
-  });
-</script>
-
 </body>
 </html>
