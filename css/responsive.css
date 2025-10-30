@@ -1,0 +1,313 @@
+/* Mobile-First Responsive Design */
+
+/* Base mobile styles (default) */
+@media (max-width: 480px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .navbar {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  nav ul {
+    flex-direction: column;
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    z-index: 999;
+    border-top: 1px solid #333;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    padding: 10px 15px;
+    width: 100%;
+  }
+
+  nav ul li a {
+    font-size: 14px;
+  }
+
+  .hamburger {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  .section {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  input, textarea, select {
+    padding: 12px;
+    font-size: 16px;
+    min-height: 44px;
+    width: 100%;
+  }
+
+  button {
+    padding: 12px 20px;
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  footer {
+    padding: 20px 15px;
+    flex-direction: column;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  header {
+    padding: 15px 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    z-index: 999;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  input, textarea, select {
+    padding: 12px;
+    min-height: 44px;
+  }
+
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
+
+  nav ul {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+}
+
+/* Accessibility Enhancements */
+/* WCAG AA Contrast Requirements */
+@media (prefers-contrast: more) {
+  body {
+    background-color: #000;
+    color: #fff;
+  }
+
+  a {
+    color: #ffff00;
+  }
+
+  button {
+    border: 2px solid #fff;
+    color: #000;
+    background-color: #fff;
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+:focus {
+  outline: 3px solid #007bff;
+  outline-offset: 2px;
+}
+
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+  outline: 3px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Large text option */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High contrast text */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+  }
+}
+
+/* Touch target sizes (minimum 44x44px) */
+button, a[role="button"], input[type="button"], input[type="submit"] {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px 20px;
+}
+
+/* Form field improvements for accessibility */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+/* Interactive element hover states */
+a:hover, button:hover {
+  text-decoration: underline;
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Video responsive */
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive tables */
+table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Ensure proper line spacing for readability */
+p {
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
