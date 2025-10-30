@@ -62,53 +62,12 @@
       letter-spacing: 2px;
       margin-bottom: 18px;
     }
-    .events-upcoming {
-      margin: 0 auto 32px auto;
-      padding: 40px 28px;
-      background: linear-gradient(120deg, #251544, #423b79 80%);
-      color: #fff;
-      border-radius: 24px;
-      min-width: 270px;
-      min-height: 130px;
-      max-width: 680px;
-      font-family: "Lora", serif;
-      font-style: italic;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      font-size: 1.6em;
-      box-shadow: 0 8px 44px #22154488;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      animation: scalePulse 2.6s infinite;
-      text-shadow: 0 1px 10px #22154488;
-    }
-    .events-upcoming-title {
-      color: #ffd700;
-      margin-bottom: 20px;
-      font-size: 1.3em;
-      font-family: inherit;
-      font-style: normal;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-shadow: 0 2px 12px #423b7977;
-    }
-    .events-message {
-      font-size: 1.06em;
-      opacity: 0.88;
-    }
-    @keyframes scalePulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
     .section {
       padding: 90px 36px;
       max-width: 1200px;
       margin: 0 auto;
     }
-    .card-grid, .team-grid {
+    .card-grid {
       display: flex;
       gap: 2em;
       flex-wrap: wrap;
@@ -122,6 +81,9 @@
       box-shadow: 0 4px 32px #b8000044;
       max-width: 340px;
       transition: transform 0.18s, box-shadow 0.18s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .card:hover {
       transform: translateY(-8px) scale(1.02);
@@ -138,38 +100,11 @@
       font-size: 1em;
       cursor: pointer;
       transition: background 0.22s, color 0.18s;
+      align-self: flex-start;
     }
     .btn-gold:hover, .btn:hover, .learn-more-btn:hover {
       background: #b80000;
       color: #fff;
-    }
-    .team-card {
-      background: #262626;
-      border-radius: 8px;
-      padding: 1em 2.5em 1.4em;
-      text-align: center;
-      width: 594px;
-      max-width: 95vw;
-      box-sizing: border-box;
-      margin: 0 auto;
-    }
-    .team-card img {
-      width: 200px;
-      height: 200px;
-      border-radius: 0;
-      object-fit: cover;
-      margin-bottom: 8px;
-    }
-    .team-card b {
-      display: block;
-      font-size: 1.1em;
-      margin-bottom: 6px;
-      color: #ffd700;
-    }
-    .team-card .role {
-      font-size: 0.9em;
-      color: #ddd;
-      margin-top: 2px;
     }
     footer {
       background: #111;
@@ -177,34 +112,6 @@
       text-align: center;
       padding: 30px 5px;
       margin-top: 36px;
-    }
-    #productionModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(34,20,68,0.95);
-      z-index: 9999;
-      align-items: center; justify-content: center;
-    }
-    #productionModal > div {
-      background: #222144;
-      border-radius: 16px;
-      padding: 32px;
-      max-width: 90vw; max-height: 86vh;
-      overflow: auto;
-      color: #fff;
-      box-shadow: 0 12px 48px #0008;
-      position: relative;
-      animation: scalePulse 1.7s;
-    }
-    #productionModal img {
-      max-width: 220px;
-      height: auto;
-      border-radius: 10px;
-      object-fit: contain;
-      margin: 0 10px 10px 0;
-      box-shadow: 0 2px 18px #1118;
     }
     #articleModal {
       display: none;
@@ -236,12 +143,13 @@
       cursor: pointer;
     }
     @media (max-width:700px) {
-      .card-grid, .team-grid {
+      .card-grid {
         flex-direction: column;
         align-items: center;
       }
-      .card { max-width: 100%; }
-      nav { margin: 0; }
+      .card {
+        max-width: 100%;
+      }
       #articleModal > div {
         width: 95vw;
         max-height: 95vh;
@@ -264,8 +172,6 @@
 </header>
 
 <main>
-  <!-- Other existing sections unchanged -->
-
   <section id="articles" class="section">
     <h2>Articles & Updates</h2>
     <div class="card-grid">
@@ -287,20 +193,10 @@
     </div>
   </section>
 </main>
-
 <footer>
   &copy; 2025 Strathmore Drama Society (DRAMSOC)
 </footer>
 
-<!-- Production Modal from your existing code -->
-<div id="productionModal">
-  <div>
-    <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
-    <div id="productionModalContent"></div>
-  </div>
-</div>
-
-<!-- Article Modal -->
 <div id="articleModal">
   <div>
     <button class="close-button" onclick="closeArticle()">&times;</button>
@@ -359,72 +255,6 @@
   function closeArticle() {
     document.getElementById("articleModal").style.display = "none";
   }
-
-  function showProduction(prod) {
-    var modal = document.getElementById("productionModal");
-    var content = document.getElementById("productionModalContent");
-    var html = "";
-    if (prod === "waiting-room") {
-      html = `<h2>The Waiting Room</h2>
-  <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
-    <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-  </p>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <img src="images/productions/The Waiting Room (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (10).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Waiting Room (11).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-  </div>
-  <p style="margin-top:18px; font-size:1.13em;">
-    In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
-  </p>`;
-    } else if (prod === "homecoming") {
-      html = `<h2>The Homecoming</h2>
-  <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
-    <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-  </p>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <img src="images/productions/The Homecoming (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (1).png" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Homecoming (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-  </div>
-  <p style="margin-top:18px; font-size:1.13em;">
-    A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
-  </p>`;
-    } else if (prod === "samaritan") {
-      html = `<h2>The Samaritan</h2>
-  <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
-    <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-  </p>
-  <div style="display:flex; gap:12px; flex-wrap:wrap;">
-    <img src="images/productions/The Samaritan (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-    <img src="images/productions/The Samaritan (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-  </div>
-  <p style="margin-top:18px; font-size:1.13em;">
-    This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
-  </p>`;
-    }
-    content.innerHTML = html;
-    modal.style.display = "flex";
-  }
 </script>
-
 </body>
 </html>
