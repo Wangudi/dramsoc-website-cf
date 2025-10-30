@@ -4,10 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Strathmore Drama Society (DRAMSOC)</title>
-  <link
-    href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
   <style>
     body {
       background: #111111;
@@ -211,7 +208,7 @@
       animation: scalePulse 1.7s;
     }
     #productionModal img {
-      max-width: 180px;
+      max-width: 220px;
       height: auto;
       border-radius: 10px;
       object-fit: contain;
@@ -303,10 +300,7 @@
           />
           <h3>The Waiting Room</h3>
           <p>Family secrets unravel in a hospital waiting room.</p>
-          <button
-            class="btn learn-more-btn"
-            onclick="showProduction('waiting-room')"
-          >
+          <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">
             Learn More
           </button>
         </div>
@@ -317,10 +311,7 @@
           />
           <h3>The Homecoming</h3>
           <p>A comedic but tense family reunion in Nairobi.</p>
-          <button
-            class="btn learn-more-btn"
-            onclick="showProduction('homecoming')"
-          >
+          <button class="btn learn-more-btn" onclick="showProduction('homecoming')">
             Learn More
           </button>
         </div>
@@ -331,17 +322,12 @@
           />
           <h3>The Samaritan</h3>
           <p>When justice meets corruption, who wins?</p>
-          <button
-            class="btn learn-more-btn"
-            onclick="showProduction('samaritan')"
-          >
+          <button class="btn learn-more-btn" onclick="showProduction('samaritan')">
             Learn More
           </button>
         </div>
       </div>
-      <p style="color: #ffd700; text-align: center">
-        2023: Major Barbara | 2022: Accidental Death of an Anarchist
-      </p>
+      <p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
       <div id="productionModal">
         <div>
           <span
@@ -350,7 +336,7 @@
               top: 14px;
               right: 34px;
               font-size: 2.3em;
-              color: #ffd700;
+              color: #FFD700;
               cursor: pointer;
             "
             onclick="document.getElementById('productionModal').style.display='none'"
@@ -366,23 +352,28 @@
       <div class="team-grid">
         <div class="team-card">
           <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
-          <b>Dan Kakuru</b><br />President
+          <b>Dan Kakuru</b><br />
+          President
         </div>
         <div class="team-card">
           <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
-          <b>Leila Kaisa</b><br />Vice President
+          <b>Leila Kaisa</b><br />
+          Vice President
         </div>
         <div class="team-card">
           <img src="images/team/Joe Abala.png" alt="Joe Abala" />
-          <b>Joe Abala</b><br />Organizing Secretary
+          <b>Joe Abala</b><br />
+          Organizing Secretary
         </div>
         <div class="team-card">
           <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
-          <b>Cherise Chomba</b><br />Secretary General
+          <b>Cherise Chomba</b><br />
+          Secretary General
         </div>
         <div class="team-card">
           <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
-          <b>Paula Nimurungi</b><br />Financial Manager
+          <b>Paula Nimurungi</b><br />
+          Financial Manager
         </div>
       </div>
     </section>
@@ -390,9 +381,7 @@
     <section id="articles" class="section">
       <h2>Articles & Updates</h2>
       <div class="card-grid">
-        <div class="card">
-          <b>Welcome to DRAMSOC!</b><br />Official launch and news.
-        </div>
+        <div class="card"><b>Welcome to DRAMSOC!</b><br />Official launch and news.</div>
         <!-- More articles -->
       </div>
     </section>
@@ -443,94 +432,153 @@
       var html = "";
       if (prod === "waiting-room") {
         html = `<h2>The Waiting Room</h2>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <img
-              src="images/productions/The Waiting Room (2).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Waiting Room (4).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Waiting Room (5).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Waiting Room (7).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Waiting Room (9).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-          </div>
-          <p style="margin-top:18px; font-size:1.13em;">
-            In a chaotic hospital waiting room, tensions mount as anxious
-            relatives await news about a critically injured patriarch. Secrets
-            unravel, misunderstandings abound, and comedic yet dramatic
-            confrontations ensue. Amidst the chaos, unexpected twists reveal
-            hidden lives and shocking truths, weaving a thrilling tale of
-            identity, deception, and the unpredictable nature of family bonds.
-          </p>`;
+      <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
+        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <img
+          src="images/productions/The Waiting Room (2).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (3).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (4).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (5).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (6).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (7).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (8).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (9).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (10).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Waiting Room (11).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        In a chaotic hospital waiting room, tensions mount as anxious
+        relatives await news about a critically injured patriarch. Secrets
+        unravel, misunderstandings abound, and comedic yet dramatic
+        confrontations ensue. Amidst the chaos, unexpected twists reveal
+        hidden lives and shocking truths, weaving a thrilling tale of
+        identity, deception, and the unpredictable nature of family bonds.
+      </p>`;
       } else if (prod === "homecoming") {
         html = `<h2>The Homecoming</h2>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <img
-              src="images/productions/The Homecoming (1).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Homecoming (3).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Homecoming (4).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Homecoming (5).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-          </div>
-          <p style="margin-top:18px; font-size:1.13em;">
-            A tragicomedy about the Talai family’s reunion and unraveling.
-            Siblings Thomas, Tiffany, and Timothy return home after years apart,
-            bringing old wounds, secrets, and unresolved grief following their
-            father’s death. Martin Abuya’s play explores loyalty, loss,
-            generational conflict, and what “home” truly means in Kenya today.
-          </p>`;
+      <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
+        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <img
+          src="images/productions/The Homecoming (1).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Homecoming (1).png"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Homecoming (2).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Homecoming (3).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Homecoming (4).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Homecoming (5).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Homecoming (6).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        A tragicomedy about the Talai family's reunion and unraveling.
+        Siblings Thomas, Tiffany, and Timothy return home after years apart,
+        bringing old wounds, secrets, and unresolved grief following their
+        father's death. Martin Abuya's play explores loyalty, loss,
+        generational conflict, and what "home" truly means in Kenya today.
+      </p>`;
       } else if (prod === "samaritan") {
         html = `<h2>The Samaritan</h2>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <img
-              src="images/productions/The Samaritan (1).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Samaritan (2).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Samaritan (5).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-            <img
-              src="images/productions/The Samaritan (7).jpg"
-              style="max-width:180px; height:auto; border-radius:10px; object-fit:contain;"
-            />
-          </div>
-          <p style="margin-top:18px; font-size:1.13em;">
-            This stage drama exposes political corruption and the fight for
-            justice. Mayor Mossi and city leaders try to suppress The Samaritan
-            App, while idealistic teacher Nicole and her students battle for
-            transparency. Betrayals, courtroom drama, and social commentary
-            combine in a bold call for civic courage in Kenyan life.
-          </p>`;
+      <p style="margin-bottom:15px; color:#FFD700; font-size:1.1em;">
+        <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <img
+          src="images/productions/The Samaritan (1).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (2).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (3).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (4).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (5).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (6).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (7).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (8).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+        <img
+          src="images/productions/The Samaritan (9).jpg"
+          style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;"
+        />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        This stage drama exposes political corruption and the fight for
+        justice. Mayor Mossi and city leaders try to suppress The Samaritan
+        App, while idealistic teacher Nicole and her students battle for
+        transparency. Betrayals, courtroom drama, and social commentary
+        combine in a bold call for civic courage in Kenyan life.
+      </p>`;
       }
       content.innerHTML = html;
       modal.style.display = "flex";
     }
   </script>
-</body>
-</html>
