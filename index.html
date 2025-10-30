@@ -1,3 +1,31 @@
+<!-- Hamburger Toggle Button (top right) -->
+<div style="position: absolute; top: 24px; right: 32px; z-index: 99;">
+  <button id="menu-toggle" style="background: none; border: none; cursor: pointer; padding: 0;">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+</div>
+
+<!-- Hidden Navigation Menu -->
+<nav id="nav-menu" style="
+  display: none; 
+  position: absolute; 
+  top: 64px; right: 32px; 
+  background: #111111;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  padding: 24px 32px;
+  z-index: 99;">
+  <ul style="list-style:none; margin:0; padding:0; color:#FFD700;">
+    <li style="padding:10px 0; font-size:18px;">Home</li>
+    <li style="padding:10px 0; font-size:18px;">About Us</li>
+    <li style="padding:10px 0; font-size:18px;">Team</li>
+    <li style="padding:10px 0; font-size:18px;">Alumni</li>
+    <li style="padding:10px 0; font-size:18px;">Join Us</li>
+    <li style="padding:10px 0; font-size:18px;">Articles</li>
+  </ul>
+</nav>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +41,64 @@
       margin: 0;
     }
     header {
-      background: #b80000;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      padding: 1em 2em;
+     /* Hamburger bars styling and animation */
+#menu-toggle .bar {
+  display: block;
+  width: 30px;
+  height: 4px;
+  margin: 6px 0;
+  background-color: #FFD700;
+  border-radius: 2px;
+  transition: 0.4s;
+}
+
+/* When menu is open, animate hamburger into X */
+#menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-7px, 7px);
+}
+#menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-6px, -6px);
+}
+
+/* Responsive navigation menu styles */
+#nav-menu {
+  display: none;
+  position: absolute;
+  top: 64px;
+  right: 32px;
+  background: #111111;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  padding: 24px 32px;
+  z-index: 99;
+}
+
+@media (max-width: 768px) {
+  #nav-menu {
+    top: 56px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    border-radius: 0;
+    padding: 16px;
+    box-shadow: none;
+  }
+  #nav-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  #menu-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+  }
+}
+
     }
     .site-logo {
       width: 48px;
@@ -518,3 +598,12 @@ function showProduction(prod) {
 </script>
 </body>
 </html>
+<script>
+const toggleButton = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+toggleButton.addEventListener('click', () => {
+  navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
+  toggleButton.classList.toggle('open');
+});
+</script>
