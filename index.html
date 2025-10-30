@@ -1,188 +1,236 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Strathmore Drama Society (DRAMSOC)</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/responsive.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#B80000">
+    <meta name="description" content="Strathmore Drama Society - Where stories come alive at Strathmore University">
+    <title>Strathmore Drama Society - DRAMSOC</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <div class="logo"><img src="images/logo/dramsoc-logo.png" alt="DRAMSOC logo" /></div>
-    <nav>
-      <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-      <ul id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#productions">Productions</a></li>
-        <li><a href="#departments">Departments</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#alumni">Alumni</a></li>
-        <li><a href="#articles">Articles</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#join">Join Us</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="App">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="#" class="navbar-logo">DRAMSOC</a>
+                <div class="navbar-content">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-button">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#about" class="nav-button">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#productions" class="nav-button">Productions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#team" class="nav-button">Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-button">Contact</a>
+                        </li>
+                        <li class="social-media-buttons">
+                            <a href="#" class="social-button instagram-button">IG</a>
+                            <a href="#" class="social-button youtube-button">YT</a>
+                            <a href="#" class="social-button tiktok-button">TT</a>
+                        </li>
+                    </ul>
+                    <div class="menu-icon">\u2630</div>
+                </div>
+            </div>
+        </nav>
 
-  <main>
-    <!-- Hero -->
-    <section id="home" class="hero">
-      <div>
-        <h1>Take It to the Next Level!</h1>
-        <p class="motto">“Where stories come alive at Strathmore University”</p>
-        <a href="#join" class="btn btn-gold">Join Us Today</a>
-      </div>
-    </section>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>Strathmore Drama Society</h1>
+            <p>Where stories come alive at Strathmore University</p>
+            <a href="#productions" class="cta-button">Explore Our Productions</a>
+        </section>
 
-    <!-- About Us -->
-    <section id="about" class="section dark-bg">
-      <h2>About Us</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Our Mission</h3>
-          <p>To enhance and encourage teamwork, improve the quality of life by building, developing, and nurturing talent through social, theatrical and community life at large.</p>
-        </div>
-        <div class="card">
-          <h3>Our Vision</h3>
-          <p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
-        </div>
-        <div class="card">
-          <h3>Our Motto</h3>
-          <p><strong>Take it to the next level!</strong></p>
-        </div>
-      </div>
-    </section>
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2>About DRAMSOC</h2>
+            <p>The Strathmore Drama Society (DRAMSOC) is the premier theatrical organization at Strathmore University, dedicated to bringing compelling stories to life through the art of drama and performance.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Our Mission</h3>
+                    <p>To nurture theatrical talent and create unforgettable performances that inspire, entertain, and provoke thought within our university community and beyond.</p>
+                </div>
+                <div class="card">
+                    <h3>Our Vision</h3>
+                    <p>To be the leading university drama society in Kenya, recognized for excellence in theatrical production and artist development.</p>
+                </div>
+                <div class="card">
+                    <h3>Our Values</h3>
+                    <p>Creativity, collaboration, excellence, and inclusivity drive everything we do, from auditions to final curtain calls.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Recent Productions -->
-    <section id="productions" class="section light-bg">
-      <h2>Recent Productions</h2>
-      <div class="productions-horizontal">
-        <div class="production-card">
-          <img src="images/productions/waiting-room.jpg" alt="The Waiting Room Poster"/>
-          <h4>2025 (September) – The Waiting Room</h4>
-          <p class="desc">"The Waiting Room" is a gripping drama that explores anxiety and anticipation in life's transitional moments. Set in a hospital waiting room, strangers share hopes, fears, and secrets in a compelling drama on mortality, hope, and connection.</p>
-        </div>
-        <div class="production-card">
-          <img src="images/productions/homecoming.jpg" alt="The Homecoming Poster"/>
-          <h4>2025 (April) – The Homecoming</h4>
-          <p class="desc">"The Homecoming" brings to life a contemporary drama exploring family, reconciliation, and the complexities of returning home. Powerful performances examine bonds, challenges, and reconnecting with the past.</p>
-        </div>
-        <div class="production-card">
-          <img src="images/productions/samaritan.jpg" alt="The Samaritan Poster"/>
-          <h4>2024 – The Samaritan</h4>
-          <p class="desc">"The Samaritan" is John Lara's drama about corruption, moral decay, and justice in modern society. Themes of integrity, redemption, and the cost of taking a stand anchor this provocative, memorable performance.</p>
-        </div>
-      </div>
-      <p class="previous-productions">2023 – Major Barbara &nbsp;|&nbsp; 2022 – Accidental Death of an Anarchist</p>
-    </section>
+        <!-- Productions Section -->
+        <section class="section" id="productions">
+            <h2>Recent Productions</h2>
+            
+            <div class="production-card">
+                <h3>The Shakespeare Festival</h3>
+                <h4>Spring 2024</h4>
+                <p>A spectacular celebration of the Bard's greatest works, featuring student adaptations of classic plays that captivated audiences throughout the semester.</p>
+            </div>
+            
+            <div class="production-card">
+                <h3>African Voices</h3>
+                <h4>Fall 2023</h4>
+                <p>An empowering showcase of contemporary African playwrights, bringing vital stories and perspectives to the university stage.</p>
+            </div>
+            
+            <div class="production-card">
+                <h3>Comedy Night Special</h3>
+                <h4>Winter 2023</h4>
+                <p>An evening of laughter and entertainment featuring original sketches, improv performances, and stand-up comedy from our talented members.</p>
+            </div>
+        </section>
 
-    <!-- Departments -->
-    <section id="departments" class="section dark-bg">
-      <h2>Departments</h2>
-      <div class="card-grid">
-        <!-- Repeat for each department -->
-        <div class="card">
-          <h4>Directing & Production</h4>
-          <p>Showrunning, blocking, scheduling, overall artistic vision.</p>
-        </div>
-        <div class="card"><h4>Technical</h4><p>Set, sound, lights, backstage magic.</p></div>
-        <div class="card"><h4>PR & Marketing</h4><p>Branding, trailers, social media, audience growth.</p></div>
-        <div class="card"><h4>Training & Development</h4><p>Workshops, masterclasses, mentoring.</p></div>
-        <div class="card"><h4>Finance & Sponsorship</h4><p>Budgeting, partners, grants.</p></div>
-        <div class="card"><h4>Scriptwriting & Research</h4><p>Dramaturgy, scriptwork, context.</p></div>
-        <div class="card"><h4>Costume & Makeup</h4><p>SFX makeup, character style, wardrobe.</p></div>
-      </div>
-    </section>
+        <!-- Team Section -->
+        <section class="section" id="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Sarah Johnson</h3>
+                    <p>President</p>
+                </div>
+                <div class="team-member">
+                    <h3>Michael Chen</h3>
+                    <p>Vice President</p>
+                </div>
+                <div class="team-member">
+                    <h3>Emily Rodriguez</h3>
+                    <p>Production Director</p>
+                </div>
+                <div class="team-member">
+                    <h3>David Kimani</h3>
+                    <p>Technical Director</p>
+                </div>
+                <div class="team-member">
+                    <h3>Amina Hassan</h3>
+                    <p>Marketing Lead</p>
+                </div>
+                <div class="team-member">
+                    <h3>James Ochieng</h3>
+                    <p>Treasurer</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Team -->
-    <section id="team" class="section light-bg">
-      <h2>Production Team</h2>
-      <div class="card-grid">
-        <div class="card">
-          <img src="images/team/kakuru.jpg" alt="Dan Kakuru"/>
-          <h4>Dan Kakuru</h4>
-          <p>President</p>
-        </div>
-        <div class="card"><img src="images/team/kaisa.jpg" alt="Leila Kaisa"/><h4>Leila Kaisa</h4><p>Vice President</p></div>
-        <div class="card"><img src="images/team/abala.jpg" alt="Joe Abala"/><h4>Joe Abala</h4><p>Organizing Secretary General</p></div>
-        <div class="card"><img src="images/team/chomba.jpg" alt="Cherise Chomba"/><h4>Cherise Chomba</h4><p>Secretary General</p></div>
-        <div class="card"><img src="images/team/paula.jpg" alt="Paula Nimurungi"/><h4>Paula Nimurungi</h4><p>Financial Manager</p></div>
-      </div>
-    </section>
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <p>Ready to join the drama? Want to collaborate? We'd love to hear from you!</p>
+            
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </section>
 
-    <!-- Alumni -->
-    <section id="alumni" class="section dark-bg">
-      <h2>Alumni</h2>
-      <div class="alumni-grid">
-        <!-- Alumni card blocks. Placeholder for photo/profile upload -->
-        <div class="card"><h4>Alumni Name</h4><p>Profile/field, brief “Where Now” note.</p></div>
-        <!-- ...More alumni -->
-      </div>
-      <form class="alumni-signup">
-        <input type="email" placeholder="Your email">
-        <button class="btn">Sign Up</button>
-      </form>
-    </section>
+        <!-- Partners Section -->
+        <section class="section">
+            <h2>Our Partners</h2>
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <h3>Strathmore University</h3>
+                </div>
+                <div class="partner-logo">
+                    <h3>Nairobi Theatre</h3>
+                </div>
+                <div class="partner-logo">
+                    <h3>Kenya Cultural Centre</h3>
+                </div>
+            </div>
+        </section>
 
-    <!-- Articles -->
-    <section id="articles" class="section light-bg">
-      <h2>Articles & Updates</h2>
-      <div class="filter-bar">
-        <span class="chip">Behind the Scenes</span>
-        <span class="chip">Actor’s Journal</span>
-        <span class="chip">Director’s Corner</span>
-        <span class="chip">Society News</span>
-      </div>
-      <div class="articles-list">
-        <div class="article-card">
-          <h4>Welcome to DRAMSOC</h4>
-          <p>Our official site is live. Built for Cloudflare Pages.</p>
-        </div>
-        <!-- More articles -->
-      </div>
-    </section>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>DRAMSOC</h3>
+                    <p>Strathmore Drama Society</p>
+                    <p>Where stories come alive at Strathmore University</p>
+                    <div class="footer-social-buttons">
+                        <a href="#" class="footer-social-button instagram-button">IG</a>
+                        <a href="#" class="footer-social-button youtube-button">YT</a>
+                        <a href="#" class="footer-social-button tiktok-button">TT</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#productions">Productions</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Strathmore University</p>
+                    <p>Nairobi, Kenya</p>
+                    <p>Email: dramsoc@strathmore.edu</p>
+                    <p>Phone: +254 123 456 789</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <p>Stay connected with our latest productions and events</p>
+                    <div class="footer-social-buttons">
+                        <a href="#" class="footer-social-button instagram-button">IG</a>
+                        <a href="#" class="footer-social-button youtube-button">YT</a>
+                        <a href="#" class="footer-social-button tiktok-button">TT</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Strathmore Drama Society. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
 
-    <!-- Contact -->
-    <section id="contact" class="section dark-bg">
-      <h2>Contact Us</h2>
-      <p><b>Email:</b> <a href="mailto:strathmoreDramaSociety@strathmore.edu">strathmoreDramaSociety@strathmore.edu</a></p>
-      <div class="socials">
-        <a href="https://instagram.com/strathmore.drama.society" target="_blank"><img src="images/social/instagram.svg" alt="Instagram"></a>
-        <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank"><img src="images/social/tiktok.svg" alt="TikTok"></a>
-        <a href="https://www.youtube.com/StrathmoreDramaSociety" target="_blank"><img src="images/social/youtube.svg" alt="YouTube"></a>
-      </div>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <textarea placeholder="Message"></textarea>
-        <button class="btn btn-gold">Send Message</button>
-      </form>
-      <!-- Optionally embed map here -->
-    </section>
+    <script>
+        // Mobile menu toggle
+        const menuIcon = document.querySelector('.menu-icon');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        menuIcon.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
-    <!-- Join Us -->
-    <section id="join" class="section light-bg">
-      <h2>Join Us</h2>
-      <form class="join-form">
-        <input type="text" placeholder="Full Name">
-        <input type="email" placeholder="Email">
-        <select>
-          <option>Department Interest</option>
-          <!-- Populate with departments -->
-        </select>
-        <button class="btn btn-gold">Register</button>
-      </form>
-      <p><strong>Upcoming Auditions:</strong> Week 1, March 2025 – Open Acting Auditions | Week 3, March 2025 – Tech Team Onboarding</p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div>&copy; 2025 Strathmore Drama Society (DRAMSOC)</div>
-  </footer>
-
-  <script src="js/main.js"></script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
