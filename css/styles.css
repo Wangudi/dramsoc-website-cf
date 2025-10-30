@@ -17,9 +17,8 @@ header {
 .site-logo {
   width: 48px;
   height: 48px;
-  background: #FFD700;
-  border-radius: 50%;
   display: inline-block;
+  object-fit: contain;
 }
 nav {
   margin-left: auto;
