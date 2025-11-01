@@ -19,6 +19,9 @@
       margin: 0;
       overflow-x: hidden;
     }
+    body.modal-open {
+      overflow: hidden; /* Prevent background scrolling when modal is open */
+    }
      header {
       background: linear-gradient(90deg, #1c1c1c, #000000);
       color: var(--gold);
@@ -112,14 +115,68 @@
 
     footer { background:#111; color:var(--gold); text-align:center; padding:30px 5px; margin-top:36px; }
 
-    /* production modal */
-    #productionModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(34,20,68,0.95); z-index:9999; align-items:center; justify-content:center; }
-    #productionModal > div { background:#222144; border-radius:16px; padding:32px; max-width:90vw; max-height:86vh; overflow:auto; color:#fff; box-shadow:0 12px 48px #0008; position:relative; animation: scalePulse 1.7s; }
-    #productionModal img { max-width:220px; height:auto; border-radius:10px; object-fit:contain; margin:0 10px 10px 0; box-shadow:0 2px 18px #1118; }
+    /* FIXED: production modal */
+    #productionModal { 
+      display:none; 
+      position:fixed; 
+      top:0; 
+      left:0; 
+      width:100vw; 
+      height:100vh; 
+      background: rgba(34,20,68,0.95); 
+      z-index:9999; 
+      align-items:center; 
+      justify-content:center;
+      overflow: hidden; /* Prevent body scroll */
+    }
+    #productionModal > div { 
+      background:#222144; 
+      border-radius:16px; 
+      padding:32px; 
+      max-width:90vw; 
+      max-height:86vh; 
+      overflow-y: auto; /* Enable scrolling inside modal */
+      overflow-x: hidden;
+      color:#fff; 
+      box-shadow:0 12px 48px #0008; 
+      position:relative; 
+      animation: scalePulse 1.7s; 
+    }
+    #productionModal img { 
+      max-width:220px; 
+      height:auto; 
+      border-radius:10px; 
+      object-fit:contain; 
+      margin:0 10px 10px 0; 
+      box-shadow:0 2px 18px #1118;
+      /* Add lazy loading for performance */
+      loading: lazy;
+    }
 
-    /* article modal */
-    #articleModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); color:#fff; overflow:auto; padding:2rem; z-index:10000; }
-    #articleModal > div { max-width:900px; margin:0 auto; background:#222144; border-radius:16px; padding:24px; position:relative; }
+    /* FIXED: article modal */
+    #articleModal { 
+      display:none; 
+      position:fixed; 
+      top:0; 
+      left:0; 
+      width:100vw; 
+      height:100vh; 
+      background:rgba(0,0,0,0.85); 
+      color:#fff; 
+      z-index:10000; 
+      align-items: center;
+      justify-content: center;
+    }
+    #articleModal > div { 
+      max-width:900px; 
+      max-height:90vh;
+      margin:0 auto; 
+      background:#222144; 
+      border-radius:16px; 
+      padding:24px; 
+      position:relative;
+      overflow-y: auto;
+    }
 
     /* ================= NEW: Toggle / Slide-in menu ================= */
     .menu-toggle { display:none; font-size:28px; color:var(--gold); cursor:pointer; margin-left:auto; user-select:none; z-index:1300; background:transparent; border:none; }
@@ -180,6 +237,14 @@
         cursor: pointer;
         z-index:1310;
       }
+      
+      /* Mobile optimizations for modals */
+      #productionModal > div,
+      #articleModal > div {
+        max-width: 95vw;
+        max-height: 90vh;
+        padding: 20px;
+      }
     }
     /* end toggle styles */
 
@@ -238,7 +303,7 @@
         </div>
         <div class="card">
           <h3>Our Motto</h3>
-          <p>“Take it to the next level!”</p>
+          <p>"Take it to the next level!"</p>
         </div>
       </div>
     </section>
@@ -247,19 +312,19 @@
       <h2>Recent Productions</h2>
       <div class="card-grid">
         <div class="card">
-          <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" />
+          <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" loading="lazy" />
           <h3>The Waiting Room</h3>
           <p>Family secrets unravel in a hospital waiting room.</p>
           <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
         </div>
         <div class="card">
-          <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" />
+          <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" loading="lazy" />
           <h3>The Homecoming</h3>
           <p>A comedic but tense family reunion in Nairobi.</p>
           <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
         </div>
         <div class="card">
-          <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" />
+          <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" loading="lazy" />
           <h3>The Samaritan</h3>
           <p>When justice meets corruption, who wins?</p>
           <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
@@ -269,7 +334,7 @@
 
       <div id="productionModal">
         <div>
-          <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: var(--gold); cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
+          <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: var(--gold); cursor: pointer;" onclick="closeProductionModal()">&times;</span>
           <div id="productionModalContent"></div>
         </div>
       </div>
@@ -279,27 +344,27 @@
       <h2>Society's Governing Body</h2>
       <div class="team-grid">
         <div class="team-card">
-          <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
+          <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" loading="lazy" />
           <b>Dan Kakuru</b>
           <div class="role">President: Oversees the society's activities and represents members.</div>
         </div>
         <div class="team-card">
-          <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
+          <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" loading="lazy" />
           <b>Leila Kaisa</b>
           <div class="role">Vice President: Assists the President and coordinates programs.</div>
         </div>
         <div class="team-card">
-          <img src="images/team/Joe Abala.png" alt="Joe Abala" />
+          <img src="images/team/Joe Abala.png" alt="Joe Abala" loading="lazy" />
           <b>Joe Abala</b>
           <div class="role">Organizing Secretary: Manages meetings, communications, and logistics.</div>
         </div>
         <div class="team-card">
-          <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
+          <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" loading="lazy" />
           <b>Cherise Chomba</b>
           <div class="role">Secretary General: Oversees administration and record keeping.</div>
         </div>
         <div class="team-card">
-          <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
+          <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" loading="lazy" />
           <b>Paula Nimurungi</b>
           <div class="role">Financial Manager: Handles funds, budgeting, and financial reports.</div>
         </div>
@@ -330,7 +395,7 @@
     <!-- Article Modal -->
     <div id="articleModal">
       <div>
-        <button onclick="closeArticle()" style="position:absolute; top:12px; right:20px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer;">&times;</button>
+        <button onclick="closeArticleModal()" style="position:absolute; top:12px; right:20px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer;">&times;</button>
         <div id="articleModalContent"></div>
       </div>
     </div>
@@ -344,7 +409,7 @@
           content: `
             <p>Kenya's theatrical landscape has witnessed a revolutionary growth over the past decade. Young playwrights and theatre groups are pushing boundaries, creating innovative narratives that blend the rich tapestry of traditional storytelling with modern themes.</p>
             <p>These contemporary plays address a broad spectrum of topics—from generational conflicts and urbanization to politics and identity—resonating deeply with new audiences. Through bold experimentation in performance styles and technology integration, Kenyan theatre is carving a distinct voice on the global stage.</p>
-            <p>The homegrown talent is supported by a recent surge in creative workshops, festivals, and collaborations that nourish artistic expression beyond Nairobi’s traditional spaces. This movement not only promotes original Kenyan stories but also enhances accessibility, providing diverse audiences the chance to engage meaningfully with their culture through performance.</p>
+            <p>The homegrown talent is supported by a recent surge in creative workshops, festivals, and collaborations that nourish artistic expression beyond Nairobi's traditional spaces. This movement not only promotes original Kenyan stories but also enhances accessibility, providing diverse audiences the chance to engage meaningfully with their culture through performance.</p>
             <p>Despite challenges such as funding deficits and infrastructural limitations, enthusiasm and resourcefulness keep pushing the art forward. This renaissance signals a bright future where theatre serves as both entertainment and societal mirror for Kenya's evolving identity.</p>`
         },
         "crafting-stage-play": {
@@ -370,9 +435,14 @@
         }
       };
 
+      // Track modal state for back button handling
+      let currentModal = null;
+      const modalHistory = [];
+
       function showArticle(key) {
         const article = articles[key];
         if (!article) return;
+        
         const modal = document.getElementById("articleModal");
         const contentDiv = document.getElementById("articleModalContent");
         contentDiv.innerHTML = `
@@ -380,27 +450,157 @@
           <p><em>By ${article.author} | ${article.date}</em></p>
           ${article.content}
         `;
-        modal.style.display = "block";
+        
+        openModal(modal, 'article');
       }
 
-      function closeArticle() {
-        document.getElementById("articleModal").style.display = "none";
+      function closeArticleModal() {
+        const modal = document.getElementById("articleModal");
+        closeModal(modal);
       }
+
+      function showProduction(prod) {
+        const modal = document.getElementById("productionModal");
+        const content = document.getElementById("productionModalContent");
+        let html = "";
+        
+        if (prod === "waiting-room") {
+          html = `<h2>The Waiting Room</h2>
+      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
+        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <img src="images/productions/The Waiting Room (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (10).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Waiting Room (11).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
+      </p>`;
+        } else if (prod === "homecoming") {
+          html = `<h2>The Homecoming</h2>
+      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
+        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <img src="images/productions/The Homecoming (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Homecoming (1).png" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Homecoming (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Homecoming (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Homecoming (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Homecoming (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Homecoming (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
+      </p>`;
+        } else if (prod === "samaritan") {
+          html = `<h2>The Samaritan</h2>
+      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
+        <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <img src="images/productions/The Samaritan (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+        <img src="images/productions/The Samaritan (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" loading="lazy" />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
+      </p>`;
+        }
+        
+        content.innerHTML = html;
+        openModal(modal, 'production');
+      }
+
+      function closeProductionModal() {
+        const modal = document.getElementById("productionModal");
+        closeModal(modal);
+      }
+
+      // Modal management functions
+      function openModal(modal, type) {
+        modal.style.display = "flex";
+        document.body.classList.add('modal-open');
+        currentModal = { element: modal, type: type };
+        modalHistory.push(currentModal);
+        
+        // Update URL without page reload (for back button handling)
+        history.pushState({ modal: type }, '', `#${type}`);
+      }
+
+      function closeModal(modal) {
+        modal.style.display = "none";
+        document.body.classList.remove('modal-open');
+        
+        if (modalHistory.length > 0) {
+          modalHistory.pop();
+          currentModal = modalHistory.length > 0 ? modalHistory[modalHistory.length - 1] : null;
+        } else {
+          currentModal = null;
+        }
+        
+        // Only go back in history if we're at a modal state
+        if (history.state && history.state.modal) {
+          history.back();
+        }
+      }
+
+      // Handle browser back button
+      window.addEventListener('popstate', function(event) {
+        if (currentModal && (!event.state || !event.state.modal)) {
+          // If back button pressed and we have a modal open, close it
+          currentModal.element.style.display = "none";
+          document.body.classList.remove('modal-open');
+          currentModal = null;
+          modalHistory.length = 0;
+        }
+      });
+
+      // Close modals when clicking outside content
+      document.addEventListener('click', function(event) {
+        if (currentModal) {
+          const modalContent = currentModal.element.querySelector('div');
+          if (!modalContent.contains(event.target) && event.target !== currentModal.element) {
+            closeModal(currentModal.element);
+          }
+        }
+      });
+
+      // Close modals with Escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && currentModal) {
+          closeModal(currentModal.element);
+        }
+      });
     </script>
 
     <section id="contact" class="section">
       <h2>Contact Us</h2>
       <div class="social-icons" style="margin-top:8px; display:flex; gap:15px;">
         <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;">
+          <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;" loading="lazy">
         </a>
 
         <a href="https://www.youtube.com/@StrathmoreDramaSociety" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;">
+          <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;" loading="lazy">
         </a>
 
         <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;">
+          <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;" loading="lazy">
         </a>
       </div>
     </section>
@@ -410,74 +610,6 @@
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
-
-  <!-- production modal script (unchanged) -->
-  <script>
-    function showProduction(prod) {
-      var modal = document.getElementById("productionModal");
-      var content = document.getElementById("productionModalContent");
-      var html = "";
-      if (prod === "waiting-room") {
-        html = `<h2>The Waiting Room</h2>
-      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-      </p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <img src="images/productions/The Waiting Room (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (10).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Waiting Room (11).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-      </div>
-      <p style="margin-top:18px; font-size:1.13em;">
-        In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
-      </p>`;
-      } else if (prod === "homecoming") {
-        html = `<h2>The Homecoming</h2>
-      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-      </p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <img src="images/productions/The Homecoming (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Homecoming (1).png" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Homecoming (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Homecoming (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Homecoming (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Homecoming (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Homecoming (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-      </div>
-      <p style="margin-top:18px; font-size:1.13em;">
-        A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
-      </p>`;
-      } else if (prod === "samaritan") {
-        html = `<h2>The Samaritan</h2>
-      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-        <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-      </p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <img src="images/productions/The Samaritan (1).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (2).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (3).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (4).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (5).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (6).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (7).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (8).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-        <img src="images/productions/The Samaritan (9).jpg" style="max-width:220px; height:auto; border-radius:10px; object-fit:contain;" />
-      </div>
-      <p style="margin-top:18px; font-size:1.13em;">
-        This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
-      </p>`;
-      }
-      content.innerHTML = html;
-      modal.style.display = "flex";
-    }
-  </script>
 
   <!-- NEW: Toggle JS (transparent panel; smaller gold text; overlay; X toggle) -->
   <script>
