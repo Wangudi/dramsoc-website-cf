@@ -241,8 +241,8 @@
   <header>
     <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
 
-    <!-- MENU TOGGLE (inserted) -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">Menu</button>
+    <!-- MENU TOGGLE: Now shows hamburger icon -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">hamburger icon</button>
 
     <!-- Navigation (unchanged for large screens; becomes slide-panel on small screens) -->
     <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
@@ -807,7 +807,7 @@
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
 
-  <!-- NEW: Toggle JS (transparent panel; smaller gold text; overlay; X toggle) -->
+  <!-- NEW: Toggle JS (hamburger icon to cross icon) -->
   <script>
     (function(){
       const toggle = document.getElementById('menuToggle');
@@ -823,7 +823,7 @@
         overlay.classList.add('active');
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
-        toggle.textContent = 'X';
+        toggle.textContent = 'cross icon';  // Shows cross icon when open
       }
 
       function closeMenu(){
@@ -834,7 +834,7 @@
         overlay.classList.remove('active');
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
-        toggle.textContent = 'Menu';
+        toggle.textContent = 'hamburger icon';  // Shows hamburger icon when closed
       }
 
       window.closeMenu = closeMenu;
