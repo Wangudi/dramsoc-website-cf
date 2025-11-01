@@ -121,15 +121,15 @@
     /* article modal - FIXED: no fixed width, responsive, text wrap */
     #articleModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); color:#fff; overflow:auto; padding:1rem; z-index:10000; }
     #articleModal > div { 
-      max-width:95vw; /* CHANGED: was 900px */
+      max-width:95vw; /* FIXED: was 900px */
       width:100%; 
       margin:0 auto; 
       background:#222144; 
       border-radius:16px; 
-      padding:24px 20px; /* CHANGED: better mobile padding */
+      padding:24px 20px; 
       position:relative; 
       box-sizing:border-box;
-      word-break: break-word; /* ADDED: prevent overflow */
+      word-break: break-word; /* FIXED: text stays inside */
       overflow-wrap: anywhere;
     }
 
@@ -214,7 +214,12 @@
       nav { margin:0; }
     }
 
-    /* === ONLY FIX: Mobile image wrap in production modal === */
+    /* === PREVENT HORIZONTAL SCROLL ON MOBILE === */
+    * { box-sizing: border-box; }
+    html, body { width: 100%; overflow-x: hidden; }
+    .section, .card-grid, .team-grid, .card, .team-card { max-width: 100vw; }
+
+    /* === MOBILE IMAGE WRAP IN PRODUCTION MODAL === */
     @media (max-width: 600px) {
       #productionModal > div > div > div[style*="display:flex"] {
         flex-wrap: wrap !important;
@@ -237,7 +242,7 @@
     <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
 
     <!-- MENU TOGGLE (inserted) -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">Menu</button>
 
     <!-- Navigation (unchanged for large screens; becomes slide-panel on small screens) -->
     <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
@@ -290,7 +295,6 @@
       <h2>Recent Productions</h2>
       <div class="card-grid">
         <div class="card">
-          <!-- add lazy to main card images too (non-modal) -->
           <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" loading="lazy" />
           <h3>The Waiting Room</h3>
           <p>Family secrets unravel in a hospital waiting room.</p>
@@ -311,7 +315,7 @@
       </div>
       <p style="color:var(--gold);text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
 
-      <!-- NOTE: modal contains images that will be loaded by JS via data-src -->
+      <!-- PRODUCTION MODAL -->
       <div id="productionModal" aria-hidden="true" role="dialog" aria-modal="true">
         <div>
           <span id="productionClose" style="position: absolute; top: 14px; right: 20px; font-size: 2.3em; color: var(--gold); cursor: pointer; z-index:10;">&times;</span>
@@ -372,7 +376,7 @@
       </div>
     </section>
 
-    <!-- Article Modal -->
+    <!-- ARTICLE MODAL -->
     <div id="articleModal" aria-hidden="true" role="dialog" aria-modal="true">
       <div>
         <button id="articleClose" onclick="closeArticle()" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">&times;</button>
@@ -380,430 +384,242 @@
       </div>
     </div>
 
-    <script>
-      const articles = {
-        "contemporary-theatre": {
-          title: "The Rise of Contemporary Theatre in Kenya",
-          author: "Wangudi Lameck",
-          date: "March 14, 2025",
-          content: `
-            <p>Kenya's theatrical landscape has witnessed a revolutionary growth over the past decade. Young playwrights and theatre groups are pushing boundaries, creating innovative narratives that blend the rich tapestry of traditional storytelling with modern themes.</p>
-            <p>These contemporary plays address a broad spectrum of topics—from generational conflicts and urbanization to politics and identity—resonating deeply with new audiences. Through bold experimentation in performance styles and technology integration, Kenyan theatre is carving a distinct voice on the global stage.</p>
-            <p>The homegrown talent is supported by a recent surge in creative workshops, festivals, and collaborations that nourish artistic expression beyond Nairobi’s traditional spaces. This movement not only promotes original Kenyan stories but also enhances accessibility, providing diverse audiences the chance to engage meaningfully with their culture through performance.</p>
-            <p>Despite challenges such as funding deficits and infrastructural limitations, enthusiasm and resourcefulness keep pushing the art forward. This renaissance signals a bright future where theatre serves as both entertainment and societal mirror for Kenya's evolving identity.</p>`
-        },
-        "crafting-stage-play": {
-          title: "Behind the Scenes: Crafting a Stage Play",
-          author: "Wangudi Lameck",
-          date: "June 2, 2025",
-          content: `
-            <p>Bringing a stage play from script to spotlight is a complex, collaborative journey. It involves a talented mix of playwrights, directors, designers, and actors working in harmony to transform words into vibrant experiences.</p>
-            <p>The process starts with deep script analysis, involving several revisions to ensure authentic dialogue and engaging pacing. Playwrights work closely with directors to adapt stories that resonate with the target audience, respecting cultural nuances and contemporary themes.</p>
-            <p>Creative teams, from set designers to costume and lighting technicians, translate written words into evocative visuals. This multidisciplinary approach requires meticulous coordination, where communication and shared vision ensure an immersive theatrical experience.</p>
-            <p>Rehearsals are where the magic unfolds. Actors embody characters, while directors shape performances to balance emotional depth with audience connection. Stage managers orchestrate logistics, timing, and technical runs, ensuring seamless execution during live shows.</p>
-            <p>Successful productions are a testament to this painstaking yet rewarding effort, showcasing the power of theatre not only to entertain but to reflect and challenge society.</p>`
-        },
-        "drama-social-change": {
-          title: "The Power of Drama in Social Change",
-          author: "Wangudi Lameck",
-          date: "October 21, 2025",
-          content: `
-            <p>Drama has long been a formidable tool for social change, and in Kenya, its impact continues to expand. Theatre performances open spaces to tackle tough topics such as governance, corruption, gender equality, and cultural identity.</p>
-            <p>By weaving compelling narratives with relatable characters, plays invoke empathy and inspire audiences to critically reflect on societal issues. Community theatre especially reaches marginalized groups, initiating dialogues that might otherwise be inaccessible in conventional forums.</p>
-            <p>Kenyan playwrights and dramatists embrace vernacular languages and local traditions, which enhances authenticity and audience engagement. This culturally rooted approach fosters inclusion, enabling diverse voices to be heard and validated.</p>
-            <p>Beyond awareness raising, drama mobilizes communities towards action, influencing policy discussions and social norms. Through performances in schools, town halls, and open-air venues, drama operates as a bridge between art and activism, empowering people to envision and build better futures.</p>`
-        }
-      };
-
-      /* ---------------------------
-         Scroll-lock helpers
-         --------------------------- */
-      function lockBodyScroll() {
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-      }
-      function unlockBodyScroll() {
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-      }
-
-      /* ---------------------------
-         History / back-button handling
-         --------------------------- */
-      let suppressPop = false;
-      function pushModalState() {
-        try {
-          history.pushState({ modalOpen: true }, '');
-        } catch (e) {/* ignore */}
-      }
-      window.addEventListener('popstate', function(event) {
-        if (suppressPop) { suppressPop = false; return; }
-        const prodModal = document.getElementById('productionModal');
-        const artModal = document.getElementById('articleModal');
-        let closed = false;
-        if (prodModal && prodModal.style.display === 'flex') {
-          prodModal.style.display = 'none';
-          prodModal.setAttribute('aria-hidden','true');
-          closed = true;
-        }
-        if (artModal && artModal.style.display === 'block') {
-          artModal.style.display = 'none';
-          artModal.setAttribute('aria-hidden','true');
-          closed = true;
-        }
-        if (closed) unlockBodyScroll();
-      });
-
-      /* ---------------------------
-         Improved Lazy Image Loader for modal images
-         - Uses data-src on <img>
-         - IntersectionObserver to load when visible
-         - Sequential loading (small queue) to avoid many parallel downloads
-         --------------------------- */
-
-      // tiny inline SVG placeholder (very small, keeps layout)
-      const PLACEHOLDER_DATAURL = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22 viewBox=%220 0 220 160%22%3E%3Crect width=%22220%22 height=%22160%22 fill=%22%23222%22/%3E%3C/svg%3E';
-
-      // queue for sequential loading
-      const imageLoadQueue = [];
-      let loadingInProgress = false;
-
-      function queueLoad(imgEl) {
-        if (!imgEl || imgEl.dataset.loaded === 'true') return;
-        imageLoadQueue.push(imgEl);
-        processQueue();
-      }
-
-      function processQueue() {
-        if (loadingInProgress) return;
-        const next = imageLoadQueue.shift();
-        if (!next) return;
-        loadingInProgress = true;
-        loadImage(next).finally(() => {
-          loadingInProgress = false;
-          setTimeout(processQueue, 120);
-        });
-      }
-
-      function loadImage(imgEl) {
-        return new Promise((resolve) => {
-          if (!imgEl) return resolve();
-          const src = imgEl.dataset.src;
-          if (!src) return resolve();
-          // show spinner while loading
-          const spinner = document.createElement('span');
-          spinner.className = 'img-spinner';
-          imgEl.parentNode && imgEl.parentNode.insertBefore(spinner, imgEl.nextSibling);
-
-          const tmp = new Image();
-          tmp.onload = function() {
-            imgEl.src = src;
-            imgEl.dataset.loaded = 'true';
-            if (spinner && spinner.parentNode) spinner.parentNode.removeChild(spinner);
-            resolve();
-          };
-          tmp.onerror = function() {
-            if (spinner && spinner.parentNode) spinner.parentNode.removeChild(spinner);
-            imgEl.dataset.loaded = 'error';
-            resolve();
-          };
-          tmp.src = src;
-        });
-      }
-
-      // IntersectionObserver: when modal images enter viewport -> push to queue
-      const ioOptions = { root: null, rootMargin: '160px', threshold: 0.01 };
-      const modalImageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(ent => {
-          if (ent.isIntersecting) {
-            queueLoad(ent.target);
-            modalImageObserver.unobserve(ent.target);
-          }
-        });
-      }, ioOptions);
-
-      function observeModalImages(container) {
-        if (!container) return;
-        const imgs = container.querySelectorAll('img[data-src]');
-        imgs.forEach(img => {
-          if (!img.src) img.src = PLACEHOLDER_DATAURL;
-          modalImageObserver.observe(img);
-        });
-      }
-
-      function unobserveAllModalImages() {
-        try {
-          modalImageObserver.disconnect();
-        } catch (e) {}
-        imageLoadQueue.length = 0;
-      }
-
-      /* ---------------------------
-         Article modal functions
-         --------------------------- */
-      function showArticle(key) {
-        const article = articles[key];
-        if (!article) return;
-        const modal = document.getElementById("articleModal");
-        const contentDiv = document.getElementById("articleModalContent");
-        contentDiv.innerHTML = `
-          <h2>${article.title}</h2>
-          <p><em>By ${article.author} | ${article.date}</em></p>
-          ${article.content}
-        `;
-        modal.style.display = "block";
-        modal.setAttribute('aria-hidden','false');
-        lockBodyScroll();
-        pushModalState();
-      }
-
-      function closeArticle() {
-        const modal = document.getElementById("articleModal");
-        const state = history.state;
-        if (state && state.modalOpen) {
-          suppressPop = true;
-          history.back();
-          modal.style.display = "none";
-          modal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-          suppressPop = false;
-        } else {
-          modal.style.display = "none";
-          modal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-        }
-      }
-
-      /* ---------------------------
-         Production modal functions (uses JS-rendered HTML with data-src images)
-         --------------------------- */
-      function showProduction(prod) {
-        var modal = document.getElementById("productionModal");
-        var content = document.getElementById("productionModalContent");
-        var html = "";
-        if (prod === "waiting-room") {
-          html = `<h2>The Waiting Room</h2>
-        <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-          <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-        </p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-          <img class="modal-image" data-src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room 2" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (3).jpg" alt="Waiting Room 3" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (4).jpg" alt="Waiting Room 4" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (5).jpg" alt="Waiting Room 5" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (6).jpg" alt="Waiting Room 6" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (7).jpg" alt="Waiting Room 7" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (8).jpg" alt="Waiting Room 8" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (9).jpg" alt="Waiting Room 9" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (10).jpg" alt="Waiting Room 10" />
-          <img class="modal-image" data-src="images/productions/The Waiting Room (11).jpg" alt="Waiting Room 11" />
-        </div>
-        <p style="margin-top:18px; font-size:1.13em;">
-          In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
-        </p>`;
-        } else if (prod === "homecoming") {
-          html = `<h2>The Homecoming</h2>
-        <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-          <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-        </p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-          <img class="modal-image" data-src="images/productions/The Homecoming (1).jpg" alt="Homecoming 1" />
-          <img class="modal-image" data-src="images/productions/The Homecoming (1).png" alt="Homecoming 1 png" />
-          <img class="modal-image" data-src="images/productions/The Homecoming (2).jpg" alt="Homecoming 2" />
-          <img class="modal-image" data-src="images/productions/The Homecoming (3).jpg" alt="Homecoming 3" />
-          <img class="modal-image" data-src="images/productions/The Homecoming (4).jpg" alt="Homecoming 4" />
-          <img class="modal-image" data-src="images/productions/The Homecoming (5).jpg" alt="Homecoming 5" />
-          <img class="modal-image" data-src="images/productions/The Homecoming (6).jpg" alt="Homecoming 6" />
-        </div>
-        <p style="margin-top:18px; font-size:1.13em;">
-          A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
-        </p>`;
-        } else if (prod === "samaritan") {
-          html = `<h2>The Samaritan</h2>
-        <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-          <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-        </p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-          <img class="modal-image" data-src="images/productions/The Samaritan (1).jpg" alt="Samaritan 1" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (2).jpg" alt="Samaritan 2" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (3).jpg" alt="Samaritan 3" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (4).jpg" alt="Samaritan 4" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (5).jpg" alt="Samaritan 5" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (6).jpg" alt="Samaritan 6" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (7).jpg" alt="Samaritan 7" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (8).jpg" alt="Samaritan 8" />
-          <img class="modal-image" data-src="images/productions/The Samaritan (9).jpg" alt="Samaritan 9" />
-        </div>
-        <p style="margin-top:18px; font-size:1.13em;">
-          This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
-        </p>`;
-        }
-        content.innerHTML = html;
-
-        modal.style.display = "flex";
-        modal.setAttribute('aria-hidden','false');
-        lockBodyScroll();
-        pushModalState();
-
-        observeModalImages(content);
-      }
-
-      // Production modal close - wired to the X span
-      document.addEventListener('DOMContentLoaded', function() {
-        const prodClose = document.getElementById('productionClose');
-        if (prodClose) {
-          prodClose.addEventListener('click', function() {
-            const modal = document.getElementById('productionModal');
-            const state = history.state;
-            if (state && state.modalOpen) {
-              suppressPop = true;
-              history.back();
-              modal.style.display = 'none';
-              modal.setAttribute('aria-hidden','true');
-              unlockBodyScroll();
-              unobserveAllModalImages();
-              suppressPop = false;
-            } else {
-              modal.style.display = 'none';
-              modal.setAttribute('aria-hidden','true');
-              unlockBodyScroll();
-              unobserveAllModalImages();
-            }
-          });
-        }
-
-        const artClose = document.getElementById('articleClose');
-        if (artClose) {
-          artClose.addEventListener('click', function() {
-            closeArticle();
-            unobserveAllModalImages();
-          });
-        }
-      });
-
-      function closeArticle() {
-        const modal = document.getElementById("articleModal");
-        const state = history.state;
-        if (state && state.modalOpen) {
-          suppressPop = true;
-          history.back();
-          modal.style.display = "none";
-          modal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-          suppressPop = false;
-        } else {
-          modal.style.display = "none";
-          modal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-        }
-        unobserveAllModalImages();
-      }
-
-      /* ---------------------------
-         Click outside -> close modals
-         --------------------------- */
-      window.addEventListener('click', function(event) {
-        const prodModal = document.getElementById('productionModal');
-        const artModal = document.getElementById('articleModal');
-        if (event.target === prodModal) {
-          const state = history.state;
-          if (state && state.modalOpen) {
-            suppressPop = true;
-            history.back();
-            prodModal.style.display = 'none';
-            prodModal.setAttribute('aria-hidden','true');
-            unlockBodyScroll();
-            unobserveAllModalImages();
-            suppressPop = false;
-          } else {
-            prodModal.style.display = 'none';
-            prodModal.setAttribute('aria-hidden','true');
-            unlockBodyScroll();
-            unobserveAllModalImages();
-          }
-        }
-        if (event.target === artModal) {
-          const state = history.state;
-          if (state && state.modalOpen) {
-            suppressPop = true;
-            history.back();
-            artModal.style.display = 'none';
-            artModal.setAttribute('aria-hidden','true');
-            unlockBodyScroll();
-            unobserveAllModalImages();
-            suppressPop = false;
-          } else {
-            artModal.style.display = 'none';
-            artModal.setAttribute('aria-hidden','true');
-            unlockBodyScroll();
-            unobserveAllModalImages();
-          }
-        }
-      });
-
-      /* ---------------------------
-         ESC key closes modals
-         --------------------------- */
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          const prodModal = document.getElementById('productionModal');
-          const artModal = document.getElementById('articleModal');
-          let closed = false;
-          if (prodModal && prodModal.style.display === 'flex') {
-            const state = history.state;
-            if (state && state.modalOpen) {
-              suppressPop = true;
-              history.back();
-              suppressPop = false;
-            } else {
-              prodModal.style.display = 'none';
-              prodModal.setAttribute('aria-hidden','true');
-            }
-            closed = true;
-            unobserveAllModalImages();
-          }
-          if (artModal && artModal.style.display === 'block') {
-            const state = history.state;
-            if (state && state.modalOpen) {
-              suppressPop = true;
-              history.back();
-              suppressPop = false;
-            } else {
-              artModal.style.display = 'none';
-              artModal.setAttribute('aria-hidden','true');
-            }
-            closed = true;
-          }
-          if (closed) unlockBodyScroll();
-        }
-      });
-    </script>
-
     <section id="contact" class="section">
       <h2>Contact Us</h2>
       <div class="social-icons" style="margin-top:8px; display:flex; gap:15px;">
         <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;" loading="lazy">
         </a>
-
         <a href="https://www.youtube.com/@StrathmoreDramaSociety" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
           <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;" loading="lazy">
         </a>
-
         <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
           <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;" loading="lazy">
         </a>
       </div>
     </section>
-
   </main>
 
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
 
-  <!-- NEW: Toggle JS (transparent panel; smaller gold text; overlay; X toggle) -->
+  <!-- ================= SCRIPTS ================= -->
   <script>
+    const articles = {
+      "contemporary-theatre": {
+        title: "The Rise of Contemporary Theatre in Kenya",
+        author: "Wangudi Lameck",
+        date: "March 14, 2025",
+        content: `
+          <p>Kenya's theatrical landscape has witnessed a revolutionary growth over the past decade. Young playwrights and theatre groups are pushing boundaries, creating innovative narratives that blend the rich tapestry of traditional storytelling with modern themes.</p>
+          <p>These contemporary plays address a broad spectrum of topics—from generational conflicts and urbanization to politics and identity—resonating deeply with new audiences. Through bold experimentation in performance styles and technology integration, Kenyan theatre is carving a distinct voice on the global stage.</p>
+          <p>The homegrown talent is supported by a recent surge in creative workshops, festivals, and collaborations that nourish artistic expression beyond Nairobi’s traditional spaces. This movement not only promotes original Kenyan stories but also enhances accessibility, providing diverse audiences the chance to engage meaningfully with their culture through performance.</p>
+          <p>Despite challenges such as funding deficits and infrastructural limitations, enthusiasm and resourcefulness keep pushing the art forward. This renaissance signals a bright future where theatre serves as both entertainment and societal mirror for Kenya's evolving identity.</p>`
+      },
+      "crafting-stage-play": {
+        title: "Behind the Scenes: Crafting a Stage Play",
+        author: "Wangudi Lameck",
+        date: "June 2, 2025",
+        content: `
+          <p>Bringing a stage play from script to spotlight is a complex, collaborative journey. It involves a talented mix of playwrights, directors, designers, and actors working in harmony to transform words into vibrant experiences.</p>
+          <p>The process starts with deep script analysis, involving several revisions to ensure authentic dialogue and engaging pacing. Playwrights work closely with directors to adapt stories that resonate with the target audience, respecting cultural nuances and contemporary themes.</p>
+          <p>Creative teams, from set designers to costume and lighting technicians, translate written words into evocative visuals. This multidisciplinary approach requires meticulous coordination, where communication and shared vision ensure an immersive theatrical experience.</p>
+          <p>Rehearsals are where the magic unfolds. Actors embody characters, while directors shape performances to balance emotional depth with audience connection. Stage managers orchestrate logistics, timing, and technical runs, ensuring seamless execution during live shows.</p>
+          <p>Successful productions are a testament to this painstaking yet rewarding effort, showcasing the power of theatre not only to entertain but to reflect and challenge society.</p>`
+      },
+      "drama-social-change": {
+        title: "The Power of Drama in Social Change",
+        author: "Wangudi Lameck",
+        date: "October 21, 2025",
+        content: `
+          <p>Drama has long been a formidable tool for social change, and in Kenya, its impact continues to expand. Theatre performances open spaces to tackle tough topics such as governance, corruption, gender equality, and cultural identity.</p>
+          <p>By weaving compelling narratives with relatable characters, plays invoke empathy and inspire audiences to critically reflect on societal issues. Community theatre especially reaches marginalized groups, initiating dialogues that might otherwise be inaccessible in conventional forums.</p>
+          <p>Kenyan playwrights and dramatists embrace vernacular languages and local traditions, which enhances authenticity and audience engagement. This culturally rooted approach fosters inclusion, enabling diverse voices to be heard and validated.</p>
+          <p>Beyond awareness raising, drama mobilizes communities towards action, influencing policy discussions and social norms. Through performances in schools, town halls, and open-air venues, drama operates as a bridge between art and activism, empowering people to envision and build better futures.</p>`
+      }
+    };
+
+    /* Scroll-lock helpers */
+    function lockBodyScroll() {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+    function unlockBodyScroll() {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    /* History / back-button handling */
+    let suppressPop = false;
+    function pushModalState() {
+      try { history.pushState({ modalOpen: true }, ''); } catch (e) {}
+    }
+    window.addEventListener('popstate', function() {
+      if (suppressPop) { suppressPop = false; return; }
+      ['productionModal', 'articleModal'].forEach(id => {
+        const modal = document.getElementById(id);
+        if (modal && modal.style.display !== 'none') {
+          modal.style.display = 'none';
+          modal.setAttribute('aria-hidden', 'true');
+          unlockBodyScroll();
+          unobserveAllModalImages();
+        }
+      });
+    });
+
+    /* Lazy loading */
+    const PLACEHOLDER_DATAURL = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22 viewBox=%220 0 220 160%22%3E%3Crect width=%22220%22 height=%22160%22 fill=%22%23222%22/%3E%3C/svg%3E';
+    const imageLoadQueue = [];
+    let loadingInProgress = false;
+
+    function queueLoad(imgEl) {
+      if (!imgEl || imgEl.dataset.loaded === 'true') return;
+      imageLoadQueue.push(imgEl);
+      processQueue();
+    }
+    function processQueue() {
+      if (loadingInProgress) return;
+      const next = imageLoadQueue.shift();
+      if (!next) return;
+      loadingInProgress = true;
+      loadImage(next).finally(() => {
+        loadingInProgress = false;
+        setTimeout(processQueue, 120);
+      });
+    }
+    function loadImage(imgEl) {
+      return new Promise(resolve => {
+        if (!imgEl || !imgEl.dataset.src) return resolve();
+        const src = imgEl.dataset.src;
+        const spinner = document.createElement('span');
+        spinner.className = 'img-spinner';
+        imgEl.parentNode.insertBefore(spinner, imgEl.nextSibling);
+        const tmp = new Image();
+        tmp.onload = () => {
+          imgEl.src = src;
+          imgEl.dataset.loaded = 'true';
+          spinner.remove();
+          resolve();
+        };
+        tmp.onerror = () => { spinner.remove(); resolve(); };
+        tmp.src = src;
+      });
+    }
+
+    const modalImageObserver = new IntersectionObserver(entries => {
+      entries.forEach(ent => {
+        if (ent.isIntersecting) {
+          queueLoad(ent.target);
+          modalImageObserver.unobserve(ent.target);
+        }
+      });
+    }, { rootMargin: '160px' });
+
+    function observeModalImages(container) {
+      if (!container) return;
+      container.querySelectorAll('img[data-src]').forEach(img => {
+        if (!img.src) img.src = PLACEHOLDER_DATAURL;
+        modalImageObserver.observe(img);
+      });
+    }
+    function unobserveAllModalImages() {
+      modalImageObserver.disconnect();
+      imageLoadQueue.length = 0;
+    }
+
+    /* Article Modal */
+    function showArticle(key) {
+      const article = articles[key];
+      if (!article) return;
+      const modal = document.getElementById("articleModal");
+      const content = document.getElementById("articleModalContent");
+      content.innerHTML = `<h2>${article.title}</h2><p><em>By ${article.author} | ${article.date}</em></p>${article.content}`;
+      modal.style.display = "block";
+      modal.setAttribute('aria-hidden', 'false');
+      lockBodyScroll();
+      pushModalState();
+    }
+
+    /* Production Modal */
+    function showProduction(prod) {
+      const modal = document.getElementById("productionModal");
+      const content = document.getElementById("productionModalContent");
+      let html = "";
+
+      if (prod === "waiting-room") {
+        html = `<h2>The Waiting Room</h2>
+          <p style="margin-bottom:15px; color:var(--gold);"><strong>Writer:</strong> Martin Abuya | <strong>Director:</strong> Nick Muthama</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+            ${[2,3,4,5,6,7,8,9,10,11].map(i => `<img class="modal-image" data-src="images/productions/The Waiting Room (${i}).jpg" alt="Waiting Room ${i}" />`).join('')}
+          </div>
+          <p style="margin-top:18px;">In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch...</p>`;
+      } else if (prod === "homecoming") {
+        html = `<h2>The Homecoming</h2>
+          <p style="margin-bottom:15px; color:var(--gold);"><strong>Writer:</strong> Martin Abuya | <strong>Director:</strong> Nick Muthama</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+            ${["1","1","2","3","4","5","6"].map((i, idx) => `<img class="modal-image" data-src="images/productions/The Homecoming (${i})${i==='1' && idx===1 ? '.png' : '.jpg'}" alt="Homecoming ${i}" />`).join('')}
+          </div>
+          <p style="margin-top:18px;">A tragicomedy about the Talai family's reunion and unraveling...</p>`;
+      } else if (prod === "samaritan") {
+        html = `<h2>The Samaritan</h2>
+          <p style="margin-bottom:15px; color:var(--gold);"><strong>Writer:</strong> John Lara | <strong>Director:</strong> Nick Muthama</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+            ${[1,2,3,4,5,6,7,8,9].map(i => `<img class="modal-image" data-src="images/productions/The Samaritan (${i}).jpg" alt="Samaritan ${i}" />`).join('')}
+          </div>
+          <p style="margin-top:18px;">This stage drama exposes political corruption and the fight for justice...</p>`;
+      }
+
+      content.innerHTML = html;
+      modal.style.display = "flex";
+      modal.setAttribute('aria-hidden', 'false');
+      lockBodyScroll();
+      pushModalState();
+      observeModalImages(content);
+    }
+
+    /* Close handlers */
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('productionClose').onclick = () => {
+        const m = document.getElementById('productionModal');
+        m.style.display = 'none';
+        m.setAttribute('aria-hidden', 'true');
+        unlockBodyScroll();
+        unobserveAllModalImages();
+      };
+      document.getElementById('articleClose').onclick = () => {
+        const m = document.getElementById('articleModal');
+        m.style.display = 'none';
+        m.setAttribute('aria-hidden', 'true');
+        unlockBodyScroll();
+        unobserveAllModalImages();
+      };
+    });
+
+    window.addEventListener('click', e => {
+      if (e.target.id === 'articleModal' || e.target.id === 'productionModal') {
+        e.target.style.display = 'none';
+        e.target.setAttribute('aria-hidden', 'true');
+        unlockBodyScroll();
+        unobserveAllModalImages();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        ['articleModal', 'productionModal'].forEach(id => {
+          const m = document.getElementById(id);
+          if (m.style.display !== 'none') {
+            m.style.display = 'none';
+            m.setAttribute('aria-hidden', 'true');
+            unlockBodyScroll();
+            unobserveAllModalImages();
+          }
+        });
+      }
+    });
+
+    /* Menu Toggle */
     (function(){
       const toggle = document.getElementById('menuToggle');
       const nav = document.getElementById('mainNav');
@@ -816,9 +632,8 @@
         toggle.setAttribute('aria-expanded','true');
         if (closeBtn) closeBtn.style.display = 'block';
         overlay.classList.add('active');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        toggle.textContent = '✖';
+        lockBodyScroll();
+        toggle.textContent = '×';
       }
 
       function closeMenu(){
@@ -827,36 +642,17 @@
         toggle.setAttribute('aria-expanded','false');
         if (closeBtn) closeBtn.style.display = 'none';
         overlay.classList.remove('active');
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        toggle.textContent = '☰';
+        unlockBodyScroll();
+        toggle.textContent = 'Menu';
       }
 
       window.closeMenu = closeMenu;
 
-      toggle.addEventListener('click', function(e){ if (nav.classList.contains('menu-active')) closeMenu(); else openMenu(); });
-      toggle.addEventListener('keydown', function(e){ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle.click(); } });
-
+      toggle.addEventListener('click', () => nav.classList.contains('menu-active') ? closeMenu() : openMenu());
       if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-
       overlay.addEventListener('click', closeMenu);
-
-      nav.addEventListener('click', function(e){
-        if (e.target && e.target.tagName === 'A') {
-          closeMenu();
-        }
-      });
-
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && nav.classList.contains('menu-active')) closeMenu();
-      });
-
-      document.addEventListener('click', function(e){
-        const isSmall = window.matchMedia('(max-width:700px)').matches;
-        if (!isSmall) return;
-        const clickedInside = nav.contains(e.target) || toggle.contains(e.target) || overlay.contains(e.target);
-        if (!clickedInside && nav.classList.contains('menu-active')) closeMenu();
-      });
+      nav.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-active')) closeMenu(); });
     })();
   </script>
 </body>
