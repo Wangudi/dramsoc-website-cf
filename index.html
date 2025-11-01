@@ -6,6 +6,7 @@
   <title>Strathmore Drama Society (DRAMSOC)</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
   <style>
+    /* ...all your existing styles up to (including) media queries... */
     body {
       background: #111111;
       color: #fff;
@@ -41,208 +42,71 @@
       color: #fff;
       text-shadow: 0 0 8px #ffd700aa;
     }
-    .hero {
-      background: linear-gradient(135deg, #222144, #b80000 100%);
-      min-height: 50vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 64px 18px;
-    }
-    h1,
-    h2,
-    h3 {
-      font-family: "Lora", serif;
-      color: #ffd700;
-    }
-    .motto {
-      color: #b80000;
-      font-size: 1.2em;
-      font-family: "Lora", serif;
-      letter-spacing: 2px;
-      margin-bottom: 18px;
-    }
-    .events-upcoming {
-      margin: 0 auto 32px auto;
-      padding: 40px 28px;
-      background: linear-gradient(120deg, #251544, #423b79 80%);
-      color: #fff;
-      border-radius: 24px;
-      min-width: 270px;
-      min-height: 130px;
-      max-width: 680px;
-      font-family: "Lora", serif;
-      font-style: italic;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      font-size: 1.6em;
-      box-shadow: 0 8px 44px #22154488;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      animation: scalePulse 2.6s infinite;
-      text-shadow: 0 1px 10px #22154488;
-    }
-    .events-upcoming-title {
-      color: #ffd700;
-      margin-bottom: 20px;
-      font-size: 1.3em;
-      font-family: inherit;
-      font-style: normal;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-shadow: 0 2px 12px #423b7977;
-    }
-    .events-message {
-      font-size: 1.06em;
-      opacity: 0.88;
-    }
-    @keyframes scalePulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.03);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-    .section {
-      padding: 90px 36px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .card-grid,
-    .team-grid {
-      display: flex;
-      gap: 2em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .card {
-      background: #222;
-      border-radius: 12px;
-      padding: 1.4em 1em;
-      margin-bottom: 22px;
-      box-shadow: 0 4px 32px #b8000044;
-      max-width: 340px;
-      transition: transform 0.18s, box-shadow 0.18s;
-    }
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 10px 44px #b80000bb;
-    }
-    .card img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .btn,
-    .btn-gold,
-    .learn-more-btn {
-      background: #ffd700;
-      color: #111;
-      border: none;
-      border-radius: 6px;
-      padding: 13px 2em;
-      font-weight: 700;
-      margin-top: 10px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.22s, color 0.18s;
-    }
-    .btn-gold:hover,
-    .btn:hover,
-    .learn-more-btn:hover {
-      background: #b80000;
-      color: #fff;
-    }
-    .team-card {
-      background: #262626;
-      border-radius: 8px;
-      padding: 1em 2.5em 1.4em;
-      text-align: center;
-      width: 396px; /* 1.8x 220px */
-      max-width: 95vw;
-      box-sizing: border-box;
-      margin: 0 auto;
-    }
-    .team-card img {
-      width: 200px;
-      height: 200px;
-      border-radius: 0;
-      object-fit: cover;
-      margin-bottom: 8px;
-    }
-    .team-card b {
+    .hero { /* ... etc ... */ }
+    /* ... (all your styles up to end of style block) ... */
+    @media(max-width:700px){ .card-grid, .team-grid { flex-direction: column; align-items: center; } .card { max-width: 100%; } header { flex-direction: column; align-items: flex-start; gap:0.5em; } nav { margin:0; } }
+
+    /* TOGGLE MENU CSS (inserted at the end of style block) */
+    #menu-toggle .bar {
       display: block;
-      font-size: 1.1em;
-      margin-bottom: 6px;
-      color: #ffd700;
+      width: 30px;
+      height: 4px;
+      margin: 6px 0;
+      background-color: #FFD700;
+      border-radius: 2px;
+      transition: 0.4s;
     }
-    .team-card .role {
-      font-size: 0.9em;
-      color: #ddd;
-      margin-top: 2px;
+    #menu-toggle.open .bar:nth-child(1) {
+      transform: rotate(-45deg) translate(-7px, 7px);
     }
-    footer {
-      background: #111;
-      color: #ffd700;
-      text-align: center;
-      padding: 30px 5px;
-      margin-top: 36px;
+    #menu-toggle.open .bar:nth-child(2) {
+      opacity: 0;
     }
-    /* Modal */
-    #productionModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(34,20,68,0.95);
-      z-index: 9999;
-      align-items: center; justify-content: center;
+    #menu-toggle.open .bar:nth-child(3) {
+      transform: rotate(45deg) translate(-6px, -6px);
     }
-    #productionModal > div {
-      background: #222144;
-      border-radius: 16px;
-      padding: 32px;
-      max-width: 90vw; max-height: 86vh;
-      overflow: auto;
-      color: #fff;
-      box-shadow: 0 12px 48px #0008;
-      position: relative;
-      animation: scalePulse 1.7s;
-    }
-    #productionModal img {
-      max-width: 220px;
-      height: auto;
-      border-radius: 10px;
-      object-fit: contain;
-      margin: 0 10px 10px 0;
-      box-shadow: 0 2px 18px #1118;
-    }
-    @media(max-width:700px){
-      .card-grid,
-      .team-grid {
-        flex-direction: column;
-        align-items: center;
+    @media (max-width: 768px) {
+      #nav-menu {
+        top: 48px;
+        right: 0;
+        left: auto;
+        padding: 16px 24px;
+        box-shadow: none;
+        border-radius: 0;
+        width: 100vw;
       }
-      .card {
-        max-width: 100%;
+      #menu-toggle {
+        position: relative;
       }
-      header {
-        flex-direction: column; align-items: flex-start; gap:0.5em;
+      header nav:nth-of-type(2) {
+        display: none;
       }
-      nav { margin:0; }
     }
   </style>
 </head>
 <body>
 <header>
   <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
+  <!-- TOGGLE BUTTON START (add just after logo, before nav) -->
+  <div id="toggle-container" style="margin-left: auto; position: relative;">
+    <button id="menu-toggle" style="background: none; border: none; cursor: pointer; padding: 0;">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav id="nav-menu" style="display:none;position:absolute;top:48px;right:0;background:#111111;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.3);padding:24px 32px;z-index:99;">
+      <ul style="list-style:none;margin:0;padding:0;color:#FFD700;">
+        <li style="padding:10px 0;font-size:18px;">Home</li>
+        <li style="padding:10px 0;font-size:18px;">About Us</li>
+        <li style="padding:10px 0;font-size:18px;">Productions</li>
+        <li style="padding:10px 0;font-size:18px;">Team</li>
+        <li style="padding:10px 0;font-size:18px;">Articles</li>
+        <li style="padding:10px 0;font-size:18px;">Contact</li>
+        <li style="padding:10px 0;font-size:18px;">Join Us</li>
+      </ul>
+    </nav>
+  </div>
+  <!-- TOGGLE BUTTON END -->
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About Us</a>
@@ -255,94 +119,93 @@
 </header>
 <main>
 <section id="home" class="hero">
-<h1>Take It to the Next Level!</h1>
-<div class="events-upcoming">
-  <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
-  <div class="events-message">No updates, check back later</div>
-</div>
-<a class="btn btn-gold" href="#join">Join Us Today</a>
+  <h1>Take It to the Next Level!</h1>
+  <div class="events-upcoming">
+    <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
+    <div class="events-message">No updates, check back later</div>
+  </div>
+  <a class="btn btn-gold" href="#join">Join Us Today</a>
 </section>
 
 <section id="about" class="section">
-<h2>About Us</h2>
-<div class="card-grid">
-<div class="card">
-<h3>Our Mission</h3>
-<p>To enhance and encourage teamwork, improve the quality of life by building, developing and nurturing talent through social, theatrical and community life at large.</p>
-</div>
-<div class="card">
-<h3>Our Vision</h3>
-<p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
-</div>
-<div class="card">
-<h3>Our Motto</h3>
-<p>“Take it to the next level!”</p>
-</div>
-</div>
+  <h2>About Us</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Our Mission</h3>
+      <p>To enhance and encourage teamwork, improve the quality of life by building, developing and nurturing talent through social, theatrical and community life at large.</p>
+    </div>
+    <div class="card">
+      <h3>Our Vision</h3>
+      <p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
+    </div>
+    <div class="card">
+      <h3>Our Motto</h3>
+      <p>“Take it to the next level!”</p>
+    </div>
+  </div>
 </section>
 
 <section id="productions" class="section">
-<h2>Recent Productions</h2>
-<div class="card-grid">
-<div class="card">
-  <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" />
-  <h3>The Waiting Room</h3>
-  <p>Family secrets unravel in a hospital waiting room.</p>
-  <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
-</div>
-<div class="card">
-  <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" />
-  <h3>The Homecoming</h3>
-  <p>A comedic but tense family reunion in Nairobi.</p>
-  <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
-</div>
-<div class="card">
-  <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" />
-  <h3>The Samaritan</h3>
-  <p>When justice meets corruption, who wins?</p>
-  <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
-</div>
-</div>
-<p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
-<div id="productionModal">
-<div>
-  <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
-  <div id="productionModalContent"></div>
-</div>
-</div>
+  <h2>Recent Productions</h2>
+  <div class="card-grid">
+    <div class="card">
+      <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" />
+      <h3>The Waiting Room</h3>
+      <p>Family secrets unravel in a hospital waiting room.</p>
+      <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
+    </div>
+    <div class="card">
+      <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" />
+      <h3>The Homecoming</h3>
+      <p>A comedic but tense family reunion in Nairobi.</p>
+      <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
+    </div>
+    <div class="card">
+      <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" />
+      <h3>The Samaritan</h3>
+      <p>When justice meets corruption, who wins?</p>
+      <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
+    </div>
+  </div>
+  <p style="color:#FFD700;text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
+  <div id="productionModal">
+    <div>
+      <span style="position: absolute; top: 14px; right: 34px; font-size: 2.3em; color: #FFD700; cursor: pointer;" onclick="document.getElementById('productionModal').style.display='none'">&times;</span>
+      <div id="productionModalContent"></div>
+    </div>
+  </div>
 </section>
 
 <section id="team" class="section">
-<h2>Society's Governing Body</h2>
-<div class="team-grid">
-<div class="team-card">
-  <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
-  <b>Dan Kakuru</b>
-  <div class="role">President: Oversees the society's activities and represents members.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
-  <b>Leila Kaisa</b>
-  <div class="role">Vice President: Assists the President and coordinates programs.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Joe Abala.png" alt="Joe Abala" />
-  <b>Joe Abala</b>
-  <div class="role">Organizing Secretary: Manages meetings, communications, and logistics.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
-  <b>Cherise Chomba</b>
-  <div class="role">Secretary General: Oversees administration and record keeping.</div>
-</div>
-<div class="team-card">
-  <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
-  <b>Paula Nimurungi</b>
-  <div class="role">Financial Manager: Handles funds, budgeting, and financial reports.</div>
-</div>
-</div>
+  <h2>Society's Governing Body</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" />
+      <b>Dan Kakuru</b>
+      <div class="role">President: Oversees the society's activities and represents members.</div>
+    </div>
+    <div class="team-card">
+      <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" />
+      <b>Leila Kaisa</b>
+      <div class="role">Vice President: Assists the President and coordinates programs.</div>
+    </div>
+    <div class="team-card">
+      <img src="images/team/Joe Abala.png" alt="Joe Abala" />
+      <b>Joe Abala</b>
+      <div class="role">Organizing Secretary: Manages meetings, communications, and logistics.</div>
+    </div>
+    <div class="team-card">
+      <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" />
+      <b>Cherise Chomba</b>
+      <div class="role">Secretary General: Oversees administration and record keeping.</div>
+    </div>
+    <div class="team-card">
+      <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" />
+      <b>Paula Nimurungi</b>
+      <div class="role">Financial Manager: Handles funds, budgeting, and financial reports.</div>
+    </div>
+  </div>
 </section>
-
 <section id="articles" class="section">
   <h2>Articles & Updates</h2>
   <div class="card-grid">
@@ -425,18 +288,15 @@
   }
 </script>
 
-
 <section id="contact" class="section">
 <h2>Contact Us</h2>
 <div class="social-icons" style="margin-top:8px; display:flex; gap:15px;">
   <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
     <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;">
   </a>
-
   <a href="https://www.youtube.com/@StrathmoreDramaSociety" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
     <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;">
   </a>
-
   <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
     <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;">
   </a>
@@ -450,6 +310,20 @@
 <footer>
 &copy; 2025 Strathmore Drama Society (DRAMSOC)
 </footer>
+<!-- TOGGLE MENU JS at the END before </body> -->
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  toggleBtn.addEventListener('click', () => {
+    if (navMenu.style.display === 'block') {
+      navMenu.style.display = 'none';
+      toggleBtn.classList.remove('open');
+    } else {
+      navMenu.style.display = 'block';
+      toggleBtn.classList.add('open');
+    }
+  });
+</script>
 <script>
 function showProduction(prod) {
   var modal = document.getElementById("productionModal");
