@@ -251,27 +251,6 @@
     <a href="#articles">Articles</a>
     <a href="#contact">Contact</a>
     <a href="#join">Join Us</a>
-      <!-- TOGGLE BUTTON & MENU INSERTED BELOW -->
-    <div id="toggle-container" style="margin-left: auto; position: relative;">
-      <button id="menu-toggle" style="background: none; border: none; cursor: pointer; padding: 0;">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
-      <nav id="nav-menu" style="display:none;position:absolute;top:48px;right:0;background:#111111;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.3);padding:24px 32px;z-index:99;">
-        <ul style="list-style:none;margin:0;padding:0;color:#FFD700;">
-          <li style="padding:10px 0;font-size:18px;">Home</li>
-          <li style="padding:10px 0;font-size:18px;">About Us</li>
-          <li style="padding:10px 0;font-size:18px;">Productions</li>
-          <li style="padding:10px 0;font-size:18px;">Team</li>
-          <li style="padding:10px 0;font-size:18px;">Articles</li>
-          <li style="padding:10px 0;font-size:18px;">Contact</li>
-          <li style="padding:10px 0;font-size:18px;">Join Us</li>
-        </ul>
-      </nav>
-    </div>
-    <!-- END TOGGLE BUTTON & MENU -->
   </nav>
 </header>
 <main>
@@ -536,19 +515,6 @@ function showProduction(prod) {
   content.innerHTML = html;
   modal.style.display = "flex";
 }
-  <!-- TOGGLE MENU JS (insert just before </body>) -->
-<script>
-  const toggleBtn = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  toggleBtn.addEventListener('click', () => {
-    if (navMenu.style.display === 'block') {
-      navMenu.style.display = 'none';
-      toggleBtn.classList.remove('open');
-    } else {
-      navMenu.style.display = 'block';
-      toggleBtn.classList.add('open');
-    }
-  });
 </script>
 </body>
 </html>
