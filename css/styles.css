@@ -36,7 +36,7 @@ nav a:hover {
   text-shadow: 0 0 8px #FFD700AA;
 }
 .hero {
-  background: linear-gradient(135deg, #111, #B80000 100%);
+  background: linear-gradient(135deg, #111, #1a1a1a 100%);
   min-height: 45vh;
   display: flex;
   flex-direction: column;
