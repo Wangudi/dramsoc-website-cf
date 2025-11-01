@@ -536,6 +536,19 @@ function showProduction(prod) {
   content.innerHTML = html;
   modal.style.display = "flex";
 }
+  <!-- TOGGLE MENU JS (insert just before </body>) -->
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  toggleBtn.addEventListener('click', () => {
+    if (navMenu.style.display === 'block') {
+      navMenu.style.display = 'none';
+      toggleBtn.classList.remove('open');
+    } else {
+      navMenu.style.display = 'block';
+      toggleBtn.classList.add('open');
+    }
+  });
 </script>
 </body>
 </html>
