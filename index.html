@@ -421,7 +421,7 @@
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
 
-  <!-- FIXED: Modal Scripts -->
+  <!-- SIMPLE WORKING MODAL SCRIPT -->
   <script>
     // Articles data
     const articles = {
@@ -458,8 +458,9 @@
       }
     };
 
-    // Simple modal functions - back to basics
+    // Simple modal functions
     function showArticle(key) {
+      console.log('showArticle called with:', key);
       const article = articles[key];
       if (!article) return;
       
@@ -479,11 +480,13 @@
     }
 
     function closeArticleModal() {
+      console.log('closeArticleModal called');
       document.getElementById("articleModal").style.display = "none";
       document.body.classList.remove('modal-open');
     }
 
     function showProduction(prod) {
+      console.log('showProduction called with:', prod);
       const modal = document.getElementById("productionModal");
       const content = document.getElementById("productionModalContent");
       let html = "";
@@ -555,12 +558,14 @@
     }
 
     function closeProductionModal() {
+      console.log('closeProductionModal called');
       document.getElementById("productionModal").style.display = "none";
       document.body.classList.remove('modal-open');
     }
 
     // Handle back button
     window.addEventListener('popstate', function(event) {
+      console.log('Back button pressed');
       // Check if any modal is open and close it
       const articleModal = document.getElementById("articleModal");
       const productionModal = document.getElementById("productionModal");
@@ -603,6 +608,10 @@
         closeProductionModal();
       }
     });
+
+    // Debug: Check if functions are available
+    console.log('showArticle function available:', typeof showArticle);
+    console.log('showProduction function available:', typeof showProduction);
   </script>
 
   <!-- NEW: Toggle JS (transparent panel; smaller gold text; overlay; X toggle) -->
