@@ -243,7 +243,7 @@
     }
 
     /* ================= NEW: Toggle / Slide-in menu ================= */
-    .menu-toggle { { display: block; font-size:28px; color:var(--gold); cursor:pointer; margin-left:auto; user-select:none; z-index:1300; background:transparent; border:none; }
+    .menu-toggle { display:none; font-size:28px; color:var(--gold); cursor:pointer; margin-left:auto; user-select:none; z-index:1300; background:transparent; border:none; }
     /* overlay to dim background when menu is open */
     .overlay { position:fixed; inset:0; background: rgba(0,0,0,0.45); opacity:0; pointer-events:none; transition: opacity 0.32s ease; z-index:1250; }
     .overlay.active { opacity:1; pointer-events:all; }
@@ -336,17 +336,18 @@
     <!-- MENU TOGGLE: Now shows hamburger icon -->
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">Menu</button>
     <!-- Navigation (unchanged for large screens; becomes slide-panel on small screens) -->
-   <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
-  <button class="close-panel" id="closePanel" aria-label="Close menu" style="display:none;">×</button>
-  <a href="#" onclick="showHome();toggleMenu();">Home</a>
-  <a href="#" onclick="showAboutUs();toggleMenu();">About Us</a>
-  <a href="#" onclick="showTeam();toggleMenu();">Team</a>
-  <a href="#" onclick="showDepartments();toggleMenu();">Departments</a>
-  <a href="#" onclick="showAlumni();toggleMenu();">Alumni</a>
-  <a href="#" onclick="showArticles();toggleMenu();">Articles</a>
-  <a href="#" onclick="showContact();toggleMenu();">Contact</a>
-  <a href="#" onclick="showJoinUs();toggleMenu();">Join Us</a>
-</nav>
+    <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
+      <button class="close-panel" id="closePanel" aria-label="Close menu" style="display:none;">×</button>
+      <!-- Links: requested list -->
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#" onclick="showTeam(); return false;">Team</a>
+      <a href="#" onclick="showDepartments(); return false;">Departments</a>
+      <a href="#" onclick="showAlumni(); return false;">Alumni</a>
+      <a href="#articles">Articles</a>
+      <a href="#contact">Contact</a>
+      <a href="#join">Join Us</a>
+    </nav>
   </header>
   <!-- Overlay -->
   <div class="overlay" id="overlay" aria-hidden="true"></div>
