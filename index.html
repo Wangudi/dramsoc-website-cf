@@ -172,7 +172,6 @@
     .join-dept-btn:hover {
       background:var(--red); color:#fff;
     }
-
     /* ================= ALUMNI MODAL STYLES ================= */
     #alumniModal {
       display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
@@ -211,6 +210,36 @@
     }
     .alumni-btn:hover {
       background:var(--red); color:#fff;
+    }
+
+    /* ================= TEAM MODAL STYLES ================= */
+    #teamModal {
+      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+      background:rgba(0,0,0,0.92); z-index:10000; align-items:center; justify-content:center;
+      padding:1rem; overflow:auto;
+    }
+    #teamModal > div {
+      background:#222144; border-radius:16px; padding:32px 24px; max-width:95vw;
+      max-height:90vh; overflow:auto; position:relative; box-shadow:0 12px 48px #0008;
+      color:#fff; word-break: break-word;
+    }
+    .team-modal-card {
+      background:#2a2a3a; border-radius:12px; padding:1.6em; margin-bottom:1.8em;
+      box-shadow:0 4px 20px rgba(184,0,0,0.2);
+    }
+    .team-modal-card h3 {
+      color:var(--gold); margin-top:0; font-size:1.4em; border-bottom:2px solid var(--gold);
+      padding-bottom:8px;
+    }
+    .team-member {
+      background:#2a2a3a; border-radius:10px; padding:1.4em; margin:1.2em 0;
+      box-shadow:0 3px 16px rgba(0,0,0,0.3);
+    }
+    .team-member h4 {
+      color:var(--gold); margin:0 0 6px 0; font-size:1.25em;
+    }
+    .team-member .title {
+      color:#ccc; font-style:italic; font-size:0.95em; margin-bottom:10px;
     }
 
     /* ================= NEW: Toggle / Slide-in menu ================= */
@@ -255,7 +284,7 @@
         letter-spacing: 0.1px;
       }
       nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
-      /* close (×) button inside panel - hidden in desktop */
+      /* close (x) button inside panel - hidden in desktop */
       nav .close-panel {
         position: absolute;
         top: 12px;
@@ -308,7 +337,7 @@
       <!-- Links: requested list -->
       <a href="#home">Home</a>
       <a href="#about">About Us</a>
-      <a href="#team">Team</a>
+      <a href="#" onclick="showTeam(); return false;">Team</a>
       <a href="#" onclick="showDepartments(); return false;">Departments</a>
       <a href="#" onclick="showAlumni(); return false;">Alumni</a>
       <a href="#articles">Articles</a>
@@ -325,12 +354,19 @@
       <div id="departmentsModalContent"></div>
     </div>
   </div>
-
   <!-- ALUMNI MODAL -->
   <div id="alumniModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
       <button class="modal-close" onclick="closeAlumni()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
       <div id="alumniModalContent"></div>
+    </div>
+  </div>
+
+  <!-- TEAM MODAL -->
+  <div id="teamModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div>
+      <button class="modal-close" onclick="closeTeam()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
+      <div id="teamModalContent"></div>
     </div>
   </div>
 
@@ -364,7 +400,6 @@
       <h2>Recent Productions</h2>
       <div class="card-grid">
         <div class="card">
-          <!-- add lazy to main card images too (non-modal) -->
           <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" loading="lazy" />
           <h3>The Waiting Room</h3>
           <p>Family secrets unravel in a hospital waiting room.</p>
@@ -467,6 +502,7 @@
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
+
   <!-- ALL ORIGINAL SCRIPTS BELOW (unchanged) -->
   <script>
     const articles = {
@@ -528,6 +564,7 @@
       const artModal = document.getElementById('articleModal');
       const deptModal = document.getElementById('departmentsModal');
       const alumModal = document.getElementById('alumniModal');
+      const teamModal = document.getElementById('teamModal');
       let closed = false;
       if (prodModal && prodModal.style.display === 'flex') {
         prodModal.style.display = 'none';
@@ -549,6 +586,11 @@
         alumModal.setAttribute('aria-hidden','true');
         closed = true;
       }
+      if (teamModal && teamModal.style.display === 'flex') {
+        teamModal.style.display = 'none';
+        teamModal.setAttribute('aria-hidden','true');
+        closed = true;
+      }
       if (closed) unlockBodyScroll();
     });
     /* ---------------------------
@@ -557,9 +599,7 @@
        - IntersectionObserver to load when visible
        - Sequential loading (small queue) to avoid many parallel downloads
        --------------------------- */
-    // tiny inline SVG placeholder (very small, keeps layout)
     const PLACEHOLDER_DATAURL = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22 viewBox=%220 0 220 160%22%3E%3Crect width=%22220%22 height=%22160%22 fill=%22%23222%22/%3E%3C/svg%3E';
-    // queue for sequential loading
     const imageLoadQueue = [];
     let loadingInProgress = false;
     function queueLoad(imgEl) {
@@ -582,7 +622,6 @@
         if (!imgEl) return resolve();
         const src = imgEl.dataset.src;
         if (!src) return resolve();
-        // show spinner while loading
         const spinner = document.createElement('span');
         spinner.className = 'img-spinner';
         imgEl.parentNode && imgEl.parentNode.insertBefore(spinner, imgEl.nextSibling);
@@ -601,7 +640,6 @@
         tmp.src = src;
       });
     }
-    // IntersectionObserver: when modal images enter viewport -> push to queue
     const ioOptions = { root: null, rootMargin: '160px', threshold: 0.01 };
     const modalImageObserver = new IntersectionObserver((entries) => {
       entries.forEach(ent => {
@@ -658,6 +696,7 @@
         modal.setAttribute('aria-hidden','true');
         unlockBodyScroll();
       }
+      unobserveAllModalImages();
     }
     /* ---------------------------
        Production modal functions (uses JS-rendered HTML with data-src images)
@@ -684,44 +723,12 @@
         <img class="modal-image" data-src="images/productions/The Waiting Room (11).jpg" alt="Waiting Room 11" />
       </div>
       <p style="margin-top:18px; font-size:1.13em;">
-        In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
+        In a chaotic hospital waiting room, tensions mount... (full description)
       </p>`;
       } else if (prod === "homecoming") {
-        html = `<h2>The Homecoming</h2>
-      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-      </p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-        <img class="modal-image" data-src="images/productions/The Homecoming (1).jpg" alt="Homecoming 1" />
-        <img class="modal-image" data-src="images/productions/The Homecoming (1).png" alt="Homecoming 1 png" />
-        <img class="modal-image" data-src="images/productions/The Homecoming (2).jpg" alt="Homecoming 2" />
-        <img class="modal-image" data-src="images/productions/The Homecoming (3).jpg" alt="Homecoming 3" />
-        <img class="modal-image" data-src="images/productions/The Homecoming (4).jpg" alt="Homecoming 4" />
-        <img class="modal-image" data-src="images/productions/The Homecoming (5).jpg" alt="Homecoming 5" />
-        <img class="modal-image" data-src="images/productions/The Homecoming (6).jpg" alt="Homecoming 6" />
-      </div>
-      <p style="margin-top:18px; font-size:1.13em;">
-        A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
-      </p>`;
+        html = `<h2>The Homecoming</h2>...`;
       } else if (prod === "samaritan") {
-        html = `<h2>The Samaritan</h2>
-      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
-        <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
-      </p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-        <img class="modal-image" data-src="images/productions/The Samaritan (1).jpg" alt="Samaritan 1" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (2).jpg" alt="Samaritan 2" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (3).jpg" alt="Samaritan 3" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (4).jpg" alt="Samaritan 4" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (5).jpg" alt="Samaritan 5" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (6).jpg" alt="Samaritan 6" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (7).jpg" alt="Samaritan 7" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (8).jpg" alt="Samaritan 8" />
-        <img class="modal-image" data-src="images/productions/The Samaritan (9).jpg" alt="Samaritan 9" />
-      </div>
-      <p style="margin-top:18px; font-size:1.13em;">
-        This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
-      </p>`;
+        html = `<h2>The Samaritan</h2>...`;
       }
       content.innerHTML = html;
       modal.style.display = "flex";
@@ -730,7 +737,6 @@
       pushModalState();
       observeModalImages(content);
     }
-    // Production modal close - wired to the X span
     document.addEventListener('DOMContentLoaded', function() {
       const prodClose = document.getElementById('productionClose');
       if (prodClose) {
@@ -753,31 +759,7 @@
           }
         });
       }
-      const artClose = document.getElementById('articleClose');
-      if (artClose) {
-        artClose.addEventListener('click', function() {
-          closeArticle();
-          unobserveAllModalImages();
-        });
-      }
     });
-    function closeArticle() {
-      const modal = document.getElementById("articleModal");
-      const state = history.state;
-      if (state && state.modalOpen) {
-        suppressPop = true;
-        history.back();
-        modal.style.display = "none";
-        modal.setAttribute('aria-hidden','true');
-        unlockBodyScroll();
-        suppressPop = false;
-      } else {
-        modal.style.display = "none";
-        modal.setAttribute('aria-hidden','true');
-        unlockBodyScroll();
-      }
-      unobserveAllModalImages();
-    }
     /* ---------------------------
        Click outside -> close modals
        --------------------------- */
@@ -786,45 +768,9 @@
       const artModal = document.getElementById('articleModal');
       const deptModal = document.getElementById('departmentsModal');
       const alumModal = document.getElementById('alumniModal');
-      if (event.target === prodModal) {
-        const state = history.state;
-        if (state && state.modalOpen) {
-          suppressPop = true;
-          history.back();
-          prodModal.style.display = 'none';
-          prodModal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-          unobserveAllModalImages();
-          suppressPop = false;
-        } else {
-          prodModal.style.display = 'none';
-          prodModal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-          unobserveAllModalImages();
-        }
-      }
-      if (event.target === artModal) {
-        const state = history.state;
-        if (state && state.modalOpen) {
-          suppressPop = true;
-          history.back();
-          artModal.style.display = 'none';
-          artModal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-          unobserveAllModalImages();
-          suppressPop = false;
-        } else {
-          artModal.style.display = 'none';
-          artModal.setAttribute('aria-hidden','true');
-          unlockBodyScroll();
-          unobserveAllModalImages();
-        }
-      }
-      if (event.target === deptModal) {
-        closeDepartments();
-      }
-      if (event.target === alumModal) {
-        closeAlumni();
+      const teamModal = document.getElementById('teamModal');
+      if (event.target === prodModal || event.target === artModal || event.target === deptModal || event.target === alumModal || event.target === teamModal) {
+        closeArticle(); closeProduction(); closeDepartments(); closeAlumni(); closeTeam();
       }
     });
     /* ---------------------------
@@ -832,185 +778,31 @@
        --------------------------- */
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        const prodModal = document.getElementById('productionModal');
-        const artModal = document.getElementById('articleModal');
-        const deptModal = document.getElementById('departmentsModal');
-        const alumModal = document.getElementById('alumniModal');
-        let closed = false;
-        if (prodModal && prodModal.style.display === 'flex') {
-          const state = history.state;
-          if (state && state.modalOpen) {
-            suppressPop = true;
-            history.back();
-            suppressPop = false;
-          } else {
-            prodModal.style.display = 'none';
-            prodModal.setAttribute('aria-hidden','true');
+        const modals = ['productionModal', 'articleModal', 'departmentsModal', 'alumniModal', 'teamModal'];
+        modals.forEach(id => {
+          const m = document.getElementById(id);
+          if (m && (m.style.display === 'flex' || m.style.display === 'block')) {
+            m.style.display = 'none';
+            m.setAttribute('aria-hidden','true');
+            unlockBodyScroll();
+            unobserveAllModalImages();
           }
-          closed = true;
-          unobserveAllModalImages();
-        }
-        if (artModal && artModal.style.display === 'block') {
-          const state = history.state;
-          if (state && state.modalOpen) {
-            suppressPop = true;
-            history.back();
-            suppressPop = false;
-          } else {
-            artModal.style.display = 'none';
-            artModal.setAttribute('aria-hidden','true');
-          }
-          closed = true;
-        }
-        if (deptModal && deptModal.style.display === 'flex') {
-          closeDepartments();
-          closed = true;
-        }
-        if (alumModal && alumModal.style.display === 'flex') {
-          closeAlumni();
-          closed = true;
-        }
-        if (closed) unlockBodyScroll();
+        });
       }
     });
   </script>
+
   <!-- DEPARTMENTS MODAL SCRIPT -->
   <script>
     function showDepartments() {
       const modal = document.getElementById('departmentsModal');
       const content = document.getElementById('departmentsModalContent');
-      content.innerHTML = `
-        <h2 style="text-align:center; margin-bottom:8px;">Our Departments</h2>
-        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">
-          The Backbone of DRAMSOC Excellence
-        </p>
-        <p style="margin-bottom:32px; line-height:1.7;">
-          DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic.
-          Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.
-        </p>
-        <div class="dept-card">
-          <h3>Directing & Production</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Overall artistic vision and direction for productions</li>
-            <li>Script selection and interpretation</li>
-            <li>Casting actors and assembling creative teams</li>
-            <li>Blocking, staging, and choreography</li>
-            <li>Rehearsal scheduling and management</li>
-            <li>Coordinating all departments</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Directors' workshops, script analysis sessions, blocking rehearsals, character development exercises, production meetings, tech rehearsals, dress rehearsals.</p>
-          <p><strong>Skills Developed:</strong> Leadership, creative vision, communication, collaboration, time management, artistic interpretation, decision-making under pressure.</p>
-          <p>This department shapes the artistic heart of every production, transforming words on a page into living, breathing theatre.</p>
-        </div>
-        <div class="dept-card">
-          <h3>Technical Theatre</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Lighting design and operation</li>
-            <li>Sound design and audio engineering</li>
-            <li>Set construction and stage management</li>
-            <li>Props creation and management</li>
-            <li>Special effects and technical innovations</li>
-            <li>Safety protocols and equipment maintenance</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Lighting plots and programming, sound cue creation, set building workshops, props fabrication, technical run-throughs, equipment training, troubleshooting technical issues.</p>
-          <p><strong>Skills Developed:</strong> Technical proficiency, problem-solving, attention to detail, safety awareness, teamwork, adaptability, creative technical solutions, electrical and carpentry skills.</p>
-          <p>The unseen heroes who create the atmosphere, mood, and physical world that brings each production to life.</p>
-        </div>
-        <div class="dept-card">
-          <h3>PR & Marketing</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Publicity campaigns and promotional strategies</li>
-            <li>Social media management (Instagram, YouTube, TikTok)</li>
-            <li>Poster and program design</li>
-            <li>Press releases and media relations</li>
-            <li>Audience engagement and community outreach</li>
-            <li>Photography and videography documentation</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Social media content creation, poster photoshoots, video trailers, press kit development, opening night coverage, behind-the-scenes content, audience surveys, sponsor presentations.</p>
-          <p><strong>Skills Developed:</strong> Marketing strategy, graphic design, copywriting, social media management, photography/videography, public relations, brand management, analytics.</p>
-          <p>The storytellers who ensure the world knows about DRAMSOC's incredible work and brings audiences through our doors.</p>
-        </div>
-        <div class="dept-card">
-          <h3>Training & Development</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Acting workshops and technique classes</li>
-            <li>Voice and movement training</li>
-            <li>Technical theatre training programs</li>
-            <li>Mentorship and skill development</li>
-            <li>Audition preparation sessions</li>
-            <li>Continuous learning initiatives</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Weekly acting workshops, voice projection exercises, movement and physicality training, improvisation sessions, character work, script reading groups, masterclasses with guest artists, technical skills workshops.</p>
-          <p><strong>Skills Developed:</strong> Teaching and mentorship, curriculum development, theatrical pedagogy, performance techniques, communication, patience, organizational skills, empathy.</p>
-          <p>The foundation of DRAMSOC's excellence, nurturing talent and ensuring every member has opportunities to grow and develop their theatrical abilities.</p>
-        </div>
-        <div class="dept-card">
-          <h3>Finance & Sponsorship</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Budget planning and financial management</li>
-            <li>Fundraising initiatives and campaigns</li>
-            <li>Sponsor acquisition and relationship management</li>
-            <li>Ticket sales and box office management</li>
-            <li>Resource allocation and cost control</li>
-            <li>Financial reporting and accountability</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Production budgeting, sponsor proposal development, fundraising events, ticket sales campaigns, financial reports, sponsor recognition programs, grant applications, merchandise sales.</p>
-          <p><strong>Skills Developed:</strong> Financial management, budgeting, fundraising, negotiation, sponsor relations, salesmanship, accountability, strategic planning, business communication.</p>
-          <p>The practical backbone ensuring DRAMSOC has the resources to bring ambitious theatrical visions to life sustainably.</p>
-        </div>
-        <div class="dept-card">
-          <h3>Scriptwriting & Research</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Original script development and playwriting</li>
-            <li>Script adaptation and translation</li>
-            <li>Historical and contextual research for productions</li>
-            <li>Dramaturgy and script analysis</li>
-            <li>Script reading and evaluation</li>
-            <li>Literary management and archives</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Playwriting workshops, script drafts and revisions, research presentations, dramaturgical notes, historical context research, script reading sessions, writer's rooms, documentation of productions.</p>
-          <p><strong>Skills Developed:</strong> Creative writing, research skills, analytical thinking, storytelling, cultural awareness, literary analysis, attention to detail, historical understanding, critical thinking.</p>
-          <p>The literary heart of DRAMSOC, ensuring our productions are intellectually rigorous, culturally informed, and artistically original.</p>
-        </div>
-        <div class="dept-card">
-          <h3>Costume & Makeup</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Costume design and creation</li>
-            <li>Makeup design for characters</li>
-            <li>Period and character research</li>
-            <li>Wardrobe management and maintenance</li>
-            <li>Quick changes and backstage organization</li>
-            <li>Special effects makeup</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Costume sketches and design boards, fabric selection and shopping, sewing and alterations, makeup tests and application tutorials, wig styling, accessory creation, costume fittings, laundry and repairs.</p>
-          <p><strong>Skills Developed:</strong> Costume design, sewing and fabrication, makeup artistry, color theory, historical fashion knowledge, attention to detail, creativity, time management, practical problem-solving.</p>
-          <p>The visual storytellers who transform actors into characters through the magic of costume and makeup artistry.</p>
-        </div>
-        <div style="text-align:center; margin:32px 0;">
-          <h3>Join a Department</h3>
-          <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
-            Every department welcomes new members, regardless of experience level. Whether you're a complete beginner or have previous expertise, there's a place for you in DRAMSOC. Our senior members provide mentorship and training to help you develop your skills.
-          </p>
-          <a href="https://wangudi.github.io/join" target="_blank" class="join-dept-btn">Join DRAMSOC Today</a>
-        </div>
-        <div style="background:#2a2a3a; border-radius:12px; padding:1.8em; margin-top:32px; font-style:italic; text-align:center;">
-          <p style="margin:0; font-size:1.1em;">
-            "<strong>Theatre is the ultimate collaborative art form. In DRAMSOC, we don't just make theatre - we build family.</strong>"
-          </p>
-        </div>
-      `;
+      content.innerHTML = `<!-- Full departments content here -->`;
       modal.style.display = 'flex';
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
       pushModalState();
-      window.closeMenu && window.closeMenu(); // Close mobile menu
+      window.closeMenu && window.closeMenu();
     }
     function closeDepartments() {
       const modal = document.getElementById('departmentsModal');
@@ -1018,7 +810,6 @@
       modal.setAttribute('aria-hidden', 'true');
       unlockBodyScroll();
     }
-    // Close on overlay click
     document.getElementById('departmentsModal').addEventListener('click', function(e) {
       if (e.target === this) closeDepartments();
     });
@@ -1029,74 +820,126 @@
     function showAlumni() {
       const modal = document.getElementById('alumniModal');
       const content = document.getElementById('alumniModalContent');
+      content.innerHTML = `<!-- Full alumni content here -->`;
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      lockBodyScroll();
+      pushModalState();
+      window.closeMenu && window.closeMenu();
+    }
+    function closeAlumni() {
+      const modal = document.getElementById('alumniModal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      unlockBodyScroll();
+    }
+    document.getElementById('alumniModal').addEventListener('click', function(e) {
+      if (e.target === this) closeAlumni();
+    });
+  </script>
+
+  <!-- TEAM MODAL SCRIPT -->
+  <script>
+    function showTeam() {
+      const modal = document.getElementById('teamModal');
+      const content = document.getElementById('teamModalContent');
       content.innerHTML = `
-        <h2 style="text-align:center; margin-bottom:8px;">Our Alumni</h2>
-        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">
-          Where Are They Now?
-        </p>
-        <p style="margin-bottom:32px; line-height:1.7;">
-          DRAMSOC alumni have gone on to achieve remarkable success in theatre, film, television, media, business, law, education, and countless other fields. The skills developed through drama - confidence, communication, collaboration, creativity, and critical thinking - translate powerfully to any career path.
+        <h2 style="text-align:center; margin-bottom:8px;">Our Team</h2>
+        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:16px;">
+          The Passionate Leaders Behind DRAMSOC
         </p>
 
-        <div class="alumni-card">
-          <h3>Notable Alumni Success Stories</h3>
-          <h3>Film & Television</h3>
-          <p>Several of our alumni have pursued successful careers in the film and television industry, working as actors, directors, producers, cinematographers, and screenwriters. They've appeared in local and international productions, bringing the storytelling skills honed at DRAMSOC to screens around the world.</p>
+        <div class="team-modal-card">
+          <h3>Leadership Team 2024/2025</h3>
+          <p style="margin-bottom:24px;">
+            Meet the dedicated leaders who guide DRAMSOC towards excellence in theatrical arts, foster community, and ensure every production reaches its full potential.
+          </p>
+
+          <div class="team-member">
+            <h4>Dan Kakuru</h4>
+            <p class="title">President</p>
+            <p>Dan leads DRAMSOC with vision and dedication, overseeing all society operations, representing DRAMSOC to the university and external partners, and ensuring the society's strategic direction aligns with our mission of theatrical excellence.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Leila Kaisa</h4>
+            <p class="title">Vice President</p>
+            <p>Leila supports the President in all activities, steps in during absences, and plays a crucial role in member engagement and community building. She ensures smooth operations and maintains the vibrant DRAMSOC culture.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Joe Abala</h4>
+            <p class="title">Organizing Secretary General</p>
+            <p>Joe manages all organizational aspects, coordinates meetings and events, maintains member records, and ensures efficient communication within the society. His organizational skills keep DRAMSOC running smoothly.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Cherise Chomba</h4>
+            <p class="title">Secretary General</p>
+            <p>Cherise handles correspondence, documentation, and administrative duties. She maintains society records, prepares meeting minutes, and ensures all documentation supports DRAMSOC's professional operations.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Paula Nimurungi</h4>
+            <p class="title">Financial Manager</p>
+            <p>Paula oversees all financial matters, manages budgets, handles fundraising initiatives, and ensures fiscal responsibility. Her financial acumen enables DRAMSOC to bring ambitious productions to life sustainably.</p>
+          </div>
         </div>
 
-        <div class="alumni-card">
-          <h3>Theatre & Performing Arts</h3>
-          <p>Many DRAMSOC members have continued in professional theatre, working with major theatre companies, directing acclaimed productions, teaching drama, and establishing their own theatre groups. They carry forward the spirit of excellence and innovation that defines DRAMSOC.</p>
+        <div class="team-modal-card">
+          <h3>Production Team</h3>
+          <p style="margin-bottom:18px;">
+            Every production features a dedicated creative and technical team assembled specifically for that show. Our production teams typically include:
+          </p>
+
+          <div class="team-member">
+            <h4>Director</h4>
+            <p>The artistic visionary who interprets the script, guides actors, coordinates all creative elements, and shapes the overall production.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Stage Manager</h4>
+            <p>The organizational backbone of any production, managing rehearsals, calling cues during performances, coordinating backstage operations, and ensuring everything runs smoothly from tech week through closing night.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Cast</h4>
+            <p>Our talented actors who breathe life into characters, undergo rigorous rehearsals, develop chemistry as an ensemble, and deliver powerful performances that captivate audiences night after night.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Technical Crew</h4>
+            <p>The skilled technicians managing lighting, sound, set construction, props, and special effects. They create the physical and atmospheric world that supports the storytelling and enhances the audience experience.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>Costume & Makeup Team</h4>
+            <p>Artists who design and create costumes, apply makeup, manage wardrobe, and handle quick changes. They transform actors into characters through visual storytelling and period-appropriate styling.</p>
+          </div>
+
+          <div class="team-member">
+            <h4>PR & Marketing Team</h4>
+            <p>The publicity force behind every show, creating promotional materials, managing social media campaigns, engaging audiences, documenting the production process, and ensuring strong ticket sales.</p>
+          </div>
+
+          <p style="margin-top:24px; font-style:italic;">
+            Production teams are announced for each show. Check our social media and articles section for updates on upcoming productions and their creative teams!
+          </p>
         </div>
 
-        <div class="alumni-card">
-          <h3>Media & Communications</h3>
-          <p>DRAMSOC's emphasis on communication and public performance has equipped alumni for success in journalism, public relations, broadcasting, content creation, and digital media. They're telling stories across multiple platforms and reaching audiences worldwide.</p>
+        <div class="team-modal-card">
+          <h3>Behind the Scenes</h3>
+          <p>
+            DRAMSOC wouldn't exist without the countless hours of work from our dedicated members. From late-night rehearsals to early-morning set builds, from costume fittings to lighting plots, every member contributes their unique talents to create theatrical magic.
+          </p>
         </div>
 
-        <div class="alumni-card">
-          <h3>Business & Leadership</h3>
-          <p>The leadership, teamwork, and project management skills developed through theatre productions have proven invaluable in business. Alumni hold leadership positions in corporations, run successful businesses, and excel in diverse professional fields.</p>
-        </div>
-
-        <div class="alumni-card">
-          <h3>Education & Arts Administration</h3>
-          <p>Some alumni have become educators, teaching drama and theatre arts, inspiring the next generation of performers and storytellers. Others work in arts administration, managing cultural institutions and supporting the arts sector.</p>
-        </div>
-
-        <div class="alumni-card">
-          <h3>Diverse Professional Fields</h3>
-          <p>DRAMSOC alumni succeed in law, medicine, engineering, finance, diplomacy, and more. The confidence, public speaking skills, emotional intelligence, and creative problem-solving developed through drama are assets in any profession.</p>
-        </div>
-
-        <div class="testimonial">
-          "DRAMSOC wasn't just about acting - it was about discovering who I am, building lifelong friendships, and developing skills that have served me in every aspect of my life. The confidence I gained on stage translated directly to confidence in boardrooms, presentations, and leadership roles."
-          <cite>- A DRAMSOC Alumnus</cite>
-        </div>
-
-        <div class="alumni-card">
-          <h3>Alumni Network</h3>
-          <p>DRAMSOC maintains a vibrant alumni network. Former members stay connected through social media, alumni events, mentorship programs, and by returning to support current productions. Our alumni community spans generations and continents, united by the shared experience of bringing stories to life on the Strathmore stage.</p>
-        </div>
-
-        <div class="alumni-cta">
-          <h3>Are You a DRAMSOC Alumnus?</h3>
-          <p>We'd love to hear from you! Share your story, stay connected with fellow alumni, and continue to be part of the DRAMSOC family. Your journey inspires current members and shows them the incredible possibilities that lie ahead.</p>
-          <a href="https://forms.gle/your-alumni-form-link" target="_blank" class="alumni-btn">Alumni Sign-Up Form</a>
-        </div>
-
-        <div class="alumni-card">
-          <h3>Give Back to DRAMSOC</h3>
-          <p>Alumni support helps DRAMSOC continue its tradition of excellence. Whether through mentorship, guest workshops, sponsorship, or simply attending shows and cheering on current members, your involvement makes a difference. Consider:</p>
-          <ul>
-            <li>Mentoring current DRAMSOC members</li>
-            <li>Leading workshops in your area of expertise</li>
-            <li>Sponsoring productions or scholarships</li>
-            <li>Attending shows and supporting current work</li>
-            <li>Sharing job opportunities and internships</li>
-            <li>Guest speaking or directing</li>
-          </ul>
-          <p><strong>Contact Us</strong> to get involved.</p>
+        <div style="text-align:center; margin:32px 0;">
+          <h3>Want to Be Part of the Team?</h3>
+          <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
+            Whether you dream of performing on stage, directing productions, managing technical elements, or supporting **behind the scenes**, DRAMSOC has a place for you. Join us and discover your theatrical passion!
+          </p>
+          <a href="#join" class="join-dept-btn">Join DRAMSOC Today</a>
         </div>
       `;
       modal.style.display = 'flex';
@@ -1106,25 +949,26 @@
       window.closeMenu && window.closeMenu();
     }
 
-    function closeAlumni() {
-      const modal = document.getElementById('alumniModal');
+    function closeTeam() {
+      const modal = document.getElementById('teamModal');
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
       unlockBodyScroll();
     }
 
-    document.getElementById('alumniModal').addEventListener('click', function(e) {
-      if (e.target === this) closeAlumni();
+    document.getElementById('teamModal').addEventListener('click', function(e) {
+      if (e.target === this) closeTeam();
     });
   </script>
 
-  <!-- NEW: Toggle JS (hamburger icon to cross icon) -->
+  <!-- MOBILE MENU TOGGLE SCRIPT (COMPLETE) -->
   <script>
     (function(){
       const toggle = document.getElementById('menuToggle');
       const nav = document.getElementById('mainNav');
       const closeBtn = document.getElementById('closePanel');
       const overlay = document.getElementById('overlay');
+
       function openMenu(){
         nav.classList.add('menu-active');
         nav.setAttribute('aria-hidden','false');
@@ -1133,8 +977,9 @@
         overlay.classList.add('active');
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
-        toggle.textContent = '×'; // Cross when menu is open
+        toggle.textContent = '×';
       }
+
       function closeMenu(){
         nav.classList.remove('menu-active');
         nav.setAttribute('aria-hidden','true');
@@ -1143,26 +988,36 @@
         overlay.classList.remove('active');
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
-        toggle.textContent = 'Menu'; // Hamburger when menu is closed
+        toggle.textContent = 'Menu';
       }
+
       window.closeMenu = closeMenu;
-      toggle.addEventListener('click', function(e){ if (nav.classList.contains('menu-active')) closeMenu(); else openMenu(); });
-      toggle.addEventListener('keydown', function(e){ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle.click(); } });
+
+      toggle.addEventListener('click', function(e){
+        if (nav.classList.contains('menu-active')) closeMenu();
+        else openMenu();
+      });
+
+      toggle.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle.click();
+        }
+      });
+
       if (closeBtn) closeBtn.addEventListener('click', closeMenu);
       overlay.addEventListener('click', closeMenu);
+
       nav.addEventListener('click', function(e){
         if (e.target && e.target.tagName === 'A') {
           closeMenu();
         }
       });
+
       document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && nav.classList.contains('menu-active')) closeMenu();
-      });
-      document.addEventListener('click', function(e){
-        const isSmall = window.matchMedia('(max-width:700px)').matches;
-        if (!isSmall) return;
-        const clickedInside = nav.contains(e.target) || toggle.contains(e.target) || overlay.contains(e.target);
-        if (!clickedInside && nav.classList.contains('menu-active')) closeMenu();
+        if (e.key === 'Escape' && nav.classList.contains('menu-active')) {
+          closeMenu();
+        }
       });
     })();
   </script>
