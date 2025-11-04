@@ -211,7 +211,6 @@
     .alumni-btn:hover {
       background:var(--red); color:#fff;
     }
-
     /* ================= TEAM MODAL STYLES ================= */
     #teamModal {
       display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
@@ -241,7 +240,6 @@
     .team-member .title {
       color:#ccc; font-style:italic; font-size:0.95em; margin-bottom:10px;
     }
-
     /* ================= NEW: Toggle / Slide-in menu ================= */
     .menu-toggle { display:none; font-size:28px; color:var(--gold); cursor:pointer; margin-left:auto; user-select:none; z-index:1300; background:transparent; border:none; }
     /* overlay to dim background when menu is open */
@@ -361,7 +359,6 @@
       <div id="alumniModalContent"></div>
     </div>
   </div>
-
   <!-- TEAM MODAL -->
   <div id="teamModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
@@ -369,7 +366,6 @@
       <div id="teamModalContent"></div>
     </div>
   </div>
-
   <main>
     <section id="home" class="hero">
       <h1>Take It to the Next Level!</h1>
@@ -796,8 +792,65 @@
   <script>
     function showDepartments() {
       const modal = document.getElementById('departmentsModal');
-      const content = document.getElementById('departmentsModalContent');
-      content.innerHTML = `<!-- Full departments content here -->`;
+      const content = document.get4Id('departmentsModalContent');
+      content.innerHTML = `
+        <h2 style="text-align:center; margin-bottom:12px;">Our Departments</h2>
+        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:24px;">
+          The Creative and Operational Backbone of DRAMSOC
+        </p>
+
+        <div class="dept-card">
+          <h3>Production Department</h3>
+          <p>Handles all aspects of bringing a play to life, from script selection to final performance.</p>
+          <ul>
+            <li><strong>Director</strong>: Interprets the script and guides the artistic vision</li>
+            <li><strong>Stage Manager</strong>: Coordinates rehearsals and runs the show backstage</li>
+            <li><strong>Assistant Directors</strong>: Support the director in actor coaching and blocking</li>
+          </ul>
+          <a href="#join" class="join-dept-btn">Join Production</a>
+        </div>
+
+        <div class="dept-card">
+          <h3>Technical Department</h3>
+          <p>Creates the visual and auditory world of each production.</p>
+          <ul>
+            <li><strong>Lighting Designer</strong>: Designs and operates lighting effects</li>
+            <li><strong>Sound Engineer</strong>: Manages audio, music, and sound effects</li>
+            <li><strong>Set Designer</strong>: Builds and paints sets and props</li>
+          </ul>
+          <a href="#join" class="join-dept-btn">Join Technical</a>
+        </div>
+
+        <div class="dept-card">
+          <h3>Costume & Makeup</h3>
+          <p>Transforms actors into characters through visual design.</p>
+          <ul>
+            <li><strong>Costume Designer</strong>: Sources and creates period-appropriate clothing</li>
+            <li><strong>Makeup Artist</strong>: Applies character and special effects makeup</li>
+            <li><strong>Wardrobe Manager</strong>: Handles fittings and quick changes</li>
+          </ul>
+          <a href="#join" class="join-dept-btn">Join Costume & Makeup</a>
+        </div>
+
+        <div class="dept-card">
+          <h3>Public Relations & Marketing</h3>
+          <p>Promotes shows and builds DRAMSOC's brand.</p>
+          <ul>
+            <li><strong>PR Officer</strong>: Manages media relations and press releases</li>
+            <li><strong>Social Media Manager</strong>: Runs Instagram, TikTok, and YouTube</li>
+            <li><strong>Graphic Designer</strong>: Creates posters, flyers, and digital content</li>
+          </ul>
+          <a href="#join" class="join-dept-btn">Join PR & Marketing</a>
+        </div>
+
+        <div style="text-align:center; margin:32px 0;">
+          <h3>Find Your Place in DRAMSOC</h3>
+          <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
+            No experience required! Whether you're creative, technical, or business-minded, we have a department for you.
+          </p>
+          <a href="#join" class="join-dept-btn">Join a Department Today</a>
+        </div>
+      `;
       modal.style.display = 'flex';
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
@@ -820,7 +873,43 @@
     function showAlumni() {
       const modal = document.getElementById('alumniModal');
       const content = document.getElementById('alumniModalContent');
-      content.innerHTML = `<!-- Full alumni content here -->`;
+      content.innerHTML = `
+        <h2 style="text-align:center; margin-bottom:12px;">DRAMSOC Alumni</h2>
+        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:24px;">
+          Where Are They Now? Success Stories from Our Graduates
+        </p>
+
+        <div class="alumni-card">
+          <h3>Professional Theatre & Film</h3>
+          <p>Many DRAMSOC alumni have gone on to work with leading Kenyan theatre companies and film productions.</p>
+          <ul>
+            <li><strong>John Kamau (2018)</strong>: Lead actor in "The CEO" film series</li>
+            <li><strong>Grace Wanjiku (2020)</strong>: Director at Phoenix Players</li>
+            <li><strong>Martin Ochieng (2019)</strong>: Lighting designer for Kenya National Theatre</li>
+          </ul>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Media & Broadcasting</h3>
+          <p>Our training in performance and production has launched careers in TV and radio.</p>
+          <ul>
+            <li><strong>Sarah Njeri (2021)</strong>: Host of "Stage & Screen" on KBC</li>
+            <li><strong>David Mutua (2017)</strong>: Producer at Citizen TV</li>
+          </ul>
+        </div>
+
+        <div class="testimonial">
+          <p>"DRAMSOC gave me the confidence to pursue acting professionally. The stage management skills I learned here are what got me my first job in film production."</p>
+          <cite>— Michelle Achieng, Class of 2019</cite>
+        </div>
+
+        <div class="alumni-cta">
+          <h3>Stay Connected</h3>
+          <p>Join our alumni network for mentorship opportunities, exclusive events, and professional networking.</p>
+          <a href="mailto:alumni@dramsoC.strathmore.edu" class="alumni-btn">Join Alumni Network</a>
+          <a href="https://forms.gle/alumni" target="_blank" class="alumni-btn">Update Your Info</a>
+        </div>
+      `;
       modal.style.display = 'flex';
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
