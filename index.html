@@ -370,19 +370,17 @@ nav .close-panel {
 
   <!-- Navigation becomes the slide-in panel on every breakpoint -->
   <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
-    <button class="close-panel" id="closePanel" aria-label="Close menu">×</button>
-
-    <!-- ***** ALL DASHBOARD SECTIONS ARE NOW LINKS IN THE MENU ***** -->
-    <a href="#home">Home</a>
-    <a href="#about">About Us</a>
-    <a href="#productions">Recent Productions</a>
-    <a href="#team" onclick="showTeam(); return false;">Team</a>
-    <a href="#departments" onclick="showDepartments(); return false;">Departments</a>
-    <a href="#alumni" onclick="showAlumni(); return false;">Alumni</a>
-    <a href="#articles">Articles</a>
-    <a href="#contact">Contact</a>
-    <a href="#join">Join Us</a>
-  </nav>
+  <button class="close-panel" id="closePanel" aria-label="Close menu">X</button>
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  <a href="#productions">Recent Productions</a>
+  <a href="#team">Team</a>
+  <a href="#departments">Departments</a>
+  <a href="#alumni">Alumni</a>
+  <a href="#articles">Articles</a>
+  <a href="#contact">Contact</a>
+  <a href="#join">Join Us</a>
+</nav>
 </header>
   <!-- Overlay -->
   <div class="overlay" id="overlay" aria-hidden="true"></div>
@@ -411,6 +409,21 @@ nav .close-panel {
   </div>
 
   <main>
+    <section id="departments" class="section">
+  <h2>Our Departments</h2>
+  <p style="text-align:center; margin-bottom:32px; line-height:1.7;">
+    DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic.
+  </p>
+  <button class="btn btn-gold" style="display:block; margin:0 auto;" onclick="showDepartments()">Explore All Departments</button>
+</section>
+
+<section id="alumni" class="section">
+  <h2>Our Alumni</h2>
+  <p style="text-align:center; margin-bottom:32px; line-height:1.7;">
+    DRAMSOC alumni have gone on to achieve remarkable success in theatre, film, media, business, law, education, and more.
+  </p>
+  <button class="btn btn-gold" style="display:block; margin:0 auto;" onclick="showAlumni()">Meet Our Alumni</button>
+</section>
     <section id="home" class="hero">
       <h1>Take It to the Next Level!</h1>
       <div class="events-upcoming">
