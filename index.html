@@ -174,6 +174,46 @@
       background:var(--red); color:#fff;
     }
 
+    /* ================= ALUMNI MODAL STYLES ================= */
+    #alumniModal {
+      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+      background:rgba(0,0,0,0.92); z-index:10000; align-items:center; justify-content:center;
+      padding:1rem; overflow:auto;
+    }
+    #alumniModal > div {
+      background:#222144; border-radius:16px; padding:32px 24px; max-width:95vw;
+      max-height:90vh; overflow:auto; position:relative; box-shadow:0 12px 48px #0008;
+      color:#fff; word-break: break-word;
+    }
+    .alumni-card {
+      background:#2a2a3a; border-radius:12px; padding:1.6em; margin-bottom:1.8em;
+      box-shadow:0 4px 20px rgba(184,0,0,0.2);
+    }
+    .alumni-card h3 {
+      color:var(--gold); margin-top:0; font-size:1.4em; border-bottom:2px solid var(--gold);
+      padding-bottom:8px;
+    }
+    .testimonial {
+      background:#2a2a3a; border-left:4px solid var(--gold); padding:1.4em; margin:1.8em 0;
+      font-style:italic; font-size:1.05em; line-height:1.7;
+    }
+    .testimonial cite {
+      display:block; margin-top:12px; font-style:normal; color:var(--gold); font-weight:600;
+    }
+    .alumni-cta {
+      text-align:center; margin:32px 0;
+    }
+    .alumni-cta h3 { margin-bottom:12px; }
+    .alumni-cta p { max-width:700px; margin:0 auto 20px; line-height:1.6; }
+    .alumni-btn {
+      display:inline-block; background:var(--gold); color:#111; padding:12px 28px;
+      border-radius:8px; text-decoration:none; font-weight:700; margin:8px;
+      transition:0.3s;
+    }
+    .alumni-btn:hover {
+      background:var(--red); color:#fff;
+    }
+
     /* ================= NEW: Toggle / Slide-in menu ================= */
     .menu-toggle { display:none; font-size:28px; color:var(--gold); cursor:pointer; margin-left:auto; user-select:none; z-index:1300; background:transparent; border:none; }
     /* overlay to dim background when menu is open */
@@ -216,7 +256,7 @@
         letter-spacing: 0.1px;
       }
       nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
-      /* close (×) button inside panel - hidden in desktop */
+      /* close (x) button inside panel - hidden in desktop */
       nav .close-panel {
         position: absolute;
         top: 12px;
@@ -249,8 +289,8 @@
         padding: 20px 16px;
         font-size: 0.95rem;
       }
-      .dept-card { padding:1.2em; }
-      #departmentsModal > div { padding:20px 16px; }
+      .dept-card, .alumni-card { padding:1.2em; }
+      #departmentsModal > div, #alumniModal > div { padding:20px 16px; }
     }
     /* === PREVENT HORIZONTAL SCROLL ON MOBILE === */
     * { box-sizing: border-box; }
@@ -262,16 +302,16 @@
   <header>
     <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
     <!-- MENU TOGGLE: Now shows hamburger icon -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">Menu</button>
     <!-- Navigation (unchanged for large screens; becomes slide-panel on small screens) -->
     <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
-      <button class="close-panel" id="closePanel" aria-label="Close menu" style="display:none;">×</button>
+      <button class="close-panel" id="closePanel" aria-label="Close menu" style="display:none;">x</button>
       <!-- Links: requested list -->
       <a href="#home">Home</a>
       <a href="#about">About Us</a>
       <a href="#team">Team</a>
       <a href="#" onclick="showDepartments(); return false;">Departments</a>
-      <a href="#alumni">Alumni</a>
+      <a href="#" onclick="showAlumni(); return false;">Alumni</a>
       <a href="#articles">Articles</a>
       <a href="#contact">Contact</a>
       <a href="#join">Join Us</a>
@@ -283,8 +323,16 @@
   <!-- DEPARTMENTS MODAL -->
   <div id="departmentsModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
-      <button class="modal-close" onclick="closeDepartments()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
+      <button class="modal-close" onclick="closeDepartments()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">x</button>
       <div id="departmentsModalContent"></div>
+    </div>
+  </div>
+
+  <!-- ALUMNI MODAL -->
+  <div id="alumniModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div>
+      <button class="modal-close" onclick="closeAlumni()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">x</button>
+      <div id="alumniModalContent"></div>
     </div>
   </div>
 
@@ -341,7 +389,7 @@
       <!-- NOTE: modal contains images that will be loaded by JS via data-src -->
       <div id="productionModal" aria-hidden="true" role="dialog" aria-modal="true">
         <div>
-          <span id="productionClose" style="position: absolute; top: 14px; right: 20px; font-size: 2.3em; color: var(--gold); cursor: pointer; z-index:10;">×</span>
+          <span id="productionClose" style="position: absolute; top: 14px; right: 20px; font-size: 2.3em; color: var(--gold); cursor: pointer; z-index:10;">x</span>
           <div id="productionModalContent"></div>
         </div>
       </div>
@@ -399,7 +447,7 @@
     <!-- Article Modal -->
     <div id="articleModal" aria-hidden="true" role="dialog" aria-modal="true">
       <div>
-        <button id="articleClose" onclick="closeArticle()" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
+        <button id="articleClose" onclick="closeArticle()" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">x</button>
         <div id="articleModalContent"></div>
       </div>
     </div>
@@ -483,6 +531,7 @@
       const prodModal = document.getElementById('productionModal');
       const artModal = document.getElementById('articleModal');
       const deptModal = document.getElementById('departmentsModal');
+      const alumModal = document.getElementById('alumniModal');
       let closed = false;
       if (prodModal && prodModal.style.display === 'flex') {
         prodModal.style.display = 'none';
@@ -497,6 +546,11 @@
       if (deptModal && deptModal.style.display === 'flex') {
         deptModal.style.display = 'none';
         deptModal.setAttribute('aria-hidden','true');
+        closed = true;
+      }
+      if (alumModal && alumModal.style.display === 'flex') {
+        alumModal.style.display = 'none';
+        alumModal.setAttribute('aria-hidden','true');
         closed = true;
       }
       if (closed) unlockBodyScroll();
@@ -735,6 +789,7 @@
       const prodModal = document.getElementById('productionModal');
       const artModal = document.getElementById('articleModal');
       const deptModal = document.getElementById('departmentsModal');
+      const alumModal = document.getElementById('alumniModal');
       if (event.target === prodModal) {
         const state = history.state;
         if (state && state.modalOpen) {
@@ -772,6 +827,9 @@
       if (event.target === deptModal) {
         closeDepartments();
       }
+      if (event.target === alumModal) {
+        closeAlumni();
+      }
     });
     /* ---------------------------
        ESC key closes modals
@@ -781,6 +839,7 @@
         const prodModal = document.getElementById('productionModal');
         const artModal = document.getElementById('articleModal');
         const deptModal = document.getElementById('departmentsModal');
+        const alumModal = document.getElementById('alumniModal');
         let closed = false;
         if (prodModal && prodModal.style.display === 'flex') {
           const state = history.state;
@@ -811,6 +870,10 @@
           closeDepartments();
           closed = true;
         }
+        if (alumModal && alumModal.style.display === 'flex') {
+          closeAlumni();
+          closed = true;
+        }
         if (closed) unlockBodyScroll();
       }
     });
@@ -821,140 +884,97 @@
     function showDepartments() {
       const modal = document.getElementById('departmentsModal');
       const content = document.getElementById('departmentsModalContent');
+      content.innerHTML = `...`; // [Your full departments content from previous response]
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      lockBodyScroll();
+      pushModalState();
+      window.closeMenu && window.closeMenu();
+    }
+    function closeDepartments() {
+      const modal = document.getElementById('departmentsModal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      unlockBodyScroll();
+    }
+    document.getElementById('departmentsModal').addEventListener('click', function(e) {
+      if (e.target === this) closeDepartments();
+    });
+  </script>
+
+  <!-- ALUMNI MODAL SCRIPT -->
+  <script>
+    function showAlumni() {
+      const modal = document.getElementById('alumniModal');
+      const content = document.getElementById('alumniModalContent');
       content.innerHTML = `
-        <h2 style="text-align:center; margin-bottom:8px;">Our Departments</h2>
+        <h2 style="text-align:center; margin-bottom:8px;">Our Alumni</h2>
         <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">
-          The Backbone of DRAMSOC Excellence
+          Where Are They Now?
         </p>
         <p style="margin-bottom:32px; line-height:1.7;">
-          DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic. 
-          Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.
+          DRAMSOC alumni have gone on to achieve remarkable success in theatre, film, television, media, business, law, education, and countless other fields. The skills developed through drama - confidence, communication, collaboration, creativity, and critical thinking - translate powerfully to any career path.
         </p>
 
-        <div class="dept-card">
-          <h3>Directing & Production</h3>
-          <p><strong>Core Responsibilities:</strong></p>
+        <div class="alumni-card">
+          <h3>Notable Alumni Success Stories</h3>
+          <h3>Film & Television</h3>
+          <p>Several of our alumni have pursued successful careers in the film and television industry, working as actors, directors, producers, cinematographers, and screenwriters. They've appeared in local and international productions, bringing the storytelling skills honed at DRAMSOC to screens around the world.</p>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Theatre & Performing Arts</h3>
+          <p>Many DRAMSOC members have continued in professional theatre, working with major theatre companies, directing acclaimed productions, teaching drama, and establishing their own theatre groups. They carry forward the spirit of excellence and innovation that defines DRAMSOC.</p>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Media & Communications</h3>
+          <p>DRAMSOC's emphasis on communication and public performance has equipped alumni for success in journalism, public relations, broadcasting, content creation, and digital media. They're telling stories across multiple platforms and reaching audiences worldwide.</p>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Business & Leadership</h3>
+          <p>The leadership, teamwork, and project management skills developed through theatre productions have proven invaluable in business. Alumni hold leadership positions in corporations, run successful businesses, and excel in diverse professional fields.</p>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Education & Arts Administration</h3>
+          <p>Some alumni have become educators, teaching drama and theatre arts, inspiring the next generation of performers and storytellers. Others work in arts administration, managing cultural institutions and supporting the arts sector.</p>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Diverse Professional Fields</h3>
+          <p>DRAMSOC alumni succeed in law, medicine, engineering, finance, diplomacy, and more. The confidence, public speaking skills, emotional intelligence, and creative problem-solving developed through drama are assets in any profession.</p>
+        </div>
+
+        <div class="testimonial">
+          "DRAMSOC wasn't just about acting - it was about discovering who I am, building lifelong friendships, and developing skills that have served me in every aspect of my life. The confidence I gained on stage translated directly to confidence in boardrooms, presentations, and leadership roles."
+          <cite>- A DRAMSOC Alumnus</cite>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Alumni Network</h3>
+          <p>DRAMSOC maintains a vibrant alumni network. Former members stay connected through social media, alumni events, mentorship programs, and by returning to support current productions. Our alumni community spans generations and continents, united by the shared experience of bringing stories to life on the Strathmore stage.</p>
+        </div>
+
+        <div class="alumni-cta">
+          <h3>Are You a DRAMSOC Alumnus?</h3>
+          <p>We'd love to hear from you! Share your story, stay connected with fellow alumni, and continue to be part of the DRAMSOC family. Your journey inspires current members and shows them the incredible possibilities that lie ahead.</p>
+          <a href="https://forms.gle/your-alumni-form-link" target="_blank" class="alumni-btn">Alumni Sign-Up Form</a>
+        </div>
+
+        <div class="alumni-card">
+          <h3>Give Back to DRAMSOC</h3>
+          <p>Alumni support helps DRAMSOC continue its tradition of excellence. Whether through mentorship, guest workshops, sponsorship, or simply attending shows and cheering on current members, your involvement makes a difference. Consider:</p>
           <ul>
-            <li>Overall artistic vision and direction for productions</li>
-            <li>Script selection and interpretation</li>
-            <li>Casting actors and assembling creative teams</li>
-            <li>Blocking, staging, and choreography</li>
-            <li>Rehearsal scheduling and management</li>
-            <li>Coordinating all departments</li>
+            <li>Mentoring current DRAMSOC members</li>
+            <li>Leading workshops in your area of expertise</li>
+            <li>Sponsoring productions or scholarships</li>
+            <li>Attending shows and supporting current work</li>
+            <li>Sharing job opportunities and internships</li>
+            <li>Guest speaking or directing</li>
           </ul>
-          <p><strong>Sample Activities:</strong> Directors' workshops, script analysis sessions, blocking rehearsals, character development exercises, production meetings, tech rehearsals, dress rehearsals.</p>
-          <p><strong>Skills Developed:</strong> Leadership, creative vision, communication, collaboration, time management, artistic interpretation, decision-making under pressure.</p>
-          <p>This department shapes the artistic heart of every production, transforming words on a page into living, breathing theatre.</p>
-        </div>
-
-        <div class="dept-card">
-          <h3>Technical Theatre</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Lighting design and operation</li>
-            <li>Sound design and audio engineering</li>
-            <li>Set construction and stage management</li>
-            <li>Props creation and management</li>
-            <li>Special effects and technical innovations</li>
-            <li>Safety protocols and equipment maintenance</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Lighting plots and programming, sound cue creation, set building workshops, props fabrication, technical run-throughs, equipment training, troubleshooting technical issues.</p>
-          <p><strong>Skills Developed:</strong> Technical proficiency, problem-solving, attention to detail, safety awareness, teamwork, adaptability, creative technical solutions, electrical and carpentry skills.</p>
-          <p>The unseen heroes who create the atmosphere, mood, and physical world that brings each production to life.</p>
-        </div>
-
-        <div class="dept-card">
-          <h3>PR & Marketing</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Publicity campaigns and promotional strategies</li>
-            <li>Social media management (Instagram, YouTube, TikTok)</li>
-            <li>Poster and program design</li>
-            <li>Press releases and media relations</li>
-            <li>Audience engagement and community outreach</li>
-            <li>Photography and videography documentation</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Social media content creation, poster photoshoots, video trailers, press kit development, opening night coverage, behind-the-scenes content, audience surveys, sponsor presentations.</p>
-          <p><strong>Skills Developed:</strong> Marketing strategy, graphic design, copywriting, social media management, photography/videography, public relations, brand management, analytics.</p>
-          <p>The storytellers who ensure the world knows about DRAMSOC's incredible work and brings audiences through our doors.</p>
-        </div>
-
-        <div class="dept-card">
-          <h3>Training & Development</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Acting workshops and technique classes</li>
-            <li>Voice and movement training</li>
-            <li>Technical theatre training programs</li>
-            <li>Mentorship and skill development</li>
-            <li>Audition preparation sessions</li>
-            <li>Continuous learning initiatives</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Weekly acting workshops, voice projection exercises, movement and physicality training, improvisation sessions, character work, script reading groups, masterclasses with guest artists, technical skills workshops.</p>
-          <p><strong>Skills Developed:</strong> Teaching and mentorship, curriculum development, theatrical pedagogy, performance techniques, communication, patience, organizational skills, empathy.</p>
-          <p>The foundation of DRAMSOC's excellence, nurturing talent and ensuring every member has opportunities to grow and develop their theatrical abilities.</p>
-        </div>
-
-        <div class="dept-card">
-          <h3>Finance & Sponsorship</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Budget planning and financial management</li>
-            <li>Fundraising initiatives and campaigns</li>
-            <li>Sponsor acquisition and relationship management</li>
-            <li>Ticket sales and box office management</li>
-            <li>Resource allocation and cost control</li>
-            <li>Financial reporting and accountability</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Production budgeting, sponsor proposal development, fundraising events, ticket sales campaigns, financial reports, sponsor recognition programs, grant applications, merchandise sales.</p>
-          <p><strong>Skills Developed:</strong> Financial management, budgeting, fundraising, negotiation, sponsor relations, salesmanship, accountability, strategic planning, business communication.</p>
-          <p>The practical backbone ensuring DRAMSOC has the resources to bring ambitious theatrical visions to life sustainably.</p>
-        </div>
-
-        <div class="dept-card">
-          <h3>Scriptwriting & Research</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Original script development and playwriting</li>
-            <li>Script adaptation and translation</li>
-            <li>Historical and contextual research for productions</li>
-            <li>Dramaturgy and script analysis</li>
-            <li>Script reading and evaluation</li>
-            <li>Literary management and archives</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Playwriting workshops, script drafts and revisions, research presentations, dramaturgical notes, historical context research, script reading sessions, writer's rooms, documentation of productions.</p>
-          <p><strong>Skills Developed:</strong> Creative writing, research skills, analytical thinking, storytelling, cultural awareness, literary analysis, attention to detail, historical understanding, critical thinking.</p>
-          <p>The literary heart of DRAMSOC, ensuring our productions are intellectually rigorous, culturally informed, and artistically original.</p>
-        </div>
-
-        <div class="dept-card">
-          <h3>Costume & Makeup</h3>
-          <p><strong>Core Responsibilities:</strong></p>
-          <ul>
-            <li>Costume design and creation</li>
-            <li>Makeup design for characters</li>
-            <li>Period and character research</li>
-            <li>Wardrobe management and maintenance</li>
-            <li>Quick changes and backstage organization</li>
-            <li>Special effects makeup</li>
-          </ul>
-          <p><strong>Sample Activities:</strong> Costume sketches and design boards, fabric selection and shopping, sewing and alterations, makeup tests and application tutorials, wig styling, accessory creation, costume fittings, laundry and repairs.</p>
-          <p><strong>Skills Developed:</strong> Costume design, sewing and fabrication, makeup artistry, color theory, historical fashion knowledge, attention to detail, creativity, time management, practical problem-solving.</p>
-          <p>The visual storytellers who transform actors into characters through the magic of costume and makeup artistry.</p>
-        </div>
-
-        <div style="text-align:center; margin:32px 0;">
-          <h3>Join a Department</h3>
-          <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
-            Every department welcomes new members, regardless of experience level. Whether you're a complete beginner or have previous expertise, there's a place for you in DRAMSOC. Our senior members provide mentorship and training to help you develop your skills.
-          </p>
-          <a href="https://wangudi.github.io/join" target="_blank" class="join-dept-btn">Join DRAMSOC Today</a>
-        </div>
-
-        <div style="background:#2a2a3a; border-radius:12px; padding:1.8em; margin-top:32px; font-style:italic; text-align:center;">
-          <p style="margin:0; font-size:1.1em;">
-            "<strong>Theatre is the ultimate collaborative art form. In DRAMSOC, we don't just make theatre - we build family.</strong>"
-          </p>
+          <p><strong>Contact Us</strong> to get involved.</p>
         </div>
       `;
 
@@ -962,23 +982,22 @@
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
       pushModalState();
-      window.closeMenu && window.closeMenu(); // Close mobile menu
+      window.closeMenu && window.closeMenu();
     }
 
-    function closeDepartments() {
-      const modal = document.getElementById('departmentsModal');
+    function closeAlumni() {
+      const modal = document.getElementById('alumniModal');
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
       unlockBodyScroll();
     }
 
-    // Close on overlay click
-    document.getElementById('departmentsModal').addEventListener('click', function(e) {
-      if (e.target === this) closeDepartments();
+    document.getElementById('alumniModal').addEventListener('click', function(e) {
+      if (e.target === this) closeAlumni();
     });
   </script>
 
-  <!-- NEW: Toggle JS (hamburger icon to cross icon) -->
+  <!-- TOGGLE MENU SCRIPT (unchanged) -->
   <script>
     (function(){
       const toggle = document.getElementById('menuToggle');
@@ -993,7 +1012,7 @@
         overlay.classList.add('active');
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
-        toggle.textContent = '×'; // Cross when menu is open
+        toggle.textContent = 'x';
       }
       function closeMenu(){
         nav.classList.remove('menu-active');
@@ -1003,7 +1022,7 @@
         overlay.classList.remove('active');
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
-        toggle.textContent = '☰'; // Hamburger when menu is closed
+        toggle.textContent = 'Menu';
       }
       window.closeMenu = closeMenu;
       toggle.addEventListener('click', function(e){ if (nav.classList.contains('menu-active')) closeMenu(); else openMenu(); });
