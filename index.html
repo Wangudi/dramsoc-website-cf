@@ -6,7 +6,7 @@
   <title>Strathmore Drama Society (DRAMSOC)</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
   <style>
-    /* ================= ORIGINAL STYLES (kept intact) ================= */
+    /* ================= ORIGINAL STYLES (kept mostly intact) ================= */
     :root {
       --gold: #ffd700;
       --red: #b80000;
@@ -19,7 +19,7 @@
       margin: 0;
       overflow-x: hidden;
     }
-    header {
+     header {
       background: linear-gradient(90deg, #1c1c1c, #000000);
       color: var(--gold);
       display: flex;
@@ -38,7 +38,25 @@
       display: inline-block;
       object-fit: contain;
     }
-
+    /* Nav - default (desktop) */
+    nav {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    nav a {
+      color: var(--gold);
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px #ffd700aa;
+    }
     .hero {
       background: linear-gradient(135deg, #222144, #b80000 100%);
       min-height: 50vh;
@@ -88,23 +106,38 @@
     .team-card b { display:block; font-size:1.1em; margin-bottom:6px; color:var(--gold); }
     .team-card .role { font-size:0.9em; color:#ddd; margin-top:2px; }
     footer { background:#111; color:var(--gold); text-align:center; padding:30px 5px; margin-top:36px; }
-
     /* production modal */
     #productionModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(34,20,68,0.95); z-index:9999; align-items:center; justify-content:center; }
     #productionModal > div { background:#222144; border-radius:16px; padding:32px; max-width:90vw; max-height:86vh; overflow:auto; color:#fff; box-shadow:0 12px 48px #0008; position:relative; animation: scalePulse 1.7s; }
+    /* image container inside modal to hold placeholders and limit size */
     .modal-image { max-width:220px; height:auto; border-radius:10px; object-fit:contain; margin:0 10px 10px 0; box-shadow:0 2px 18px #1118; background: linear-gradient(180deg,#222 0%, #2b2540 100%); display:block; }
-
-    /* article modal */
+    /* article modal - FIXED: no fixed width, responsive, text wrap */
     #articleModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); color:#fff; overflow:auto; padding:1rem; z-index:10000; }
     #articleModal > div {
-      max-width:95vw; width:100%; margin:0 auto; background:#222144; border-radius:16px; padding:24px 20px; position:relative; box-sizing:border-box; word-break: break-word; overflow-wrap: anywhere;
+      max-width:95vw; /* CHANGED: was 900px */
+      width:100%;
+      margin:0 auto;
+      background:#222144;
+      border-radius:16px;
+      padding:24px 20px; /* CHANGED: better mobile padding */
+      position:relative;
+      box-sizing:border-box;
+      word-break: break-word; /* ADDED: prevent overflow */
+      overflow-wrap: anywhere;
     }
-
+    /* small spinner for progressive load */
     .img-spinner {
-      display:inline-block; width:28px; height:28px; border-radius:50%; border:3px solid rgba(255,255,255,0.12); border-top-color: rgba(255,255,255,0.7); animation: spin 1s linear infinite; vertical-align: middle; margin-right:8px;
+      display:inline-block;
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      border:3px solid rgba(255,255,255,0.12);
+      border-top-color: rgba(255,255,255,0.7);
+      animation: spin 1s linear infinite;
+      vertical-align: middle;
+      margin-right:8px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-
     /* ================= DEPARTMENTS MODAL STYLES ================= */
     #departmentsModal {
       display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
@@ -124,16 +157,21 @@
       color:var(--gold); margin-top:0; font-size:1.4em; border-bottom:2px solid var(--gold);
       padding-bottom:8px;
     }
-    .dept-card ul { margin:12px 0; padding-left:20px; }
-    .dept-card li { margin:6px 0; line-height:1.5; }
+    .dept-card ul {
+      margin:12px 0; padding-left:20px;
+    }
+    .dept-card li {
+      margin:6px 0; line-height:1.5;
+    }
     .dept-card strong { color:var(--gold); }
     .join-dept-btn {
       display:inline-block; background:var(--gold); color:#111; padding:12px 24px;
       border-radius:8px; text-decoration:none; font-weight:700; margin-top:16px;
       transition:0.3s;
     }
-    .join-dept-btn:hover { background:var(--red); color:#fff; }
-
+    .join-dept-btn:hover {
+      background:var(--red); color:#fff;
+    }
     /* ================= ALUMNI MODAL STYLES ================= */
     #alumniModal {
       display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
@@ -160,7 +198,9 @@
     .testimonial cite {
       display:block; margin-top:12px; font-style:normal; color:var(--gold); font-weight:600;
     }
-    .alumni-cta { text-align:center; margin:32px 0; }
+    .alumni-cta {
+      text-align:center; margin:32px 0;
+    }
     .alumni-cta h3 { margin-bottom:12px; }
     .alumni-cta p { max-width:700px; margin:0 auto 20px; line-height:1.6; }
     .alumni-btn {
@@ -168,7 +208,9 @@
       border-radius:8px; text-decoration:none; font-weight:700; margin:8px;
       transition:0.3s;
     }
-    .alumni-btn:hover { background:var(--red); color:#fff; }
+    .alumni-btn:hover {
+      background:var(--red); color:#fff;
+    }
 
     /* ================= TEAM MODAL STYLES ================= */
     #teamModal {
@@ -183,7 +225,7 @@
     }
     .team-modal-card {
       background:#2a2a3a; border-radius:12px; padding:1.6em; margin-bottom:1.8em;
-      box-shadow:0 4px 20px rgba(0,0,0,0.3);
+      box-shadow:0 4px 20px rgba(184,0,0,0.2);
     }
     .team-modal-card h3 {
       color:var(--gold); margin-top:0; font-size:1.4em; border-bottom:2px solid var(--gold);
@@ -200,58 +242,110 @@
       color:#ccc; font-style:italic; font-size:0.95em; margin-bottom:10px;
     }
 
-    /* ================= TOGGLE MENU (ALL DEVICES) ================= */
-    .menu-toggle { 
-      display: block; font-size: 28px; color: var(--gold); cursor: pointer; 
-      margin-left: auto; user-select: none; z-index: 1300; background: transparent; 
-      border: none; padding: 0 0.5rem;
-    }
-    .overlay { 
-      position: fixed; inset: 0; background: rgba(0,0,0,0.45); opacity: 0; 
-      pointer-events: none; transition: opacity .32s ease; z-index: 1250; 
-    }
-    .overlay.active { opacity: 1; pointer-events: all; }
+   /* ================= NEW: Toggle / Slide-in menu (works on ALL devices) ================= */
+.menu-toggle { 
+  display: block;               /* always visible */
+  font-size: 28px; 
+  color: var(--gold); 
+  cursor: pointer; 
+  margin-left: auto; 
+  user-select: none; 
+  z-index: 1300; 
+  background: transparent; 
+  border: none; 
+  padding: 0 0.5rem;
+}
+.overlay { 
+  position: fixed; inset: 0; 
+  background: rgba(0,0,0,0.45); 
+  opacity: 0; pointer-events: none; 
+  transition: opacity .32s ease; 
+  z-index: 1250; 
+}
+.overlay.active { opacity: 1; pointer-events: all; }
 
-    nav {
-      position: fixed; top: 0; right: -260px; width: 260px; height: 100vh;
-      background: rgba(0,0,0,0.95); box-shadow: -8px 0 30px rgba(0,0,0,0.6);
-      display: flex; flex-direction: column; align-items: center; 
-      justify-content: flex-start; padding-top: 84px; gap: 12px;
-      transition: right .32s cubic-bezier(.2,.9,.2,1); z-index: 1300;
-      overflow-y: auto;
-    }
-    nav.menu-active { right: 0; }
+/* Nav panel – hidden off-screen until toggled */
+nav {
+  position: fixed;
+  top: 0; right: -260px;          /* hidden */
+  width: 260px; height: 100vh;
+  background: rgba(0,0,0,0.95);
+  box-shadow: -8px 0 30px rgba(0,0,0,0.6);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  padding-top: 84px; gap: 12px;
+  transition: right .32s cubic-bezier(.2,.9,.2,1);
+  z-index: 1300;
+  overflow-y: auto;
+}
+nav.menu-active { right: 0; }
 
-    nav a {
-      margin: 0; color: var(--gold); font-size: .95em; padding: 12px 20px; 
-      width: 80%; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.04);
-      letter-spacing: .1px;
-    }
-    nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
+nav a {
+  margin: 0; color: var(--gold); font-size: .95em;
+  padding: 12px 20px; width: 80%; text-align: center;
+  border-bottom: 1px solid rgba(255,215,0,0.04);
+  letter-spacing: .1px;
+}
+nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
 
-    nav .close-panel {
-      position: absolute; top: 12px; right: 12px; font-size: 28px; 
-      color: var(--gold); background: transparent; border: none; 
-      cursor: pointer; z-index: 1310;
-    }
+nav .close-panel {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 28px; color: var(--gold);
+  background: transparent; border: none; cursor: pointer;
+  z-index: 1310;
+}
 
-    @media (min-width: 701px) {
-      nav { width: 300px; right: -300px; }
-      nav.menu-active { right: 0; }
+/* ---- No more separate desktop nav ---- */
+@media (min-width: 701px) {
+  /* Desktop still uses the same slide-in panel – just a bit wider */
+  nav { width: 300px; right: -300px; }
+  nav.menu-active { right: 0; }
+}
+      /* stacked items; smaller font; gold color */
+      nav a {
+        margin: 0;
+        color: var(--gold);
+        font-size: 0.95em;
+        padding: 12px 20px;
+        width: 50%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,215,0,0.04);
+        letter-spacing: 0.1px;
+      }
+      nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
+      /* close (×) button inside panel - hidden in desktop */
+      nav .close-panel {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 28px;
+        color: var(--gold);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index:1310;
+      }
     }
-
-    @media (max-width: 700px) {
-      .card-grid, .team-grid { flex-direction: column; align-items: center; }
-      .card { max-width: 100%; }
-      header { gap: 0.5em; }
+    /* end toggle styles */
+    @media(max-width:700px){
+      header { flex-direction: column; align-items: flex-start; gap:0.5em; }
+      nav { margin:0; }
     }
-
+    /* === ONLY FIX: Mobile image wrap in production modal === */
     @media (max-width: 600px) {
       #productionModal > div > div > div[style*="display:flex"] {
-        flex-wrap: wrap !important; justify-content: center !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
       }
-      .modal-image { max-width: 100% !important; margin: 8px auto !important; display: block !important; }
-      #articleModal > div { padding: 20px 16px; font-size: 0.95rem; }
+      .modal-image {
+        max-width: 100% !important;
+        margin: 8px auto !important;
+        display: block !important;
+      }
+      #articleModal > div {
+        padding: 20px 16px;
+        font-size: 0.95rem;
+      }
       .dept-card { padding:1.2em; }
       #departmentsModal > div { padding:20px 16px; }
       .alumni-card { padding:1.2em; }
@@ -259,37 +353,43 @@
       .team-modal-card { padding:1.2em; }
       #teamModal > div { padding:20px 16px; }
     }
-
+    /* === PREVENT HORIZONTAL SCROLL ON MOBILE === */
     * { box-sizing: border-box; }
     html, body { width: 100%; overflow-x: hidden; }
     .section, .card-grid, .team-grid, .card, .team-card { max-width: 100vw; }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">Menu</button>
+<header>
+  <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
 
-    <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
-      <button class="close-panel" id="closePanel" aria-label="Close menu">X</button>
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#productions">Recent Productions</a>
-      <a href="#" onclick="showTeam(); return false;">Team</a>
-      <a href="#" onclick="showDepartments(); return false;">Departments</a>
-      <a href="#" onclick="showAlumni(); return false;">Alumni</a>
-      <a href="#articles">Articles</a>
-      <a href="#contact">Contact</a>
-      <a href="#join">Join Us</a>
-    </nav>
-  </header>
+  <!-- Hamburger toggle – visible on ALL screens (including laptop) -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+    ☰
+  </button>
 
+  <!-- Navigation becomes the slide-in panel on every breakpoint -->
+  <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
+    <button class="close-panel" id="closePanel" aria-label="Close menu">×</button>
+
+    <!-- ***** ALL DASHBOARD SECTIONS ARE NOW LINKS IN THE MENU ***** -->
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#productions">Recent Productions</a>
+    <a href="#team" onclick="showTeam(); return false;">Team</a>
+    <a href="#departments" onclick="showDepartments(); return false;">Departments</a>
+    <a href="#alumni" onclick="showAlumni(); return false;">Alumni</a>
+    <a href="#articles">Articles</a>
+    <a href="#contact">Contact</a>
+    <a href="#join">Join Us</a>
+  </nav>
+</header>
+  <!-- Overlay -->
   <div class="overlay" id="overlay" aria-hidden="true"></div>
-
   <!-- DEPARTMENTS MODAL -->
   <div id="departmentsModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
-      <button class="modal-close" onclick="closeDepartments()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">X</button>
+      <button class="modal-close" onclick="closeDepartments()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
       <div id="departmentsModalContent"></div>
     </div>
   </div>
@@ -297,7 +397,7 @@
   <!-- ALUMNI MODAL -->
   <div id="alumniModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
-      <button class="modal-close" onclick="closeAlumni()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">X</button>
+      <button class="modal-close" onclick="closeAlumni()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
       <div id="alumniModalContent"></div>
     </div>
   </div>
@@ -305,7 +405,7 @@
   <!-- TEAM MODAL -->
   <div id="teamModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
-      <button class="modal-close" onclick="closeTeam()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">X</button>
+      <button class="modal-close" onclick="closeTeam()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
       <div id="teamModalContent"></div>
     </div>
   </div>
@@ -319,7 +419,6 @@
       </div>
       <a class="btn btn-gold" href="#join">Join Us Today</a>
     </section>
-
     <section id="about" class="section">
       <h2>About Us</h2>
       <div class="card-grid">
@@ -337,11 +436,11 @@
         </div>
       </div>
     </section>
-
     <section id="productions" class="section">
       <h2>Recent Productions</h2>
       <div class="card-grid">
         <div class="card">
+          <!-- add lazy to main card images too (non-modal) -->
           <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" loading="lazy" />
           <h3>The Waiting Room</h3>
           <p>Family secrets unravel in a hospital waiting room.</p>
@@ -361,15 +460,14 @@
         </div>
       </div>
       <p style="color:var(--gold);text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
-
+      <!-- NOTE: modal contains images that will be loaded by JS via data-src -->
       <div id="productionModal" aria-hidden="true" role="dialog" aria-modal="true">
         <div>
-          <span id="productionClose" style="position: absolute; top: 14px; right: 20px; font-size: 2.3em; color: var(--gold); cursor: pointer; z-index:10;">X</span>
+          <span id="productionClose" style="position: absolute; top: 14px; right: 20px; font-size: 2.3em; color: var(--gold); cursor: pointer; z-index:10;">×</span>
           <div id="productionModalContent"></div>
         </div>
       </div>
     </section>
-
     <section id="team" class="section">
       <h2>Society's Governing Body</h2>
       <div class="team-grid">
@@ -400,7 +498,6 @@
         </div>
       </div>
     </section>
-
     <section id="articles" class="section">
       <h2>Articles & Updates</h2>
       <div class="card-grid">
@@ -421,14 +518,13 @@
         </div>
       </div>
     </section>
-
+    <!-- Article Modal -->
     <div id="articleModal" aria-hidden="true" role="dialog" aria-modal="true">
       <div>
-        <button id="articleClose" onclick="closeArticle()" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">X</button>
+        <button id="articleClose" onclick="closeArticle()" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
         <div id="articleModalContent"></div>
       </div>
     </div>
-
     <section id="contact" class="section">
       <h2>Contact Us</h2>
       <div class="social-icons" style="margin-top:8px; display:flex; gap:15px;">
@@ -444,12 +540,10 @@
       </div>
     </section>
   </main>
-
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
-
-  <!-- ALL SCRIPTS BELOW -->
+  <!-- ALL ORIGINAL SCRIPTS BELOW (unchanged) -->
   <script>
     const articles = {
       "contemporary-theatre": {
@@ -484,7 +578,9 @@
           <p>Beyond awareness raising, drama mobilizes communities towards action, influencing policy discussions and social norms. Through performances in schools, town halls, and open-air venues, drama operates as a bridge between art and activism, empowering people to envision and build better futures.</p>`
       }
     };
-
+    /* ---------------------------
+       Scroll-lock helpers
+       --------------------------- */
     function lockBodyScroll() {
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
@@ -493,157 +589,383 @@
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
-
+    /* ---------------------------
+       History / back-button handling
+       --------------------------- */
     let suppressPop = false;
     function pushModalState() {
-      try { history.pushState({ modalOpen: true }, ''); } catch (e) {}
+      try {
+        history.pushState({ modalOpen: true }, '');
+      } catch (e) {/* ignore */}
     }
     window.addEventListener('popstate', function(event) {
       if (suppressPop) { suppressPop = false; return; }
-      const modals = ['productionModal', 'articleModal', 'departmentsModal', 'alumniModal', 'teamModal'];
+      const prodModal = document.getElementById('productionModal');
+      const artModal = document.getElementById('articleModal');
+      const deptModal = document.getElementById('departmentsModal');
+      const alumModal = document.getElementById('alumniModal');
+      const teamModal = document.getElementById('teamModal');
       let closed = false;
-      modals.forEach(id => {
-        const modal = document.getElementById(id);
-        if (modal && modal.style.display !== 'none') {
-          modal.style.display = 'none';
-          modal.setAttribute('aria-hidden','true');
-          closed = true;
-        }
-      });
+      if (prodModal && prodModal.style.display === 'flex') {
+        prodModal.style.display = 'none';
+        prodModal.setAttribute('aria-hidden','true');
+        closed = true;
+      }
+      if (artModal && artModal.style.display === 'block') {
+        artModal.style.display = 'none';
+        artModal.setAttribute('aria-hidden','true');
+        closed = true;
+      }
+      if (deptModal && deptModal.style.display === 'flex') {
+        deptModal.style.display = 'none';
+        deptModal.setAttribute('aria-hidden','true');
+        closed = true;
+      }
+      if (alumModal && alumModal.style.display === 'flex') {
+        alumModal.style.display = 'none';
+        alumModal.setAttribute('aria-hidden','true');
+        closed = true;
+      }
+      if (teamModal && teamModal.style.display === 'flex') {
+        teamModal.style.display = 'none';
+        teamModal.setAttribute('aria-hidden','true');
+        closed = true;
+      }
       if (closed) unlockBodyScroll();
     });
-
+    /* ---------------------------
+       Improved Lazy Image Loader for modal images
+       - Uses data-src on <img>
+       - IntersectionObserver to load when visible
+       - Sequential loading (small queue) to avoid many parallel downloads
+       --------------------------- */
+    // tiny inline SVG placeholder (very small, keeps layout)
     const PLACEHOLDER_DATAURL = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22 viewBox=%220 0 220 160%22%3E%3Crect width=%22220%22 height=%22160%22 fill=%22%23222%22/%3E%3C/svg%3E';
-    const imageLoadQueue = []; let loadingInProgress = false;
+    // queue for sequential loading
+    const imageLoadQueue = [];
+    let loadingInProgress = false;
     function queueLoad(imgEl) {
       if (!imgEl || imgEl.dataset.loaded === 'true') return;
-      imageLoadQueue.push(imgEl); processQueue();
+      imageLoadQueue.push(imgEl);
+      processQueue();
     }
     function processQueue() {
       if (loadingInProgress) return;
-      const next = imageLoadQueue.shift(); if (!next) return;
+      const next = imageLoadQueue.shift();
+      if (!next) return;
       loadingInProgress = true;
-      loadImage(next).finally(() => { loadingInProgress = false; setTimeout(processQueue, 120); });
+      loadImage(next).finally(() => {
+        loadingInProgress = false;
+        setTimeout(processQueue, 120);
+      });
     }
     function loadImage(imgEl) {
       return new Promise((resolve) => {
         if (!imgEl) return resolve();
-        const src = imgEl.dataset.src; if (!src) return resolve();
-        const spinner = document.createElement('span'); spinner.className = 'img-spinner';
+        const src = imgEl.dataset.src;
+        if (!src) return resolve();
+        // show spinner while loading
+        const spinner = document.createElement('span');
+        spinner.className = 'img-spinner';
         imgEl.parentNode && imgEl.parentNode.insertBefore(spinner, imgEl.nextSibling);
         const tmp = new Image();
-        tmp.onload = () => { imgEl.src = src; imgEl.dataset.loaded = 'true'; spinner.parentNode && spinner.parentNode.removeChild(spinner); resolve(); };
-        tmp.onerror = () => { spinner.parentNode && spinner.parentNode.removeChild(spinner); imgEl.dataset.loaded = 'error'; resolve(); };
+        tmp.onload = function() {
+          imgEl.src = src;
+          imgEl.dataset.loaded = 'true';
+          if (spinner && spinner.parentNode) spinner.parentNode.removeChild(spinner);
+          resolve();
+        };
+        tmp.onerror = function() {
+          if (spinner && spinner.parentNode) spinner.parentNode.removeChild(spinner);
+          imgEl.dataset.loaded = 'error';
+          resolve();
+        };
         tmp.src = src;
       });
     }
+    // IntersectionObserver: when modal images enter viewport -> push to queue
     const ioOptions = { root: null, rootMargin: '160px', threshold: 0.01 };
     const modalImageObserver = new IntersectionObserver((entries) => {
       entries.forEach(ent => {
-        if (ent.isIntersecting) { queueLoad(ent.target); modalImageObserver.unobserve(ent.target); }
+        if (ent.isIntersecting) {
+          queueLoad(ent.target);
+          modalImageObserver.unobserve(ent.target);
+        }
       });
     }, ioOptions);
     function observeModalImages(container) {
       if (!container) return;
       const imgs = container.querySelectorAll('img[data-src]');
-      imgs.forEach(img => { if (!img.src) img.src = PLACEHOLDER_DATAURL; modalImageObserver.observe(img); });
+      imgs.forEach(img => {
+        if (!img.src) img.src = PLACEHOLDER_DATAURL;
+        modalImageObserver.observe(img);
+      });
     }
     function unobserveAllModalImages() {
-      try { modalImageObserver.disconnect(); } catch (e) {}
+      try {
+        modalImageObserver.disconnect();
+      } catch (e) {}
       imageLoadQueue.length = 0;
     }
-
+    /* ---------------------------
+       Article modal functions
+       --------------------------- */
     function showArticle(key) {
-      const article = articles[key]; if (!article) return;
+      const article = articles[key];
+      if (!article) return;
       const modal = document.getElementById("articleModal");
       const contentDiv = document.getElementById("articleModalContent");
-      contentDiv.innerHTML = `<h2>${article.title}</h2><p><em>By ${article.author} | ${article.date}</em></p>${article.content}`;
-      modal.style.display = "block"; modal.setAttribute('aria-hidden','false');
-      lockBodyScroll(); pushModalState();
+      contentDiv.innerHTML = `
+        <h2>${article.title}</h2>
+        <p><em>By ${article.author} | ${article.date}</em></p>
+        ${article.content}
+      `;
+      modal.style.display = "block";
+      modal.setAttribute('aria-hidden','false');
+      lockBodyScroll();
+      pushModalState();
     }
     function closeArticle() {
       const modal = document.getElementById("articleModal");
-      if (history.state && history.state.modalOpen) { suppressPop = true; history.back(); }
-      modal.style.display = "none"; modal.setAttribute('aria-hidden','true'); unlockBodyScroll();
-      unobserveAllModalImages(); suppressPop = false;
-    }
-
-    function showProduction(prod) {
-      const modal = document.getElementById("productionModal");
-      const content = document.getElementById("productionModalContent");
-      let html = "";
-      if (prod === "waiting-room") {
-        html = `<h2>The Waiting Room</h2><p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;"><strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama</p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-          ${Array.from({length: 10}, (_,i) => `<img class="modal-image" data-src="images/productions/The Waiting Room (${i+2}).jpg" alt="Waiting Room ${i+2}" />`).join('')}
-        </div>
-        <p style="margin-top:18px; font-size:1.13em;">In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.</p>`;
-      } else if (prod === "homecoming") {
-        html = `<h2>The Homecoming</h2><p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;"><strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama</p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-          <img class="modal-image" data-src="images/productions/The Homecoming (1).jpg" alt="Homecoming 1" />
-          <img class="modal-image" data-src="images/productions/The Homecoming (1).png" alt="Homecoming 1 png" />
-          ${Array.from({length: 5}, (_,i) => `<img class="modal-image" data-src="images/productions/The Homecoming (${i+2}).jpg" alt="Homecoming ${i+2}" />`).join('')}
-        </div>
-        <p style="margin-top:18px; font-size:1.13em;">A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.</p>`;
-      } else if (prod === "samaritan") {
-        html = `<h2>The Samaritan</h2><p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;"><strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama</p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-          ${Array.from({length: 9}, (_,i) => `<img class="modal-image" data-src="images/productions/The Samaritan (${i+1}).jpg" alt="Samaritan ${i+1}" />`).join('')}
-        </div>
-        <p style="margin-top:18px; font-size:1.13em;">This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.</p>`;
+      const state = history.state;
+      if (state && state.modalOpen) {
+        suppressPop = true;
+        history.back();
+        modal.style.display = "none";
+        modal.setAttribute('aria-hidden','true');
+        unlockBodyScroll();
+        suppressPop = false;
+      } else {
+        modal.style.display = "none";
+        modal.setAttribute('aria-hidden','true');
+        unlockBodyScroll();
       }
-      content.innerHTML = html; modal.style.display = "flex"; modal.setAttribute('aria-hidden','false');
-      lockBodyScroll(); pushModalState(); observeModalImages(content);
     }
-
+    /* ---------------------------
+       Production modal functions (uses JS-rendered HTML with data-src images)
+       --------------------------- */
+    function showProduction(prod) {
+      var modal = document.getElementById("productionModal");
+      var content = document.getElementById("productionModalContent");
+      var html = "";
+      if (prod === "waiting-room") {
+        html = `<h2>The Waiting Room</h2>
+      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
+        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+        <img class="modal-image" data-src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room 2" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (3).jpg" alt="Waiting Room 3" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (4).jpg" alt="Waiting Room 4" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (5).jpg" alt="Waiting Room 5" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (6).jpg" alt="Waiting Room 6" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (7).jpg" alt="Waiting Room 7" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (8).jpg" alt="Waiting Room 8" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (9).jpg" alt="Waiting Room 9" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (10).jpg" alt="Waiting Room 10" />
+        <img class="modal-image" data-src="images/productions/The Waiting Room (11).jpg" alt="Waiting Room 11" />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        In a chaotic hospital waiting room, tensions mount as anxious relatives await news about a critically injured patriarch. Secrets unravel, misunderstandings abound, and comedic yet dramatic confrontations ensue. Amidst the chaos, unexpected twists reveal hidden lives and shocking truths, weaving a thrilling tale of identity, deception, and the unpredictable nature of family bonds.
+      </p>`;
+      } else if (prod === "homecoming") {
+        html = `<h2>The Homecoming</h2>
+      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
+        <strong>Writer:</strong> Martin Abuya &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+        <img class="modal-image" data-src="images/productions/The Homecoming (1).jpg" alt="Homecoming 1" />
+        <img class="modal-image" data-src="images/productions/The Homecoming (1).png" alt="Homecoming 1 png" />
+        <img class="modal-image" data-src="images/productions/The Homecoming (2).jpg" alt="Homecoming 2" />
+        <img class="modal-image" data-src="images/productions/The Homecoming (3).jpg" alt="Homecoming 3" />
+        <img class="modal-image" data-src="images/productions/The Homecoming (4).jpg" alt="Homecoming 4" />
+        <img class="modal-image" data-src="images/productions/The Homecoming (5).jpg" alt="Homecoming 5" />
+        <img class="modal-image" data-src="images/productions/The Homecoming (6).jpg" alt="Homecoming 6" />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        A tragicomedy about the Talai family's reunion and unraveling. Siblings Thomas, Tiffany, and Timothy return home after years apart, bringing old wounds, secrets, and unresolved grief following their father's death. Martin Abuya's play explores loyalty, loss, generational conflict, and what "home" truly means in Kenya today.
+      </p>`;
+      } else if (prod === "samaritan") {
+        html = `<h2>The Samaritan</h2>
+      <p style="margin-bottom:15px; color:var(--gold); font-size:1.1em;">
+        <strong>Writer:</strong> John Lara &nbsp;|&nbsp; <strong>Director:</strong> Nick Muthama
+      </p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+        <img class="modal-image" data-src="images/productions/The Samaritan (1).jpg" alt="Samaritan 1" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (2).jpg" alt="Samaritan 2" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (3).jpg" alt="Samaritan 3" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (4).jpg" alt="Samaritan 4" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (5).jpg" alt="Samaritan 5" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (6).jpg" alt="Samaritan 6" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (7).jpg" alt="Samaritan 7" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (8).jpg" alt="Samaritan 8" />
+        <img class="modal-image" data-src="images/productions/The Samaritan (9).jpg" alt="Samaritan 9" />
+      </div>
+      <p style="margin-top:18px; font-size:1.13em;">
+        This stage drama exposes political corruption and the fight for justice. Mayor Mossi and city leaders try to suppress The Samaritan App, while idealistic teacher Nicole and her students battle for transparency. Betrayals, courtroom drama, and social commentary combine in a bold call for civic courage in Kenyan life.
+      </p>`;
+      }
+      content.innerHTML = html;
+      modal.style.display = "flex";
+      modal.setAttribute('aria-hidden','false');
+      lockBodyScroll();
+      pushModalState();
+      observeModalImages(content);
+    }
+    // Production modal close - wired to the X span
     document.addEventListener('DOMContentLoaded', function() {
       const prodClose = document.getElementById('productionClose');
-      if (prodClose) prodClose.addEventListener('click', () => {
-        const modal = document.getElementById('productionModal');
-        if (history.state && history.state.modalOpen) { suppressPop = true; history.back(); suppressPop = false; }
-        modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); unlockBodyScroll(); unobserveAllModalImages();
-      });
-      const artClose = document.getElementById('articleClose');
-      if (artClose) artClose.addEventListener('click', () => { closeArticle(); unobserveAllModalImages(); });
-    });
-
-    window.addEventListener('click', function(event) {
-      ['productionModal', 'articleModal', 'departmentsModal', 'alumniModal', 'teamModal'].forEach(id => {
-        const modal = document.getElementById(id);
-        if (event.target === modal) {
-          if (id === 'productionModal' || id === 'articleModal') {
-            if (history.state && history.state.modalOpen) { suppressPop = true; history.back(); suppressPop = false; }
+      if (prodClose) {
+        prodClose.addEventListener('click', function() {
+          const modal = document.getElementById('productionModal');
+          const state = history.state;
+          if (state && state.modalOpen) {
+            suppressPop = true;
+            history.back();
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden','true');
+            unlockBodyScroll();
             unobserveAllModalImages();
-          } else if (id === 'departmentsModal') closeDepartments();
-          else if (id === 'alumniModal') closeAlumni();
-          else if (id === 'teamModal') closeTeam();
-          modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); unlockBodyScroll();
-        }
-      });
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        let closed = false;
-        ['productionModal', 'articleModal', 'departmentsModal', 'alumniModal', 'teamModal'].forEach(id => {
-          const modal = document.getElementById(id);
-          if (modal && modal.style.display !== 'none') {
-            if (id === 'productionModal' || id === 'articleModal') {
-              if (history.state && history.state.modalOpen) { suppressPop = true; history.back(); suppressPop = false; }
-              unobserveAllModalImages();
-            } else if (id === 'departmentsModal') closeDepartments();
-            else if (id === 'alumniModal') closeAlumni();
-            else if (id === 'teamModal') closeTeam();
-            modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); closed = true;
+            suppressPop = false;
+          } else {
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden','true');
+            unlockBodyScroll();
+            unobserveAllModalImages();
           }
         });
+      }
+      const artClose = document.getElementById('articleClose');
+      if (artClose) {
+        artClose.addEventListener('click', function() {
+          closeArticle();
+          unobserveAllModalImages();
+        });
+      }
+    });
+    function closeArticle() {
+      const modal = document.getElementById("articleModal");
+      const state = history.state;
+      if (state && state.modalOpen) {
+        suppressPop = true;
+        history.back();
+        modal.style.display = "none";
+        modal.setAttribute('aria-hidden','true');
+        unlockBodyScroll();
+        suppressPop = false;
+      } else {
+        modal.style.display = "none";
+        modal.setAttribute('aria-hidden','true');
+        unlockBodyScroll();
+      }
+      unobserveAllModalImages();
+    }
+    /* ---------------------------
+       Click outside -> close modals
+       --------------------------- */
+    window.addEventListener('click', function(event) {
+      const prodModal = document.getElementById('productionModal');
+      const artModal = document.getElementById('articleModal');
+      const deptModal = document.getElementById('departmentsModal');
+      const alumModal = document.getElementById('alumniModal');
+      const teamModal = document.getElementById('teamModal');
+      if (event.target === prodModal) {
+        const state = history.state;
+        if (state && state.modalOpen) {
+          suppressPop = true;
+          history.back();
+          prodModal.style.display = 'none';
+          prodModal.setAttribute('aria-hidden','true');
+          unlockBodyScroll();
+          unobserveAllModalImages();
+          suppressPop = false;
+        } else {
+          prodModal.style.display = 'none';
+          prodModal.setAttribute('aria-hidden','true');
+          unlockBodyScroll();
+          unobserveAllModalImages();
+        }
+      }
+      if (event.target === artModal) {
+        const state = history.state;
+        if (state && state.modalOpen) {
+          suppressPop = true;
+          history.back();
+          artModal.style.display = 'none';
+          artModal.setAttribute('aria-hidden','true');
+          unlockBodyScroll();
+          unobserveAllModalImages();
+          suppressPop = false;
+        } else {
+          artModal.style.display = 'none';
+          artModal.setAttribute('aria-hidden','true');
+          unlockBodyScroll();
+          unobserveAllModalImages();
+        }
+      }
+      if (event.target === deptModal) {
+        closeDepartments();
+      }
+      if (event.target === alumModal) {
+        closeAlumni();
+      }
+      if (event.target === teamModal) {
+        closeTeam();
+      }
+    });
+    /* ---------------------------
+       ESC key closes modals
+       --------------------------- */
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const prodModal = document.getElementById('productionModal');
+        const artModal = document.getElementById('articleModal');
+        const deptModal = document.getElementById('departmentsModal');
+        const alumModal = document.getElementById('alumniModal');
+        const teamModal = document.getElementById('teamModal');
+        let closed = false;
+        if (prodModal && prodModal.style.display === 'flex') {
+          const state = history.state;
+          if (state && state.modalOpen) {
+            suppressPop = true;
+            history.back();
+            suppressPop = false;
+          } else {
+            prodModal.style.display = 'none';
+            prodModal.setAttribute('aria-hidden','true');
+          }
+          closed = true;
+          unobserveAllModalImages();
+        }
+        if (artModal && artModal.style.display === 'block') {
+          const state = history.state;
+          if (state && state.modalOpen) {
+            suppressPop = true;
+            history.back();
+            suppressPop = false;
+          } else {
+            artModal.style.display = 'none';
+            artModal.setAttribute('aria-hidden','true');
+          }
+          closed = true;
+        }
+        if (deptModal && deptModal.style.display === 'flex') {
+          closeDepartments();
+          closed = true;
+        }
+        if (alumModal && alumModal.style.display === 'flex') {
+          closeAlumni();
+          closed = true;
+        }
+        if (teamModal && teamModal.style.display === 'flex') {
+          closeTeam();
+          closed = true;
+        }
         if (closed) unlockBodyScroll();
       }
     });
   </script>
-
-    <!-- DEPARTMENTS MODAL SCRIPT -->
+  <!-- DEPARTMENTS MODAL SCRIPT -->
   <script>
     function showDepartments() {
       const modal = document.getElementById('departmentsModal');
@@ -657,7 +979,6 @@
           DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic.
           Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.
         </p>
-
         <div class="dept-card">
           <h3>Directing & Production</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -673,7 +994,6 @@
           <p><strong>Skills Developed:</strong> Leadership, creative vision, communication, collaboration, time management, artistic interpretation, decision-making under pressure.</p>
           <p>This department shapes the artistic heart of every production, transforming words on a page into living, breathing theatre.</p>
         </div>
-
         <div class="dept-card">
           <h3>Technical Theatre</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -689,7 +1009,6 @@
           <p><strong>Skills Developed:</strong> Technical proficiency, problem-solving, attention to detail, safety awareness, teamwork, adaptability, creative technical solutions, electrical and carpentry skills.</p>
           <p>The unseen heroes who create the atmosphere, mood, and physical world that brings each production to life.</p>
         </div>
-
         <div class="dept-card">
           <h3>PR & Marketing</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -705,7 +1024,6 @@
           <p><strong>Skills Developed:</strong> Marketing strategy, graphic design, copywriting, social media management, photography/videography, public relations, brand management, analytics.</p>
           <p>The storytellers who ensure the world knows about DRAMSOC's incredible work and brings audiences through our doors.</p>
         </div>
-
         <div class="dept-card">
           <h3>Training & Development</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -721,7 +1039,6 @@
           <p><strong>Skills Developed:</strong> Teaching and mentorship, curriculum development, theatrical pedagogy, performance techniques, communication, patience, organizational skills, empathy.</p>
           <p>The foundation of DRAMSOC's excellence, nurturing talent and ensuring every member has opportunities to grow and develop their theatrical abilities.</p>
         </div>
-
         <div class="dept-card">
           <h3>Finance & Sponsorship</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -737,7 +1054,6 @@
           <p><strong>Skills Developed:</strong> Financial management, budgeting, fundraising, negotiation, sponsor relations, salesmanship, accountability, strategic planning, business communication.</p>
           <p>The practical backbone ensuring DRAMSOC has the resources to bring ambitious theatrical visions to life sustainably.</p>
         </div>
-
         <div class="dept-card">
           <h3>Scriptwriting & Research</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -753,7 +1069,6 @@
           <p><strong>Skills Developed:</strong> Creative writing, research skills, analytical thinking, storytelling, cultural awareness, literary analysis, attention to detail, historical understanding, critical thinking.</p>
           <p>The literary heart of DRAMSOC, ensuring our productions are intellectually rigorous, culturally informed, and artistically original.</p>
         </div>
-
         <div class="dept-card">
           <h3>Costume & Makeup</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -769,7 +1084,6 @@
           <p><strong>Skills Developed:</strong> Costume design, sewing and fabrication, makeup artistry, color theory, historical fashion knowledge, attention to detail, creativity, time management, practical problem-solving.</p>
           <p>The visual storytellers who transform actors into characters through the magic of costume and makeup artistry.</p>
         </div>
-
         <div style="text-align:center; margin:32px 0;">
           <h3>Join a Department</h3>
           <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
@@ -777,7 +1091,6 @@
           </p>
           <a href="https://wangudi.github.io/join" target="_blank" class="join-dept-btn">Join DRAMSOC Today</a>
         </div>
-
         <div style="background:#2a2a3a; border-radius:12px; padding:1.8em; margin-top:32px; font-style:italic; text-align:center;">
           <p style="margin:0; font-size:1.1em;">
             "<strong>Theatre is the ultimate collaborative art form. In DRAMSOC, we don't just make theatre - we build family.</strong>"
@@ -788,16 +1101,15 @@
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
       pushModalState();
-      if (window.closeMenu) window.closeMenu();
+      window.closeMenu && window.closeMenu(); // Close mobile menu
     }
-
     function closeDepartments() {
       const modal = document.getElementById('departmentsModal');
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
       unlockBodyScroll();
     }
-
+    // Close on overlay click
     document.getElementById('departmentsModal').addEventListener('click', function(e) {
       if (e.target === this) closeDepartments();
     });
@@ -882,7 +1194,7 @@
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
       pushModalState();
-      if (window.closeMenu) window.closeMenu();
+      window.closeMenu && window.closeMenu();
     }
 
     function closeAlumni() {
@@ -1005,7 +1317,7 @@
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
       pushModalState();
-      if (window.closeMenu) window.closeMenu();
+      window.closeMenu && window.closeMenu();
     }
 
     function closeTeam() {
@@ -1020,11 +1332,7 @@
     });
   </script>
 
-  <!-- TOGGLE JS (Hamburger → Cross) -->
-  <script>
-  </script>
-
-  <!-- TOGGLE MENU SCRIPT -->
+  <!-- NEW: Toggle JS (hamburger icon to cross icon) -->
   <script>
     (function(){
       const toggle = document.getElementById('menuToggle');
@@ -1039,7 +1347,7 @@
         overlay.classList.add('active');
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
-        toggle.textContent = 'X';
+        toggle.textContent = '×'; // Cross when menu is open
       }
       function closeMenu(){
         nav.classList.remove('menu-active');
@@ -1049,16 +1357,22 @@
         overlay.classList.remove('active');
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
-        toggle.textContent = 'Menu';
+        toggle.textContent = 'Menu'; // Hamburger when menu is closed
       }
       window.closeMenu = closeMenu;
-      toggle.addEventListener('click', () => nav.classList.contains('menu-active') ? closeMenu() : openMenu());
-      toggle.addEventListener('keydown', e => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle.click(); } });
+      toggle.addEventListener('click', function(e){ if (nav.classList.contains('menu-active')) closeMenu(); else openMenu(); });
+      toggle.addEventListener('keydown', function(e){ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle.click(); } });
       if (closeBtn) closeBtn.addEventListener('click', closeMenu);
       overlay.addEventListener('click', closeMenu);
-      nav.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('menu-active')) closeMenu(); });
-      document.addEventListener('click', e => {
+      nav.addEventListener('click', function(e){
+        if (e.target && e.target.tagName === 'A') {
+          closeMenu();
+        }
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && nav.classList.contains('menu-active')) closeMenu();
+      });
+      document.addEventListener('click', function(e){
         const isSmall = window.matchMedia('(max-width:700px)').matches;
         if (!isSmall) return;
         const clickedInside = nav.contains(e.target) || toggle.contains(e.target) || overlay.contains(e.target);
