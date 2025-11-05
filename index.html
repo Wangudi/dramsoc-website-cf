@@ -19,7 +19,7 @@
       margin: 0;
       overflow-x: hidden;
     }
-     header {
+    header {
       background: linear-gradient(90deg, #1c1c1c, #000000);
       color: var(--gold);
       display: flex;
@@ -110,7 +110,7 @@
     #productionModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(34,20,68,0.95); z-index:9999; align-items:center; justify-content:center; }
     #productionModal > div { background:#222144; border-radius:16px; padding:32px; max-width:90vw; max-height:86vh; overflow:auto; color:#fff; box-shadow:0 12px 48px #0008; position:relative; animation: scalePulse 1.7s; }
     /* image container inside modal to hold placeholders and limit size */
-    .modal-image { max-width:220px; height:auto; border-radius:10px; object-fit:contain; margin:0 10px 10px 0; box-shadow:0 2px 18px #1118; background: linear-gradient(180deg,#222 0%, #2b2540 100%); display:block; }
+    .modal-image { max-width:220px; height:auto; border-radius:10px; object-fit:contain; margin:0 10px 10px 0; box-shadow:0 2px 18px #1118; background: linear-gradient(180deg,#222, #2b2540); display:block; }
     /* article modal - FIXED: no fixed width, responsive, text wrap */
     #articleModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); color:#fff; overflow:auto; padding:1rem; z-index:10000; }
     #articleModal > div {
@@ -376,9 +376,9 @@ nav .close-panel {
     <a href="#home">Home</a>
     <a href="#about">About Us</a>
     <a href="#productions">Recent Productions</a>
-    <a href="#team" onclick="showTeam(); return false;">Team</a>
-    <a href="#departments" onclick="showDepartments(); return false;">Departments</a>
-    <a href="#alumni" onclick="showAlumni(); return false;">Alumni</a>
+    <a href="#team">Team</a>
+    <a href="#departments">Departments</a>
+    <a href="#alumni">Alumni</a>
     <a href="#articles">Articles</a>
     <a href="#contact">Contact</a>
     <a href="#join">Join Us</a>
@@ -529,13 +529,13 @@ nav .close-panel {
       <h2>Contact Us</h2>
       <div class="social-icons" style="margin-top:8px; display:flex; gap:15px;">
         <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;" loading="lazy">
+          <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;" loading="lazy" />
         </a>
         <a href="https://www.youtube.com/@StrathmoreDramaSociety" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;" loading="lazy">
+          <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;" loading="lazy" />
         </a>
         <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;" loading="lazy">
+          <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;" loading="lazy" />
         </a>
       </div>
     </section>
@@ -1382,4 +1382,3 @@ nav .close-panel {
   </script>
 </body>
 </html>
-
