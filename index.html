@@ -211,6 +211,7 @@
     .alumni-btn:hover {
       background:var(--red); color:#fff;
     }
+
     /* ================= TEAM MODAL STYLES ================= */
     #teamModal {
       display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
@@ -224,7 +225,7 @@
     }
     .team-modal-card {
       background:#2a2a3a; border-radius:12px; padding:1.6em; margin-bottom:1.8em;
-      box-shadow:0 4px 20px rgba(0,0,0,0.3);
+      box-shadow:0 4px 20px rgba(184,0,0,0.2);
     }
     .team-modal-card h3 {
       color:var(--gold); margin-top:0; font-size:1.4em; border-bottom:2px solid var(--gold);
@@ -240,31 +241,33 @@
     .team-member .title {
       color:#ccc; font-style:italic; font-size:0.95em; margin-bottom:10px;
     }
+
    /* ================= NEW: Toggle / Slide-in menu (works on ALL devices) ================= */
-.menu-toggle {
-  display: block; /* always visible */
-  font-size: 28px;
-  color: var(--gold);
-  cursor: pointer;
-  margin-left: auto;
-  user-select: none;
-  z-index: 1300;
-  background: transparent;
-  border: none;
+.menu-toggle { 
+  display: block;               /* always visible */
+  font-size: 28px; 
+  color: var(--gold); 
+  cursor: pointer; 
+  margin-left: auto; 
+  user-select: none; 
+  z-index: 1300; 
+  background: transparent; 
+  border: none; 
   padding: 0 0.5rem;
 }
-.overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.45);
-  opacity: 0; pointer-events: none;
-  transition: opacity .32s ease;
-  z-index: 1250;
+.overlay { 
+  position: fixed; inset: 0; 
+  background: rgba(0,0,0,0.45); 
+  opacity: 0; pointer-events: none; 
+  transition: opacity .32s ease; 
+  z-index: 1250; 
 }
 .overlay.active { opacity: 1; pointer-events: all; }
+
 /* Nav panel – hidden off-screen until toggled */
 nav {
   position: fixed;
-  top: 0; right: -260px; /* hidden */
+  top: 0; right: -260px;          /* hidden */
   width: 260px; height: 100vh;
   background: rgba(0,0,0,0.95);
   box-shadow: -8px 0 30px rgba(0,0,0,0.6);
@@ -276,6 +279,7 @@ nav {
   overflow-y: auto;
 }
 nav.menu-active { right: 0; }
+
 nav a {
   margin: 0; color: var(--gold); font-size: .95em;
   padding: 12px 20px; width: 80%; text-align: center;
@@ -283,12 +287,14 @@ nav a {
   letter-spacing: .1px;
 }
 nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
+
 nav .close-panel {
   position: absolute; top: 12px; right: 12px;
   font-size: 28px; color: var(--gold);
   background: transparent; border: none; cursor: pointer;
   z-index: 1310;
 }
+
 /* ---- No more separate desktop nav ---- */
 @media (min-width: 701px) {
   /* Desktop still uses the same slide-in panel – just a bit wider */
@@ -356,20 +362,23 @@ nav .close-panel {
 <body>
 <header>
   <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
+
   <!-- Hamburger toggle – visible on ALL screens (including laptop) -->
   <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
     ☰
   </button>
+
   <!-- Navigation becomes the slide-in panel on every breakpoint -->
   <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
     <button class="close-panel" id="closePanel" aria-label="Close menu">×</button>
+
     <!-- ***** ALL DASHBOARD SECTIONS ARE NOW LINKS IN THE MENU ***** -->
     <a href="#home">Home</a>
     <a href="#about">About Us</a>
     <a href="#productions">Recent Productions</a>
-    <a href="#" onclick="showTeam(); return false;">Team</a>
-    <a href="#" onclick="showDepartments(); return false;">Departments</a>
-    <a href="#" onclick="showAlumni(); return false;">Alumni</a>
+    <a href="#team" onclick="showTeam(); return false;">Team</a>
+    <a href="#departments" onclick="showDepartments(); return false;">Departments</a>
+    <a href="#alumni" onclick="showAlumni(); return false;">Alumni</a>
     <a href="#articles">Articles</a>
     <a href="#contact">Contact</a>
     <a href="#join">Join Us</a>
@@ -384,6 +393,7 @@ nav .close-panel {
       <div id="departmentsModalContent"></div>
     </div>
   </div>
+
   <!-- ALUMNI MODAL -->
   <div id="alumniModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
@@ -391,6 +401,7 @@ nav .close-panel {
       <div id="alumniModalContent"></div>
     </div>
   </div>
+
   <!-- TEAM MODAL -->
   <div id="teamModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div>
@@ -398,9 +409,10 @@ nav .close-panel {
       <div id="teamModalContent"></div>
     </div>
   </div>
+
   <main>
     <section id="home" class="hero">
-      <h1>Take It to the Next Level!h1>
+      <h1>Take It to the Next Level!</h1>
       <div class="events-upcoming">
         <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
         <div class="events-message">No updates, check back later</div>
@@ -531,8 +543,7 @@ nav .close-panel {
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
-
-  <!-- ALL ORIGINAL SCRIPTS BELOW (unchanged except the three modal functions) -->
+  <!-- ALL ORIGINAL SCRIPTS BELOW (unchanged) -->
   <script>
     const articles = {
       "contemporary-theatre": {
@@ -954,19 +965,20 @@ nav .close-panel {
       }
     });
   </script>
-
-  <!-- DEPARTMENTS MODAL SCRIPT (UPDATED CONTENT) -->
+  <!-- DEPARTMENTS MODAL SCRIPT -->
   <script>
     function showDepartments() {
       const modal = document.getElementById('departmentsModal');
       const content = document.getElementById('departmentsModalContent');
       content.innerHTML = `
         <h2 style="text-align:center; margin-bottom:8px;">Our Departments</h2>
-        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">The Backbone of DRAMSOC Excellence</p>
-        <p style="margin-bottom:32px; line-height:1.7;">
-          DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic. Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.
+        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">
+          The Backbone of DRAMSOC Excellence
         </p>
-
+        <p style="margin-bottom:32px; line-height:1.7;">
+          DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic.
+          Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.
+        </p>
         <div class="dept-card">
           <h3>Directing & Production</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -982,7 +994,6 @@ nav .close-panel {
           <p><strong>Skills Developed:</strong> Leadership, creative vision, communication, collaboration, time management, artistic interpretation, decision-making under pressure.</p>
           <p>This department shapes the artistic heart of every production, transforming words on a page into living, breathing theatre.</p>
         </div>
-
         <div class="dept-card">
           <h3>Technical Theatre</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -998,7 +1009,6 @@ nav .close-panel {
           <p><strong>Skills Developed:</strong> Technical proficiency, problem-solving, attention to detail, safety awareness, teamwork, adaptability, creative technical solutions, electrical and carpentry skills.</p>
           <p>The unseen heroes who create the atmosphere, mood, and physical world that brings each production to life.</p>
         </div>
-
         <div class="dept-card">
           <h3>PR & Marketing</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -1014,7 +1024,6 @@ nav .close-panel {
           <p><strong>Skills Developed:</strong> Marketing strategy, graphic design, copywriting, social media management, photography/videography, public relations, brand management, analytics.</p>
           <p>The storytellers who ensure the world knows about DRAMSOC's incredible work and brings audiences through our doors.</p>
         </div>
-
         <div class="dept-card">
           <h3>Training & Development</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -1030,7 +1039,6 @@ nav .close-panel {
           <p><strong>Skills Developed:</strong> Teaching and mentorship, curriculum development, theatrical pedagogy, performance techniques, communication, patience, organizational skills, empathy.</p>
           <p>The foundation of DRAMSOC's excellence, nurturing talent and ensuring every member has opportunities to grow and develop their theatrical abilities.</p>
         </div>
-
         <div class="dept-card">
           <h3>Finance & Sponsorship</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -1046,7 +1054,6 @@ nav .close-panel {
           <p><strong>Skills Developed:</strong> Financial management, budgeting, fundraising, negotiation, sponsor relations, salesmanship, accountability, strategic planning, business communication.</p>
           <p>The practical backbone ensuring DRAMSOC has the resources to bring ambitious theatrical visions to life sustainably.</p>
         </div>
-
         <div class="dept-card">
           <h3>Scriptwriting & Research</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -1062,7 +1069,6 @@ nav .close-panel {
           <p><strong>Skills Developed:</strong> Creative writing, research skills, analytical thinking, storytelling, cultural awareness, literary analysis, attention to detail, historical understanding, critical thinking.</p>
           <p>The literary heart of DRAMSOC, ensuring our productions are intellectually rigorous, culturally informed, and artistically original.</p>
         </div>
-
         <div class="dept-card">
           <h3>Costume & Makeup</h3>
           <p><strong>Core Responsibilities:</strong></p>
@@ -1078,7 +1084,6 @@ nav .close-panel {
           <p><strong>Skills Developed:</strong> Costume design, sewing and fabrication, makeup artistry, color theory, historical fashion knowledge, attention to detail, creativity, time management, practical problem-solving.</p>
           <p>The visual storytellers who transform actors into characters through the magic of costume and makeup artistry.</p>
         </div>
-
         <div style="text-align:center; margin:32px 0;">
           <h3>Join a Department</h3>
           <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
@@ -1086,7 +1091,6 @@ nav .close-panel {
           </p>
           <a href="https://wangudi.github.io/join" target="_blank" class="join-dept-btn">Join DRAMSOC Today</a>
         </div>
-
         <div style="background:#2a2a3a; border-radius:12px; padding:1.8em; margin-top:32px; font-style:italic; text-align:center;">
           <p style="margin:0; font-size:1.1em;">
             "<strong>Theatre is the ultimate collaborative art form. In DRAMSOC, we don't just make theatre - we build family.</strong>"
@@ -1097,7 +1101,7 @@ nav .close-panel {
       modal.setAttribute('aria-hidden', 'false');
       lockBodyScroll();
       pushModalState();
-      window.closeMenu && window.closeMenu();
+      window.closeMenu && window.closeMenu(); // Close mobile menu
     }
     function closeDepartments() {
       const modal = document.getElementById('departmentsModal');
@@ -1105,19 +1109,22 @@ nav .close-panel {
       modal.setAttribute('aria-hidden', 'true');
       unlockBodyScroll();
     }
+    // Close on overlay click
     document.getElementById('departmentsModal').addEventListener('click', function(e) {
       if (e.target === this) closeDepartments();
     });
   </script>
 
-  <!-- ALUMNI MODAL SCRIPT (UPDATED CONTENT) -->
+  <!-- ALUMNI MODAL SCRIPT -->
   <script>
     function showAlumni() {
       const modal = document.getElementById('alumniModal');
       const content = document.getElementById('alumniModalContent');
       content.innerHTML = `
         <h2 style="text-align:center; margin-bottom:8px;">Our Alumni</h2>
-        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">Where Are They Now?</p>
+        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">
+          Where Are They Now?
+        </p>
         <p style="margin-bottom:32px; line-height:1.7;">
           DRAMSOC alumni have gone on to achieve remarkable success in theatre, film, television, media, business, law, education, and countless other fields. The skills developed through drama - confidence, communication, collaboration, creativity, and critical thinking - translate powerfully to any career path.
         </p>
@@ -1189,25 +1196,29 @@ nav .close-panel {
       pushModalState();
       window.closeMenu && window.closeMenu();
     }
+
     function closeAlumni() {
       const modal = document.getElementById('alumniModal');
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
       unlockBodyScroll();
     }
+
     document.getElementById('alumniModal').addEventListener('click', function(e) {
       if (e.target === this) closeAlumni();
     });
   </script>
 
-  <!-- TEAM MODAL SCRIPT (UPDATED CONTENT) -->
+  <!-- TEAM MODAL SCRIPT -->
   <script>
     function showTeam() {
       const modal = document.getElementById('teamModal');
       const content = document.getElementById('teamModalContent');
       content.innerHTML = `
         <h2 style="text-align:center; margin-bottom:8px;">Our Team</h2>
-        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:16px;">The Passionate Leaders Behind DRAMSOC</p>
+        <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:16px;">
+          The Passionate Leaders Behind DRAMSOC
+        </p>
 
         <div class="team-modal-card">
           <h3>Leadership Team 2024/2025</h3>
@@ -1308,18 +1319,20 @@ nav .close-panel {
       pushModalState();
       window.closeMenu && window.closeMenu();
     }
+
     function closeTeam() {
       const modal = document.getElementById('teamModal');
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
       unlockBodyScroll();
     }
+
     document.getElementById('teamModal').addEventListener('click', function(e) {
       if (e.target === this) closeTeam();
     });
   </script>
 
-   <!-- NEW: Toggle JS (hamburger icon to cross icon) -->
+  <!-- NEW: Toggle JS (hamburger icon to cross icon) -->
   <script>
     (function(){
       const toggle = document.getElementById('menuToggle');
