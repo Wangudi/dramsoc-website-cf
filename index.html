@@ -12,13 +12,22 @@
       --red: #b80000;
       --bg: #111111;
     }
+    
+    /* Add smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
     body {
       background: var(--bg);
       color: #fff;
       font-family: "Poppins", Arial, sans-serif;
       margin: 0;
       overflow-x: hidden;
+      padding-top: 80px; /* Add padding for fixed header */
     }
+    
+    /* FIXED HEADER - Changed from sticky to fixed */
     header {
       background: linear-gradient(90deg, #1c1c1c, #000000);
       color: var(--gold);
@@ -26,19 +35,22 @@
       align-items: center;
       gap: 0.8em;
       padding: 0.25em 1.5em;
-      position: sticky;
+      position: fixed; /* Changed from sticky to fixed */
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 1200;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(4px);
-      min-height: auto; /* Remove any minimum height */
+      min-height: auto;
     }
+    
     .site-logo {
       width: 120px;
       height: 120px;
       display: inline-block;
       object-fit: contain;
-      margin: 0; /* Ensure no extra margin */
+      margin: 0;
     }
    
     /* ================= NEW: DASHBOARD NAVIGATION ================= */
@@ -49,6 +61,7 @@
       align-items: center;
       gap: 0.5rem;
     }
+    
     nav a {
       color: var(--gold);
       text-decoration: none;
@@ -60,23 +73,35 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    
     nav a:hover {
       color: #fff;
       background: rgba(255, 215, 0, 0.1);
       text-shadow: 0 0 8px #ffd700aa;
     }
+    
+    /* Active state for current section */
+    nav a.active {
+      background: rgba(255, 215, 0, 0.2);
+      color: #fff;
+      border: 1px solid var(--gold);
+    }
    
-    /* Mobile Navigation */
+    /* Mobile Navigation - FIXED THE TYPO */
     @media (max-width: 768px) {
+      body {
+        padding-top: 140px; /* More padding for mobile stacked layout */
+      }
+      
       header {
         flex-direction: column;
         align-items: center;
         gap: 0.3em;
-        padding: o.4em 1em;
+        padding: 0.4em 1em; /* FIXED: was "o.4em" */
       }
      
       nav {
-        margin:  0.2em 0 0 0;
+        margin: 0.2em 0 0 0;
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
@@ -176,8 +201,11 @@
       text-align: center;
       padding: 64px 18px;
     }
+    
     h1,h2,h3 { font-family: "Lora", serif; color: var(--gold); }
+    
     .motto { color: var(--red); font-size: 1.2em; font-family: "Lora", serif; letter-spacing: 2px; margin-bottom: 18px; }
+    
     .events-upcoming {
       margin: 0 auto 32px auto;
       padding: 40px 28px;
@@ -200,28 +228,53 @@
       animation: scalePulse 2.6s infinite;
       text-shadow: 0 1px 10px #22154488;
     }
+    
     .events-upcoming-title { color: var(--gold); margin-bottom: 20px; font-size: 1.3em; font-family: inherit; font-style: normal; font-weight: bold; letter-spacing: 2px; text-shadow: 0 2px 12px #423b7977; }
+    
     .events-message { font-size: 1.06em; opacity: 0.88; }
+    
     @keyframes scalePulse { 0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)} }
-    .section { padding: 90px 36px; max-width: 1200px; margin: 0 auto; }
+    
+    .section { 
+      padding: 90px 36px; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      scroll-margin-top: 100px; /* Add scroll margin for fixed header */
+    }
+    
     .card-grid,.team-grid { display:flex; gap:2em; flex-wrap:wrap; justify-content:center; }
+    
     .card { background:#222; border-radius:12px; padding:1.4em 1em; margin-bottom:22px; box-shadow:0 4px 32px #b8000044; max-width:340px; transition: transform 0.18s, box-shadow 0.18s; }
+    
     .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 10px 44px #b80000bb; }
+    
     .card img { width:100%; border-radius:8px; display:block; }
+    
     .btn, .btn-gold, .learn-more-btn { background: var(--gold); color:#111; border:none; border-radius:6px; padding:13px 2em; font-weight:700; margin-top:10px; font-size:1em; cursor:pointer; transition: background 0.22s, color 0.18s;}
+    
     .btn-gold:hover, .btn:hover, .learn-more-btn:hover { background: var(--red); color:#fff; }
+    
     .team-card { background:#262626; border-radius:8px; padding:1em 2.5em 1.4em; text-align:center; width:396px; max-width:95vw; box-sizing:border-box; margin:0 auto; }
+    
     .team-card img { width:200px; height:200px; border-radius:0; object-fit:cover; margin-bottom:8px; }
+    
     .team-card b { display:block; font-size:1.1em; margin-bottom:6px; color:var(--gold); }
+    
     .team-card .role { font-size:0.9em; color:#ddd; margin-top:2px; }
+    
     footer { background:#111; color:var(--gold); text-align:center; padding:30px 5px; margin-top:36px; }
+    
     /* production modal */
     #productionModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(34,20,68,0.95); z-index:9999; align-items:center; justify-content:center; }
+    
     #productionModal > div { background:#222144; border-radius:16px; padding:32px; max-width:90vw; max-height:86vh; overflow:auto; color:#fff; box-shadow:0 12px 48px #0008; position:relative; animation: scalePulse 1.7s; }
+    
     /* image container inside modal to hold placeholders and limit size */
     .modal-image { max-width:220px; height:auto; border-radius:10px; object-fit:contain; margin:0 10px 10px 0; box-shadow:0 2px 18px #1118; background: linear-gradient(180deg,#222 0%, #2b2540 100%); display:block; }
+    
     /* article modal - FIXED: no fixed width, responsive, text wrap */
     #articleModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); color:#fff; overflow:auto; padding:1rem; z-index:10000; }
+    
     #articleModal > div {
       max-width:95vw; /* CHANGED: was 900px */
       width:100%;
@@ -234,6 +287,7 @@
       word-break: break-word; /* ADDED: prevent overflow */
       overflow-wrap: anywhere;
     }
+    
     /* small spinner for progressive load */
     .img-spinner {
       display:inline-block;
@@ -246,6 +300,7 @@
       vertical-align: middle;
       margin-right:8px;
     }
+    
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* === ONLY FIX: Mobile image wrap in production modal === */
@@ -264,6 +319,7 @@
         font-size: 0.95rem;
       }
     }
+    
     /* === PREVENT HORIZONTAL SCROLL ON MOBILE === */
     * { box-sizing: border-box; }
     html, body { width: 100%; overflow-x: hidden; }
@@ -277,20 +333,24 @@
       gap: 30px;
       flex-wrap: wrap;
     }
+    
     .social-card {
       text-align: center;
       max-width: 300px;
     }
+    
     .social-card a {
       text-decoration: none;
       color: inherit;
     }
+    
     .social-card > div {
       background: #222;
       padding: 20px;
       border-radius: 12px;
       transition: transform 0.3s;
     }
+    
     .social-card > div:hover {
       transform: translateY(-5px);
     }
@@ -319,6 +379,7 @@
       max-width: 400px;
       margin: 0 auto;
     }
+    
     .newsletter-form input {
       padding: 12px;
       border-radius: 6px;
@@ -337,8 +398,9 @@
     <a href="#home" class="nav-link">Home</a>
     <a href="about.html" class="nav-link">About Us</a>
     <a href="team.html" class="nav-link">Our Team</a>
-                    <a href="departments.html" class="nav-link">Departments</a>
-                <a href="alumni.html" class="nav-link">Alumni</a>    <a href="#contact" class="nav-link">Contact Us</a>
+    <a href="departments.html" class="nav-link">Departments</a>
+    <a href="alumni.html" class="nav-link">Alumni</a>
+    <a href="#contact" class="nav-link">Contact Us</a>
   </nav>
 </header>
  
@@ -351,6 +413,7 @@
       </div>
       <a class="btn btn-gold" href="#join">Join Us Today</a>
     </section>
+    
     <section id="about" class="section">
       <h2>About Us</h2>
       <div class="card-grid">
@@ -368,6 +431,7 @@
         </div>
       </div>
     </section>
+    
     <section id="productions" class="section">
       <h2>Recent Productions</h2>
       <div class="card-grid">
@@ -400,6 +464,7 @@
         </div>
       </div>
     </section>
+    
     <section id="team" class="section">
       <h2>Society's Governing Body</h2>
       <div class="team-grid">
@@ -432,6 +497,7 @@
       <div style="text-align: center; margin-top: 30px;">
       </div>
     </section>
+    
     <section id="articles" class="section">
       <h2>Articles & Updates</h2>
       <div class="card-grid">
@@ -510,6 +576,7 @@
         <div id="articleModalContent"></div>
       </div>
     </div>
+    
     <section id="contact" class="section">
       <h2>Contact Us</h2>
       <p style="text-align: center; max-width: 600px; margin: 0 auto 20px;">
@@ -528,6 +595,7 @@
       </div>
     </section>
   </main>
+  
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
@@ -938,6 +1006,7 @@
           <p>Beyond awareness raising, drama mobilizes communities towards action, influencing policy discussions and social norms. Through performances in schools, town halls, and open-air venues, drama operates as a bridge between art and activism, empowering people to envision and build better futures.</p>`
       }
     };
+    
     /* ---------------------------
        Scroll-lock helpers
        --------------------------- */
@@ -945,19 +1014,23 @@
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     }
+    
     function unlockBodyScroll() {
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     }
+    
     /* ---------------------------
        History / back-button handling
        --------------------------- */
     let suppressPop = false;
+    
     function pushModalState() {
       try {
         history.pushState({ modalOpen: true }, '');
       } catch (e) {/* ignore */}
     }
+    
     window.addEventListener('popstate', function(event) {
       if (suppressPop) { suppressPop = false; return; }
       const prodModal = document.getElementById('productionModal');
@@ -983,6 +1056,7 @@
       });
       if (closed) unlockBodyScroll();
     });
+    
     /* ---------------------------
        Improved Lazy Image Loader for modal images
        - Uses data-src on <img>
@@ -991,14 +1065,17 @@
        --------------------------- */
     // tiny inline SVG placeholder (very small, keeps layout)
     const PLACEHOLDER_DATAURL = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22 viewBox=%220 0 220 160%22%3E%3Crect width=%22220%22 height=%22160%22 fill=%22%23222%22/%3E%3C/svg%3E';
+    
     // queue for sequential loading
     const imageLoadQueue = [];
     let loadingInProgress = false;
+    
     function queueLoad(imgEl) {
       if (!imgEl || imgEl.dataset.loaded === 'true') return;
       imageLoadQueue.push(imgEl);
       processQueue();
     }
+    
     function processQueue() {
       if (loadingInProgress) return;
       const next = imageLoadQueue.shift();
@@ -1009,6 +1086,7 @@
         setTimeout(processQueue, 120);
       });
     }
+    
     function loadImage(imgEl) {
       return new Promise((resolve) => {
         if (!imgEl) return resolve();
@@ -1033,6 +1111,7 @@
         tmp.src = src;
       });
     }
+    
     // IntersectionObserver: when modal images enter viewport -> push to queue
     const ioOptions = { root: null, rootMargin: '160px', threshold: 0.01 };
     const modalImageObserver = new IntersectionObserver((entries) => {
@@ -1043,6 +1122,7 @@
         }
       });
     }, ioOptions);
+    
     function observeModalImages(container) {
       if (!container) return;
       const imgs = container.querySelectorAll('img[data-src]');
@@ -1051,12 +1131,14 @@
         modalImageObserver.observe(img);
       });
     }
+    
     function unobserveAllModalImages() {
       try {
         modalImageObserver.disconnect();
       } catch (e) {}
       imageLoadQueue.length = 0;
     }
+    
     /* ---------------------------
        Article modal functions
        --------------------------- */
@@ -1075,6 +1157,7 @@
       lockBodyScroll();
       pushModalState();
     }
+    
     function closeArticle() {
       const modal = document.getElementById("articleModal");
       const state = history.state;
@@ -1091,6 +1174,7 @@
         unlockBodyScroll();
       }
     }
+    
     /* ---------------------------
        Production modal functions (uses JS-rendered HTML with data-src images)
        --------------------------- */
@@ -1162,6 +1246,7 @@
       pushModalState();
       observeModalImages(content);
     }
+    
     // Production modal close - wired to the X span
     document.addEventListener('DOMContentLoaded', function() {
       const prodClose = document.getElementById('productionClose');
@@ -1192,7 +1277,65 @@
           unobserveAllModalImages();
         });
       }
+      
+      // NEW: Navigation functionality for fixed header
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Only prevent default for anchor links, not external pages
+          if (this.getAttribute('href').startsWith('#') && this.getAttribute('href') !== '#') {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              // Calculate header height for offset
+              const headerHeight = document.querySelector('header').offsetHeight;
+              const targetPosition = targetElement.offsetTop - headerHeight - 20;
+              
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+              
+              // Update URL without jumping
+              history.pushState(null, null, targetId);
+            }
+          }
+        });
+      });
+      
+      // Update active nav link on scroll
+      function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+      
+      // Listen for scroll events
+      window.addEventListener('scroll', updateActiveNavLink);
+      updateActiveNavLink(); // Initialize on load
     });
+    
     function closeArticle() {
       const modal = document.getElementById("articleModal");
       const state = history.state;
@@ -1210,6 +1353,7 @@
       }
       unobserveAllModalImages();
     }
+    
     /* ---------------------------
        Click outside -> close modals
        --------------------------- */
@@ -1251,6 +1395,7 @@
         }
       }
     });
+    
     /* ---------------------------
        ESC key closes modals
        --------------------------- */
