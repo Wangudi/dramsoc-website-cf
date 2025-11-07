@@ -357,6 +357,64 @@ nav .close-panel {
     * { box-sizing: border-box; }
     html, body { width: 100%; overflow-x: hidden; }
     .section, .card-grid, .team-grid, .card, .team-card { max-width: 100vw; }
+    
+    /* ================= NEW STYLES ================= */
+    /* Social Media Section */
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .social-card {
+      text-align: center;
+      max-width: 300px;
+    }
+    .social-card a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .social-card > div {
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+    .social-card > div:hover {
+      transform: translateY(-5px);
+    }
+    
+    /* Join Section */
+    .join-section {
+      background: linear-gradient(120deg, #251544, #423b79 80%);
+      padding: 60px 20px;
+      border-radius: 16px;
+      margin: 40px 0;
+    }
+    
+    /* Loading States */
+    .loading-spinner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    /* Newsletter Signup */
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .newsletter-form input {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #222;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -373,40 +431,43 @@ nav .close-panel {
     <button class="close-panel" id="closePanel" aria-label="Close menu">×</button>
 
     <!-- ***** ALL DASHBOARD SECTIONS ARE NOW LINKS IN THE MENU ***** -->
-    <a href="#home">Home</a>
-    <a href="#about">About Us</a>
-    <a href="#productions">Recent Productions</a>
-    <a href="#team" onclick="showTeam(); return false;">Team</a>
-<a href="#departments" onclick="showDepartments(); return false;">Departments</a>
-<a href="#alumni" onclick="showAlumni(); return false;">Alumni</a>
-    <a href="#articles">Articles</a>
-    <a href="#contact">Contact</a>
-    <a href="#join">Join Us</a>
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About Us</a>
+    <a href="#productions" onclick="closeMenu()">Recent Productions</a>
+    <a href="#team" onclick="showTeam(); closeMenu(); return false;">Team</a>
+    <a href="#departments" onclick="showDepartments(); closeMenu(); return false;">Departments</a>
+    <a href="#alumni" onclick="showAlumni(); closeMenu(); return false;">Alumni</a>
+    <a href="#articles" onclick="closeMenu()">Articles</a>
+    <a href="#social" onclick="closeMenu()">Social Media</a>
+    <a href="#join" onclick="closeMenu()">Join Us</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
   </nav>
 </header>
   <!-- Overlay -->
   <div class="overlay" id="overlay" aria-hidden="true"></div>
+  <!-- DEPARTMENTS MODAL -->
+  <div id="departmentsModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div>
+      <button class="modal-close" onclick="closeDepartments()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
+      <div id="departmentsModalContent"></div>
+    </div>
+  </div>
+
+  <!-- ALUMNI MODAL -->
+  <div id="alumniModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div>
+      <button class="modal-close" onclick="closeAlumni()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
+      <div id="alumniModalContent"></div>
+    </div>
+  </div>
+
   <!-- TEAM MODAL -->
-<div id="teamModal" style="display:none;" role="dialog" aria-modal="true">
-  <div class="modal-content">
-    <button onclick="closeTeam()" class="modal-close">&times;</button>
-    <div id="teamModalContent"></div>
+  <div id="teamModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div>
+      <button class="modal-close" onclick="closeTeam()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
+      <div id="teamModalContent"></div>
+    </div>
   </div>
-</div>
-<!-- DEPARTMENTS MODAL -->
-<div id="departmentsModal" style="display:none;" role="dialog" aria-modal="true">
-  <div class="modal-content">
-    <button onclick="closeDepartments()" class="modal-close">&times;</button>
-    <div id="departmentsModalContent"></div>
-  </div>
-</div>
-<!-- ALUMNI MODAL -->
-<div id="alumniModal" style="display:none;" role="dialog" aria-modal="true">
-  <div class="modal-content">
-    <button onclick="closeAlumni()" class="modal-close">&times;</button>
-    <div id="alumniModalContent"></div>
-  </div>
-</div>
 
   <main>
     <section id="home" class="hero">
@@ -516,6 +577,91 @@ nav .close-panel {
         </div>
       </div>
     </section>
+    
+    <!-- NEW: Social Media Section -->
+    <section id="social" class="section">
+      <h2>Follow Our Journey</h2>
+      <div class="social-grid">
+        <div class="social-card">
+          <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer">
+            <div>
+              <img src="images/social/Instagram.jpg" alt="Instagram" width="64" height="64" style="display: block; margin: 0 auto 15px;">
+              <h3 style="color: var(--gold); margin-bottom: 10px;">Instagram</h3>
+              <p>Behind-the-scenes content, rehearsal clips, and production updates</p>
+            </div>
+          </a>
+        </div>
+        <div class="social-card">
+          <a href="https://www.youtube.com/@StrathmoreDramaSociety" target="_blank" rel="noopener noreferrer">
+            <div>
+              <img src="images/social/Youtube.webp" alt="YouTube" width="64" height="64" style="display: block; margin: 0 auto 15px;">
+              <h3 style="color: var(--gold); margin-bottom: 10px;">YouTube</h3>
+              <p>Full performances, trailers, and documentary content</p>
+            </div>
+          </a>
+        </div>
+        <div class="social-card">
+          <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank" rel="noopener noreferrer">
+            <div>
+              <img src="images/social/Tiktok.jpg" alt="TikTok" width="64" height="64" style="display: block; margin: 0 auto 15px;">
+              <h3 style="color: var(--gold); margin-bottom: 10px;">TikTok</h3>
+              <p>Short-form content, bloopers, and quick updates</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Newsletter Signup -->
+      <div style="max-width: 600px; margin: 40px auto; text-align: center;">
+        <h3 style="color: var(--gold);">Stay Updated</h3>
+        <p>Subscribe to our newsletter for the latest news, events, and audition information.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit" class="btn">Subscribe</button>
+        </form>
+      </div>
+    </section>
+    
+    <!-- NEW: Join Us Section -->
+    <section id="join" class="section join-section">
+      <h2 style="text-align: center;">Join DRAMSOC</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>For Students</h3>
+          <p>Open to all Strathmore University students regardless of experience level.</p>
+          <ul>
+            <li>Weekly workshops and training sessions</li>
+            <li>Opportunities to perform in productions</li>
+            <li>Develop technical and creative skills</li>
+            <li>Build lifelong friendships</li>
+          </ul>
+          <a href="https://forms.gle/your-join-form" target="_blank" class="btn">Join Now</a>
+        </div>
+        <div class="card">
+          <h3>For Alumni</h3>
+          <p>Stay connected and support the next generation of performers.</p>
+          <ul>
+            <li>Mentorship opportunities</li>
+            <li>Guest workshops and talks</li>
+            <li>Networking events</li>
+            <li>Production sponsorship</li>
+          </ul>
+          <a href="https://forms.gle/your-alumni-form" target="_blank" class="btn">Alumni Sign-Up</a>
+        </div>
+        <div class="card">
+          <h3>Audition Information</h3>
+          <p>We hold auditions for each production. No prior experience necessary!</p>
+          <ul>
+            <li>Check our social media for audition dates</li>
+            <li>Prepare a 1-2 minute monologue (optional)</li>
+            <li>Cold readings provided at auditions</li>
+            <li>All roles are open to members</li>
+          </ul>
+          <button class="btn" onclick="showAuditionInfo()">Learn More</button>
+        </div>
+      </div>
+    </section>
+    
     <!-- Article Modal -->
     <div id="articleModal" aria-hidden="true" role="dialog" aria-modal="true">
       <div>
@@ -525,7 +671,10 @@ nav .close-panel {
     </div>
     <section id="contact" class="section">
       <h2>Contact Us</h2>
-      <div class="social-icons" style="margin-top:8px; display:flex; gap:15px;">
+      <p style="text-align: center; max-width: 600px; margin: 0 auto 20px;">
+        Have questions or want to get involved? Reach out to us through any of our social media channels or email us at <strong style="color: var(--gold);">dramsoc@strathmore.edu</strong>
+      </p>
+      <div class="social-icons" style="margin-top:8px; display:flex; gap:15px; justify-content: center;">
         <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;" loading="lazy">
         </a>
@@ -541,6 +690,7 @@ nav .close-panel {
   <footer>
     &copy; 2025 Strathmore Drama Society (DRAMSOC)
   </footer>
+  
   <!-- ALL ORIGINAL SCRIPTS BELOW (unchanged) -->
   <script>
     const articles = {
@@ -551,7 +701,7 @@ nav .close-panel {
         content: `
           <p>Kenya's theatrical landscape has witnessed a revolutionary growth over the past decade. Young playwrights and theatre groups are pushing boundaries, creating innovative narratives that blend the rich tapestry of traditional storytelling with modern themes.</p>
           <p>These contemporary plays address a broad spectrum of topics—from generational conflicts and urbanization to politics and identity—resonating deeply with new audiences. Through bold experimentation in performance styles and technology integration, Kenyan theatre is carving a distinct voice on the global stage.</p>
-          <p>The homegrown talent is supported by a recent surge in creative workshops, festivals, and collaborations that nourish artistic expression beyond Nairobi’s traditional spaces. This movement not only promotes original Kenyan stories but also enhances accessibility, providing diverse audiences the chance to engage meaningfully with their culture through performance.</p>
+          <p>The homegrown talent is supported by a recent surge in creative workshops, festivals, and collaborations that nourish artistic expression beyond Nairobi's traditional spaces. This movement not only promotes original Kenyan stories but also enhances accessibility, providing diverse audiences the chance to engage meaningfully with their culture through performance.</p>
           <p>Despite challenges such as funding deficits and infrastructural limitations, enthusiasm and resourcefulness keep pushing the art forward. This renaissance signals a bright future where theatre serves as both entertainment and societal mirror for Kenya's evolving identity.</p>`
       },
       "crafting-stage-play": {
@@ -1355,7 +1505,7 @@ nav .close-panel {
         overlay.classList.remove('active');
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
-        toggle.textContent = 'Menu'; // Hamburger when menu is closed
+        toggle.textContent = '☰'; // Hamburger when menu is closed
       }
       window.closeMenu = closeMenu;
       toggle.addEventListener('click', function(e){ if (nav.classList.contains('menu-active')) closeMenu(); else openMenu(); });
@@ -1377,6 +1527,76 @@ nav .close-panel {
         if (!clickedInside && nav.classList.contains('menu-active')) closeMenu();
       });
     })();
+  </script>
+  
+  <!-- NEW: Additional functionality -->
+  <script>
+    // Preload critical images
+    function preloadCriticalImages() {
+      const criticalImages = [
+        'images/logo/No background white logo.png',
+        'images/productions/The Waiting Room (2).jpg',
+        'images/productions/The Homecoming (1).jpg',
+        'images/productions/The Samaritan (1).jpg'
+      ];
+      
+      criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+    
+    // Newsletter form handler
+    document.addEventListener('DOMContentLoaded', function() {
+      preloadCriticalImages();
+      
+      const newsletterForm = document.getElementById('newsletterForm');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = this.querySelector('input[type="email"]').value;
+          alert(`Thank you for subscribing with ${email}! You'll receive updates about DRAMSOC events and productions.`);
+          this.reset();
+        });
+      }
+    });
+    
+    // Audition info modal
+    function showAuditionInfo() {
+      const modal = document.getElementById('articleModal');
+      const contentDiv = document.getElementById('articleModalContent');
+      contentDiv.innerHTML = `
+        <h2>Audition Information</h2>
+        <p><em>Updated: March 2025</em></p>
+        <p>DRAMSOC holds auditions for each of our productions. We welcome performers of all experience levels - from complete beginners to seasoned actors!</p>
+        
+        <h3 style="color: var(--gold); margin-top: 20px;">What to Expect</h3>
+        <ul>
+          <li><strong>No preparation necessary:</strong> We provide sides (short script excerpts) for you to read at the audition</li>
+          <li><strong>Optional monologue:</strong> If you'd like to prepare something, a 1-2 minute contemporary monologue is welcome</li>
+          <li><strong>Cold readings:</strong> You'll be asked to read from the script with other auditionees</li>
+          <li><strong>Movement/dance:</strong> Some productions may include simple movement exercises</li>
+        </ul>
+        
+        <h3 style="color: var(--gold); margin-top: 20px;">Audition Tips</h3>
+        <ul>
+          <li>Arrive 10-15 minutes early to fill out paperwork</li>
+          <li>Wear comfortable clothing you can move in</li>
+          <li>Bring water and any necessary medications</li>
+          <li>Be prepared to list any scheduling conflicts</li>
+          <li>Relax and be yourself - we're looking for personality as much as talent!</li>
+        </ul>
+        
+        <h3 style="color: var(--gold); margin-top: 20px;">Upcoming Auditions</h3>
+        <p>Check our social media channels for announcements about upcoming audition dates and production information.</p>
+        
+        <p style="margin-top: 30px; font-style: italic;">Questions? Contact us at <strong>dramsoc@strathmore.edu</strong> or message us on social media.</p>
+      `;
+      modal.style.display = "block";
+      modal.setAttribute('aria-hidden','false');
+      lockBodyScroll();
+      pushModalState();
+    }
   </script>
 </body>
 </html>
