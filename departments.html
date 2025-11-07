@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Departments - DRAMSOC</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #ffd700;
+      --red: #b80000;
+      --bg: #111111;
+    }
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(90deg, #1c1c1c, #000000);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding: 0.4em 1.5em;
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+    }
+    .site-logo {
+      width: 120px;
+      height: 120px;
+      display: inline-block;
+      object-fit: contain;
+    }
+    nav {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    nav a {
+      color: var(--gold);
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px #ffd700aa;
+    }
+    .section { padding: 90px 36px; max-width: 1200px; margin: 0 auto; }
+    h1,h2,h3 { font-family: "Lora", serif; color: var(--gold); }
+    .dept-card {
+      background:#2a2a3a; 
+      border-radius:12px; 
+      padding:1.6em; 
+      margin-bottom:1.8em;
+      box-shadow:0 4px 20px rgba(184,0,0,0.2);
+    }
+    .dept-card h3 {
+      color:var(--gold); 
+      margin-top:0; 
+      font-size:1.4em; 
+      border-bottom:2px solid var(--gold);
+      padding-bottom:8px;
+    }
+    .dept-card ul {
+      margin:12px 0; 
+      padding-left:20px;
+    }
+    .dept-card li {
+      margin:6px 0; 
+      line-height:1.5;
+    }
+    .dept-card strong { color:var(--gold); }
+    .btn { 
+      background: var(--gold); 
+      color:#111; 
+      border:none; 
+      border-radius:6px; 
+      padding:13px 2em; 
+      font-weight:700; 
+      margin-top:10px; 
+      font-size:1em; 
+      cursor:pointer; 
+      transition: background 0.22s, color 0.18s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover { 
+      background: var(--red); 
+      color:#fff; 
+    }
+    footer { 
+      background:#111; 
+      color:var(--gold); 
+      text-align:center; 
+      padding:30px 5px; 
+      margin-top:36px; 
+    }
+    .hero {
+      background: linear-gradient(135deg, #222144, #b80000 100%);
+      min-height: 30vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 64px 18px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#productions">Productions</a>
+    <a href="team.html">Team</a>
+    <a href="departments.html">Departments</a>
+    <a href="alumni.html">Alumni</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Our Departments</h1>
+    <p style="font-size: 1.2em; color: #ccc;">The Backbone of DRAMSOC Excellence</p>
+  </section>
+
+  <section class="section">
+    <p style="margin-bottom:32px; line-height:1.7; text-align:center;">
+      DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic. Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.
+    </p>
+
+    <div class="dept-card">
+      <h3>Directing & Production</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <ul>
+        <li>Overall artistic vision and direction for productions</li>
+        <li>Script selection and interpretation</li>
+        <li>Casting actors and assembling creative teams</li>
+        <li>Blocking, staging, and choreography</li>
+        <li>Rehearsal scheduling and management</li>
+        <li>Coordinating all departments</li>
+      </ul>
+      <p><strong>Sample Activities:</strong> Directors' workshops, script analysis sessions, blocking rehearsals, character development exercises, production meetings, tech rehearsals, dress rehearsals.</p>
+      <p><strong>Skills Developed:</strong> Leadership, creative vision, communication, collaboration, time management, artistic interpretation, decision-making under pressure.</p>
+      <p>This department shapes the artistic heart of every production, transforming words on a page into living, breathing theatre.</p>
+    </div>
+
+    <div class="dept-card">
+      <h3>Technical Theatre</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <ul>
+        <li>Lighting design and operation</li>
+        <li>Sound design and audio engineering</li>
+        <li>Set construction and stage management</li>
+        <li>Props creation and management</li>
+        <li>Special effects and technical innovations</li>
+        <li>Safety protocols and equipment maintenance</li>
+      </ul>
+      <p><strong>Sample Activities:</strong> Lighting plots and programming, sound cue creation, set building workshops, props fabrication, technical run-throughs, equipment training, troubleshooting technical issues.</p>
+      <p><strong>Skills Developed:</strong> Technical proficiency, problem-solving, attention to detail, safety awareness, teamwork, adaptability, creative technical solutions, electrical and carpentry skills.</p>
+      <p>The unseen heroes who create the atmosphere, mood, and physical world that brings each production to life.</p>
+    </div>
+
+    <div class="dept-card">
+      <h3>PR & Marketing</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <ul>
+        <li>Publicity campaigns and promotional strategies</li>
+        <li>Social media management (Instagram, YouTube, TikTok)</li>
+        <li>Poster and program design</li>
+        <li>Press releases and media relations</li>
+        <li>Audience engagement and community outreach</li>
+        <li>Photography and videography documentation</li>
+      </ul>
+      <p><strong>Sample Activities:</strong> Social media content creation, poster photoshoots, video trailers, press kit development, opening night coverage, behind-the-scenes content, audience surveys, sponsor presentations.</p>
+      <p><strong>Skills Developed:</strong> Marketing strategy, graphic design, copywriting, social media management, photography/videography, public relations, brand management, analytics.</p>
+      <p>The storytellers who ensure the world knows about DRAMSOC's incredible work and brings audiences through our doors.</p>
+    </div>
+
+    <div class="dept-card">
+      <h3>Training & Development</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <ul>
+        <li>Acting workshops and technique classes</li>
+        <li>Voice and movement training</li>
+        <li>Technical theatre training programs</li>
+        <li>Mentorship and skill development</li>
+        <li>Audition preparation sessions</li>
+        <li>Continuous learning initiatives</li>
+      </ul>
+      <p><strong>Sample Activities:</strong> Weekly acting workshops, voice projection exercises, movement and physicality training, improvisation sessions, character work, script reading groups, masterclasses with guest artists, technical skills workshops.</p>
+      <p><strong>Skills Developed:</strong> Teaching and mentorship, curriculum development, theatrical pedagogy, performance techniques, communication, patience, organizational skills, empathy.</p>
+      <p>The foundation of DRAMSOC's excellence, nurturing talent and ensuring every member has opportunities to grow and develop their theatrical abilities.</p>
+    </div>
+
+    <div class="dept-card">
+      <h3>Finance & Sponsorship</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <ul>
+        <li>Budget planning and financial management</li>
+        <li>Fundraising initiatives and campaigns</li>
+        <li>Sponsor acquisition and relationship management</li>
+        <li>Ticket sales and box office management</li>
+        <li>Resource allocation and cost control</li>
+        <li>Financial reporting and accountability</li>
+      </ul>
+      <p><strong>Sample Activities:</strong> Production budgeting, sponsor proposal development, fundraising events, ticket sales campaigns, financial reports, sponsor recognition programs, grant applications, merchandise sales.</p>
+      <p><strong>Skills Developed:</strong> Financial management, budgeting, fundraising, negotiation, sponsor relations, salesmanship, accountability, strategic planning, business communication.</p>
+      <p>The practical backbone ensuring DRAMSOC has the resources to bring ambitious theatrical visions to life sustainably.</p>
+    </div>
+
+    <div class="dept-card">
+      <h3>Scriptwriting & Research</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <ul>
+        <li>Original script development and playwriting</li>
+        <li>Script adaptation and translation</li>
+        <li>Historical and contextual research for productions</li>
+        <li>Dramaturgy and script analysis</li>
+        <li>Script reading and evaluation</li>
+        <li>Literary management and archives</li>
+      </ul>
+      <p><strong>Sample Activities:</strong> Playwriting workshops, script drafts and revisions, research presentations, dramaturgical notes, historical context research, script reading sessions, writer's rooms, documentation of productions.</p>
+      <p><strong>Skills Developed:</strong> Creative writing, research skills, analytical thinking, storytelling, cultural awareness, literary analysis, attention to detail, historical understanding, critical thinking.</p>
+      <p>The literary heart of DRAMSOC, ensuring our productions are intellectually rigorous, culturally informed, and artistically original.</p>
+    </div>
+
+    <div class="dept-card">
+      <h3>Costume & Makeup</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <ul>
+        <li>Costume design and creation</li>
+        <li>Makeup design for characters</li>
+        <li>Period and character research</li>
+        <li>Wardrobe management and maintenance</li>
+        <li>Quick changes and backstage organization</li>
+        <li>Special effects makeup</li>
+      </ul>
+      <p><strong>Sample Activities:</strong> Costume sketches and design boards, fabric selection and shopping, sewing and alterations, makeup tests and application tutorials, wig styling, accessory creation, costume fittings, laundry and repairs.</p>
+      <p><strong>Skills Developed:</strong> Costume design, sewing and fabrication, makeup artistry, color theory, historical fashion knowledge, attention to detail, creativity, time management, practical problem-solving.</p>
+      <p>The visual storytellers who transform actors into characters through the magic of costume and makeup artistry.</p>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;">
+    <h2>Join a Department</h2>
+    <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
+      Every department welcomes new members, regardless of experience level. Whether you're a complete beginner or have previous expertise, there's a place for you in DRAMSOC. Our senior members provide mentorship and training to help you develop your skills.
+    </p>
+    <a href="index.html#join" class="btn">Join DRAMSOC Today</a>
+  </section>
+
+  <section class="section">
+    <div style="background:#2a2a3a; border-radius:12px; padding:1.8em; margin-top:32px; font-style:italic; text-align:center;">
+      <p style="margin:0; font-size:1.1em;">
+        "<strong>Theatre is the ultimate collaborative art form. In DRAMSOC, we don't just make theatre - we build family.</strong>"
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Strathmore Drama Society (DRAMSOC)
+</footer>
+</body>
+</html>
