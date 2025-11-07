@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Strathmore Drama Society (DRAMSOC)</title>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
+  <link href="https://fonts.googleapis/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
   <style>
     /* ================= ORIGINAL STYLES (kept mostly intact) ================= */
     :root {
@@ -24,18 +24,18 @@
       font-family: "Poppins", Arial, sans-serif;
       margin: 0;
       overflow-x: hidden;
-      padding-top: 80px; /* Add padding for fixed header */
+      padding-top: 60px; /* Reduced from 80px to match thinner header */
     }
     
-    /* FIXED HEADER - Changed from sticky to fixed */
+    /* FIXED HEADER - Made thinner */
     header {
       background: linear-gradient(90deg, #1c1c1c, #000000);
       color: var(--gold);
       display: flex;
       align-items: center;
       gap: 0.8em;
-      padding: 0.25em 1.5em;
-      position: fixed; /* Changed from sticky to fixed */
+      padding: 0.1em 1.5em; /* Reduced vertical padding from 0.25em to 0.1em */
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -54,22 +54,22 @@
     }
    
     /* ================= NEW: DASHBOARD NAVIGATION ================= */
-    /* Desktop Navigation */
+    /* Desktop Navigation - Made more compact */
     nav {
       margin-left: auto;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.3rem; /* Reduced gap from 0.5rem */
     }
     
     nav a {
       color: var(--gold);
       text-decoration: none;
-      margin-left: 20px;
+      margin-left: 15px; /* Reduced from 20px */
       font-weight: 500;
       font-size: 1em;
       transition: color 0.2s;
-      padding: 2px 12px;
+      padding: 1px 10px; /* Reduced vertical padding from 2px to 1px */
       border-radius: 4px;
       cursor: pointer;
     }
@@ -87,30 +87,30 @@
       border: 1px solid var(--gold);
     }
    
-    /* Mobile Navigation - FIXED THE TYPO */
+    /* Mobile Navigation - Made thinner */
     @media (max-width: 768px) {
       body {
-        padding-top: 140px; /* More padding for mobile stacked layout */
+        padding-top: 100px; /* Reduced from 140px for thinner mobile header */
       }
       
       header {
         flex-direction: column;
         align-items: center;
-        gap: 0.3em;
-        padding: 0.4em 1em; /* FIXED: was "o.4em" */
+        gap: 0.2em; /* Reduced gap from 0.3em */
+        padding: 0.2em 1em; /* Reduced vertical padding from 0.4em to 0.2em */
       }
      
       nav {
-        margin: 0.2em 0 0 0;
+        margin: 0.1em 0 0 0; /* Reduced margin from 0.2em */
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 0.3rem;
+        gap: 0.2rem; /* Reduced gap from 0.3rem */
       }
      
       nav a {
         margin: 0;
-        padding: 3px 10px;
+        padding: 2px 8px; /* Reduced padding from 3px 10px */
         font-size: 1em;
         text-align: center;
         flex: 1 0 auto;
@@ -239,7 +239,7 @@
       padding: 90px 36px; 
       max-width: 1200px; 
       margin: 0 auto; 
-      scroll-margin-top: 100px; /* Add scroll margin for fixed header */
+      scroll-margin-top: 80px; /* Reduced from 100px to match thinner header */
     }
     
     .card-grid,.team-grid { display:flex; gap:2em; flex-wrap:wrap; justify-content:center; }
