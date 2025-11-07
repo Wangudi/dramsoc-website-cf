@@ -6,7 +6,7 @@
   <title>Strathmore Drama Society (DRAMSOC)</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
   <style>
-    /* ================= ORIGINAL STYLES (kept mostly intact) ================= */
+    /* ================= BASE STYLES ================= */
     :root {
       --gold: #ffd700;
       --red: #b80000;
@@ -40,7 +40,6 @@
     }
     
     /* ================= DASHBOARD NAVIGATION ================= */
-    /* Desktop Navigation */
     nav {
       margin-left: auto;
       display: flex;
@@ -56,8 +55,9 @@
       transition: color 0.2s;
       padding: 8px 12px;
       border-radius: 4px;
+      cursor: pointer;
     }
-    nav a:hover {
+    nav a:hover, nav a.active {
       color: #fff;
       background: rgba(255, 215, 0, 0.1);
       text-shadow: 0 0 8px #ffd700aa;
@@ -98,7 +98,18 @@
       }
     }
 
-    /* ================= REST OF ORIGINAL STYLES ================= */
+    /* ================= SECTION STYLES ================= */
+    .section {
+      padding: 90px 36px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: none; /* Hide all sections by default */
+    }
+    
+    .section.active {
+      display: block; /* Show only active section */
+    }
+    
     .hero {
       background: linear-gradient(135deg, #222144, #b80000 100%);
       min-height: 50vh;
@@ -109,8 +120,20 @@
       text-align: center;
       padding: 64px 18px;
     }
-    h1,h2,h3 { font-family: "Lora", serif; color: var(--gold); }
-    .motto { color: var(--red); font-size: 1.2em; font-family: "Lora", serif; letter-spacing: 2px; margin-bottom: 18px; }
+    
+    h1,h2,h3 { 
+      font-family: "Lora", serif; 
+      color: var(--gold); 
+    }
+    
+    .motto { 
+      color: var(--red); 
+      font-size: 1.2em; 
+      font-family: "Lora", serif; 
+      letter-spacing: 2px; 
+      margin-bottom: 18px; 
+    }
+    
     .events-upcoming {
       margin: 0 auto 32px auto;
       padding: 40px 28px;
@@ -133,24 +156,116 @@
       animation: scalePulse 2.6s infinite;
       text-shadow: 0 1px 10px #22154488;
     }
-    .events-upcoming-title { color: var(--gold); margin-bottom: 20px; font-size: 1.3em; font-family: inherit; font-style: normal; font-weight: bold; letter-spacing: 2px; text-shadow: 0 2px 12px #423b7977; }
-    .events-message { font-size: 1.06em; opacity: 0.88; }
-    @keyframes scalePulse { 0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)} }
-    .section { padding: 90px 36px; max-width: 1200px; margin: 0 auto; }
-    .card-grid,.team-grid { display:flex; gap:2em; flex-wrap:wrap; justify-content:center; }
-    .card { background:#222; border-radius:12px; padding:1.4em 1em; margin-bottom:22px; box-shadow:0 4px 32px #b8000044; max-width:340px; transition: transform 0.18s, box-shadow 0.18s; }
-    .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 10px 44px #b80000bb; }
-    .card img { width:100%; border-radius:8px; display:block; }
-    .btn, .btn-gold, .learn-more-btn { background: var(--gold); color:#111; border:none; border-radius:6px; padding:13px 2em; font-weight:700; margin-top:10px; font-size:1em; cursor:pointer; transition: background 0.22s, color 0.18s;}
-    .btn-gold:hover, .btn:hover, .learn-more-btn:hover { background: var(--red); color:#fff; }
-    .team-card { background:#262626; border-radius:8px; padding:1em 2.5em 1.4em; text-align:center; width:396px; max-width:95vw; box-sizing:border-box; margin:0 auto; }
-    .team-card img { width:200px; height:200px; border-radius:0; object-fit:cover; margin-bottom:8px; }
-    .team-card b { display:block; font-size:1.1em; margin-bottom:6px; color:var(--gold); }
-    .team-card .role { font-size:0.9em; color:#ddd; margin-top:2px; }
-    footer { background:#111; color:var(--gold); text-align:center; padding:30px 5px; margin-top:36px; }
     
-    /* ================= NEW STYLES FOR DASHBOARD SECTIONS ================= */
-    /* About Us Section */
+    .events-upcoming-title { 
+      color: var(--gold); 
+      margin-bottom: 20px; 
+      font-size: 1.3em; 
+      font-family: inherit; 
+      font-style: normal; 
+      font-weight: bold; 
+      letter-spacing: 2px; 
+      text-shadow: 0 2px 12px #423b7977; 
+    }
+    
+    .events-message { 
+      font-size: 1.06em; 
+      opacity: 0.88; 
+    }
+    
+    @keyframes scalePulse { 
+      0%{transform:scale(1)}
+      50%{transform:scale(1.03)}
+      100%{transform:scale(1)} 
+    }
+    
+    .card-grid, .team-grid { 
+      display:flex; 
+      gap:2em; 
+      flex-wrap:wrap; 
+      justify-content:center; 
+    }
+    
+    .card { 
+      background:#222; 
+      border-radius:12px; 
+      padding:1.4em 1em; 
+      margin-bottom:22px; 
+      box-shadow:0 4px 32px #b8000044; 
+      max-width:340px; 
+      transition: transform 0.18s, box-shadow 0.18s; 
+    }
+    
+    .card:hover { 
+      transform: translateY(-8px) scale(1.02); 
+      box-shadow: 0 10px 44px #b80000bb; 
+    }
+    
+    .card img { 
+      width:100%; 
+      border-radius:8px; 
+      display:block; 
+    }
+    
+    .btn, .btn-gold, .learn-more-btn { 
+      background: var(--gold); 
+      color:#111; 
+      border:none; 
+      border-radius:6px; 
+      padding:13px 2em; 
+      font-weight:700; 
+      margin-top:10px; 
+      font-size:1em; 
+      cursor:pointer; 
+      transition: background 0.22s, color 0.18s;
+    }
+    
+    .btn-gold:hover, .btn:hover, .learn-more-btn:hover { 
+      background: var(--red); 
+      color:#fff; 
+    }
+    
+    .team-card { 
+      background:#262626; 
+      border-radius:8px; 
+      padding:1em 2.5em 1.4em; 
+      text-align:center; 
+      width:396px; 
+      max-width:95vw; 
+      box-sizing:border-box; 
+      margin:0 auto; 
+    }
+    
+    .team-card img { 
+      width:200px; 
+      height:200px; 
+      border-radius:0; 
+      object-fit:cover; 
+      margin-bottom:8px; 
+    }
+    
+    .team-card b { 
+      display:block; 
+      font-size:1.1em; 
+      margin-bottom:6px; 
+      color:var(--gold); 
+    }
+    
+    .team-card .role { 
+      font-size:0.9em; 
+      color:#ddd; 
+      margin-top:2px; 
+    }
+    
+    footer { 
+      background:#111; 
+      color:var(--gold); 
+      text-align:center; 
+      padding:30px 5px; 
+      margin-top:36px; 
+    }
+    
+    /* ================= DASHBOARD SECTION STYLES ================= */
     .about-content {
       max-width: 800px;
       margin: 0 auto;
@@ -376,11 +491,74 @@
       flex-wrap: wrap;
     }
     
+    /* Join Section */
+    .join-section {
+      background: linear-gradient(120deg, #251544, #423b79 80%);
+      padding: 60px 20px;
+      border-radius: 16px;
+      margin: 40px 0;
+    }
+    
+    /* Contact Section */
+    .social-icons {
+      margin-top:8px; 
+      display:flex; 
+      gap:15px; 
+      justify-content: center;
+    }
+    
     /* ================= MODAL STYLES ================= */
-    #productionModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(34,20,68,0.95); z-index:9999; align-items:center; justify-content:center; }
-    #productionModal > div { background:#222144; border-radius:16px; padding:32px; max-width:90vw; max-height:86vh; overflow:auto; color:#fff; box-shadow:0 12px 48px #0008; position:relative; animation: scalePulse 1.7s; }
-    .modal-image { max-width:220px; height:auto; border-radius:10px; object-fit:contain; margin:0 10px 10px 0; box-shadow:0 2px 18px #1118; background: linear-gradient(180deg,#222 0%, #2b2540 100%); display:block; }
-    #articleModal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); color:#fff; overflow:auto; padding:1rem; z-index:10000; }
+    #productionModal { 
+      display:none; 
+      position:fixed; 
+      top:0; 
+      left:0; 
+      width:100vw; 
+      height:100vh; 
+      background: rgba(34,20,68,0.95); 
+      z-index:9999; 
+      align-items:center; 
+      justify-content:center; 
+    }
+    
+    #productionModal > div { 
+      background:#222144; 
+      border-radius:16px; 
+      padding:32px; 
+      max-width:90vw; 
+      max-height:86vh; 
+      overflow:auto; 
+      color:#fff; 
+      box-shadow:0 12px 48px #0008; 
+      position:relative; 
+      animation: scalePulse 1.7s; 
+    }
+    
+    .modal-image { 
+      max-width:220px; 
+      height:auto; 
+      border-radius:10px; 
+      object-fit:contain; 
+      margin:0 10px 10px 0; 
+      box-shadow:0 2px 18px #1118; 
+      background: linear-gradient(180deg,#222 0%, #2b2540 100%); 
+      display:block; 
+    }
+    
+    #articleModal { 
+      display:none; 
+      position:fixed; 
+      top:0; 
+      left:0; 
+      width:100vw; 
+      height:100vh; 
+      background:rgba(0,0,0,0.85); 
+      color:#fff; 
+      overflow:auto; 
+      padding:1rem; 
+      z-index:10000; 
+    }
+    
     #articleModal > div {
       max-width:95vw;
       width:100%;
@@ -393,6 +571,7 @@
       word-break: break-word;
       overflow-wrap: anywhere;
     }
+    
     .img-spinner {
       display:inline-block;
       width:28px;
@@ -404,7 +583,10 @@
       vertical-align: middle;
       margin-right:8px;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    @keyframes spin { 
+      to { transform: rotate(360deg); } 
+    }
 
     /* Mobile responsive adjustments */
     @media (max-width: 600px) {
@@ -435,577 +617,523 @@
 
   <!-- Dashboard Navigation -->
   <nav id="mainNav" aria-label="Primary navigation">
-    <a href="#home" class="nav-link">Home</a>
-    <a href="#about" class="nav-link">About Us</a>
-    <a href="#team" class="nav-link">Our Team</a>
-    <a href="#departments" class="nav-link">Departments</a>
-    <a href="#alumni" class="nav-link">Alumni</a>
-    <a href="#contact" class="nav-link">Contact Us</a>
+    <a href="#home" class="nav-link active" data-section="home">Home</a>
+    <a href="#about" class="nav-link" data-section="about">About Us</a>
+    <a href="#team" class="nav-link" data-section="team">Our Team</a>
+    <a href="#departments" class="nav-link" data-section="departments">Departments</a>
+    <a href="#alumni" class="nav-link" data-section="alumni">Alumni</a>
+    <a href="#contact" class="nav-link" data-section="contact">Contact Us</a>
   </nav>
 </header>
 
-  <main>
-    <section id="home" class="hero">
+<main>
+  <!-- Home Section -->
+  <section id="home" class="section active">
+    <div class="hero">
       <h1>Take It to the Next Level!</h1>
       <div class="events-upcoming">
         <span class="events-upcoming-title">UPCOMING SHOWS / EVENTS</span>
         <div class="events-message">No updates, check back later</div>
       </div>
-      <a class="btn btn-gold" href="#join">Join Us Today</a>
-    </section>
+      <a class="btn btn-gold" href="#join" onclick="showSection('join')">Join Us Today</a>
+    </div>
     
-    <!-- About Us Section -->
-    <section id="about" class="section">
-      <h2>About Us</h2>
-      <div class="about-content">
-        <div class="about-section">
-          <h3>Who We Are</h3>
-          <p>The Strathmore Drama Society (DRAMSOC) is a vibrant student-led organization at Strathmore University, dedicated to nurturing artistic talent, fostering creativity, and driving social impact through theatre and film. Established in 2006, DRAMSOC has grown into a leading platform for students to explore, develop, and showcase their theatrical and cinematic talents. Since its inception, it has trained and nurtured hundreds of students in acting, directing, scriptwriting, and technical theatre. We have driven social impact through drama and expanded its reach beyond Strathmore University, engaging communities across Kenya through outreach programs and performances.</p>
-        </div>
-        
-        <div class="about-section">
-          <h3>Our Core Values</h3>
-          <div class="core-values-grid">
-            <div class="value-card">
-              <h4>Quality</h4>
-              <p>Excellence in all productions and programs.</p>
-            </div>
-            <div class="value-card">
-              <h4>Integrity</h4>
-              <p>Transparency and accountability in all operations.</p>
-            </div>
-            <div class="value-card">
-              <h4>Creativity</h4>
-              <p>Innovation in storytelling and artistic expression.</p>
-            </div>
-            <div class="value-card">
-              <h4>Honesty</h4>
-              <p>Authenticity in all interactions and engagements.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="about-section">
-          <h3>What We Do</h3>
-          <ul class="impact-list">
-            <li><strong>Productions:</strong> Annual theatrical plays and short films that address social issues and entertain audiences.</li>
-            <li><strong>Training:</strong> Workshops and mentorship programs in acting, directing, cinematography, and more.</li>
-            <li><strong>Outreach:</strong> Community programs that use drama to educate and inspire underserved populations.</li>
-            <li><strong>Events:</strong> Open mic nights, and collaborative projects with other clubs and organizations.</li>
-          </ul>
-        </div>
-        
-        <div class="about-section">
-          <h3>Our Impact</h3>
-          <p>Over the years, DRAMSOC has:</p>
-          <ul class="impact-list">
-            <li>Empowered young talent, with many alumni pursuing careers in theatre, film, and media.</li>
-            <li>Addressed critical social issues such as mental health, gender equality, and environmental conservation through impactful productions.</li>
-            <li>Built a strong alumni network that continues to support and mentor current members.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Our Team Section -->
-    <section id="team" class="section">
-      <h2>Our Team</h2>
-      <div class="team-intro">
-        <h3>The Passionate Leaders Behind DRAMSOC</h3>
-        <p>Meet the dedicated leaders who guide DRAMSOC towards excellence in theatrical arts, foster community, and ensure every production reaches its full potential.</p>
+    <div style="max-width: 800px; margin: 60px auto; text-align: center;">
+      <h2>Welcome to DRAMSOC</h2>
+      <p>The Strathmore Drama Society (DRAMSOC) is a vibrant student-led organization at Strathmore University, dedicated to nurturing artistic talent, fostering creativity, and driving social impact through theatre and film.</p>
+      <p>Use the navigation above to explore our society, meet our team, learn about our departments, and connect with our alumni network.</p>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <div class="about-section">
+        <h3>Who We Are</h3>
+        <p>The Strathmore Drama Society (DRAMSOC) is a vibrant student-led organization at Strathmore University, dedicated to nurturing artistic talent, fostering creativity, and driving social impact through theatre and film. Established in 2006, DRAMSOC has grown into a leading platform for students to explore, develop, and showcase their theatrical and cinematic talents. Since its inception, it has trained and nurtured hundreds of students in acting, directing, scriptwriting, and technical theatre. We have driven social impact through drama and expanded its reach beyond Strathmore University, engaging communities across Kenya through outreach programs and performances.</p>
       </div>
       
-      <div class="team-category">
-        <h3>Leadership Team 2024/2025</h3>
-        <div class="team-grid">
-          <div class="team-member">
-            <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" loading="lazy" />
-            <h4>Dan Kakuru</h4>
-            <div class="position">President</div>
-            <p>Dan leads DRAMSOC with vision and dedication, overseeing all society operations, representing DRAMSOC to the university and external partners, and ensuring the society's strategic direction aligns with our mission of theatrical excellence.</p>
+      <div class="about-section">
+        <h3>Our Core Values</h3>
+        <div class="core-values-grid">
+          <div class="value-card">
+            <h4>Quality</h4>
+            <p>Excellence in all productions and programs.</p>
           </div>
-          
-          <div class="team-member">
-            <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" loading="lazy" />
-            <h4>Leila Kaisa</h4>
-            <div class="position">Vice President</div>
-            <p>Leila supports the President in all activities, steps in during absences, and plays a crucial role in member engagement and community building. She ensures smooth operations and maintains the vibrant DRAMSOC culture.</p>
+          <div class="value-card">
+            <h4>Integrity</h4>
+            <p>Transparency and accountability in all operations.</p>
           </div>
-          
-          <div class="team-member">
-            <img src="images/team/Joe Abala.png" alt="Joe Abala" loading="lazy" />
-            <h4>Joe Abala</h4>
-            <div class="position">Organizing Secretary General</div>
-            <p>Joe manages all organizational aspects, coordinates meetings and events, maintains member records, and ensures efficient communication within the society. His organizational skills keep DRAMSOC running smoothly.</p>
+          <div class="value-card">
+            <h4>Creativity</h4>
+            <p>Innovation in storytelling and artistic expression.</p>
           </div>
-          
-          <div class="team-member">
-            <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" loading="lazy" />
-            <h4>Cherise Chomba</h4>
-            <div class="position">Secretary General</div>
-            <p>Cherise handles correspondence, documentation, and administrative duties. She maintains society records, prepares meeting minutes, and ensures all documentation supports DRAMSOC's professional operations.</p>
-          </div>
-          
-          <div class="team-member">
-            <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" loading="lazy" />
-            <h4>Paula Nimurungi</h4>
-            <div class="position">Financial Manager</div>
-            <p>Paula oversees all financial matters, manages budgets, handles fundraising initiatives, and ensures fiscal responsibility. Her financial acumen enables DRAMSOC to bring ambitious productions to life sustainably.</p>
+          <div class="value-card">
+            <h4>Honesty</h4>
+            <p>Authenticity in all interactions and engagements.</p>
           </div>
         </div>
       </div>
       
-      <div class="team-category">
-        <h3>Production Team</h3>
-        <p>Every production features a dedicated creative and technical team assembled specifically for that show. Our production teams typically include:</p>
-        
-        <div class="production-roles">
-          <div class="role-card">
-            <h4>Director</h4>
-            <p>The artistic visionary who interprets the script, guides actors, coordinates all creative elements, and shapes the overall production. Directors work closely with all departments to realize their creative vision.</p>
-          </div>
-          
-          <div class="role-card">
-            <h4>Stage Manager</h4>
-            <p>The organizational backbone of any production, managing rehearsals, calling cues during performances, coordinating backstage operations, and ensuring everything runs smoothly from tech week through closing night.</p>
-          </div>
-          
-          <div class="role-card">
-            <h4>Cast</h4>
-            <p>Our talented actors who breathe life into characters, undergo rigorous rehearsals, develop chemistry as an ensemble, and deliver powerful performances that captivate audiences night after night.</p>
-          </div>
-          
-          <div class="role-card">
-            <h4>Technical Crew</h4>
-            <p>The skilled technicians managing lighting, sound, set construction, props, and special effects. They create the physical and atmospheric world that supports the storytelling and enhances the audience experience.</p>
-          </div>
-          
-          <div class="role-card">
-            <h4>Costume & Makeup Team</h4>
-            <p>Artists who design and create costumes, apply makeup, manage wardrobe, and handle quick changes. They transform actors into characters through visual storytelling and period-appropriate styling.</p>
-          </div>
-          
-          <div class="role-card">
-            <h4>PR & Marketing Team</h4>
-            <p>The publicity force behind every show, creating promotional materials, managing social media campaigns, engaging audiences, documenting the production process, and ensuring strong ticket sales.</p>
-          </div>
-        </div>
-        
-        <p style="text-align: center; margin-top: 20px;"><em>Production teams are announced for each show. Check our social media and articles section for updates on upcoming productions and their creative teams!</em></p>
-      </div>
-      
-      <div class="team-category">
-        <h3>Behind the Scenes</h3>
-        <p>DRAMSOC wouldn't exist without the countless hours of work from our dedicated members. From late-night rehearsals to early-morning set builds, from costume fittings to lighting plots, every member contributes their unique talents to create theatrical magic.</p>
-        
-        <div style="text-align: center; margin-top: 30px;">
-          <h4>Want to Be Part of the Team?</h4>
-          <p>Whether you dream of performing on stage, directing productions, managing technical elements, or supporting behind the scenes, DRAMSOC has a place for you. Join us and discover your theatrical passion!</p>
-          <a class="btn btn-gold" href="#join">Join DRAMSOC Today</a>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Departments Section -->
-    <section id="departments" class="section">
-      <h2>Our Departments</h2>
-      <div class="departments-intro">
-        <h3>The Backbone of DRAMSOC Excellence</h3>
-        <p>DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic. Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.</p>
-      </div>
-      
-      <div class="department-card">
-        <h3>Directing & Production</h3>
-        <p><strong>Core Responsibilities:</strong></p>
-        <div class="responsibilities-grid">
-          <ul class="responsibilities-list">
-            <li>Overall artistic vision and direction for productions</li>
-            <li>Script selection and interpretation</li>
-            <li>Casting actors and assembling creative teams</li>
-            <li>Blocking, staging, and choreography</li>
-            <li>Rehearsal scheduling and management</li>
-            <li>Coordinating all departments</li>
-          </ul>
-          <div>
-            <p><strong>Sample Activities:</strong></p>
-            <ul class="activities-list">
-              <li>Directors' workshops</li>
-              <li>Script analysis sessions</li>
-              <li>Blocking rehearsals</li>
-              <li>Character development exercises</li>
-              <li>Production meetings</li>
-              <li>Tech rehearsals</li>
-              <li>Dress rehearsals</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>Skills Developed:</strong> Leadership, creative vision, communication, collaboration, time management, artistic interpretation, decision-making under pressure.</p>
-        <p>This department shapes the artistic heart of every production, transforming words on a page into living, breathing theatre.</p>
-      </div>
-      
-      <div class="department-card">
-        <h3>Technical Theatre</h3>
-        <p><strong>Core Responsibilities:</strong></p>
-        <div class="responsibilities-grid">
-          <ul class="responsibilities-list">
-            <li>Lighting design and operation</li>
-            <li>Sound design and audio engineering</li>
-            <li>Set construction and stage management</li>
-            <li>Props creation and management</li>
-            <li>Special effects and technical innovations</li>
-            <li>Safety protocols and equipment maintenance</li>
-          </ul>
-          <div>
-            <p><strong>Sample Activities:</strong></p>
-            <ul class="activities-list">
-              <li>Lighting plots and programming</li>
-              <li>Sound cue creation</li>
-              <li>Set building workshops</li>
-              <li>Props fabrication</li>
-              <li>Technical run-throughs</li>
-              <li>Equipment training</li>
-              <li>Troubleshooting technical issues</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>Skills Developed:</strong> Technical proficiency, problem-solving, attention to detail, safety awareness, teamwork, adaptability, creative technical solutions, electrical and carpentry skills.</p>
-        <p>The unseen heroes who create the atmosphere, mood, and physical world that brings each production to life.</p>
-      </div>
-      
-      <div class="department-card">
-        <h3>PR & Marketing</h3>
-        <p><strong>Core Responsibilities:</strong></p>
-        <div class="responsibilities-grid">
-          <ul class="responsibilities-list">
-            <li>Publicity campaigns and promotional strategies</li>
-            <li>Social media management (Instagram, YouTube, TikTok)</li>
-            <li>Poster and program design</li>
-            <li>Press releases and media relations</li>
-            <li>Audience engagement and community outreach</li>
-            <li>Photography and videography documentation</li>
-          </ul>
-          <div>
-            <p><strong>Sample Activities:</strong></p>
-            <ul class="activities-list">
-              <li>Social media content creation</li>
-              <li>Poster photoshoots</li>
-              <li>Video trailers</li>
-              <li>Press kit development</li>
-              <li>Opening night coverage</li>
-              <li>Behind-the-scenes content</li>
-              <li>Audience surveys</li>
-              <li>Sponsor presentations</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>Skills Developed:</strong> Marketing strategy, graphic design, copywriting, social media management, photography/videography, public relations, brand management, analytics.</p>
-        <p>The storytellers who ensure the world knows about DRAMSOC's incredible work and brings audiences through our doors.</p>
-      </div>
-      
-      <div class="department-card">
-        <h3>Training & Development</h3>
-        <p><strong>Core Responsibilities:</strong></p>
-        <div class="responsibilities-grid">
-          <ul class="responsibilities-list">
-            <li>Acting workshops and technique classes</li>
-            <li>Voice and movement training</li>
-            <li>Technical theatre training programs</li>
-            <li>Mentorship and skill development</li>
-            <li>Audition preparation sessions</li>
-            <li>Continuous learning initiatives</li>
-          </ul>
-          <div>
-            <p><strong>Sample Activities:</strong></p>
-            <ul class="activities-list">
-              <li>Weekly acting workshops</li>
-              <li>Voice projection exercises</li>
-              <li>Movement and physicality training</li>
-              <li>Improvisation sessions</li>
-              <li>Character work</li>
-              <li>Script reading groups</li>
-              <li>Masterclasses with guest artists</li>
-              <li>Technical skills workshops</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>Skills Developed:</strong> Teaching and mentorship, curriculum development, theatrical pedagogy, performance techniques, communication, patience, organizational skills, empathy.</p>
-        <p>The foundation of DRAMSOC's excellence, nurturing talent and ensuring every member has opportunities to grow and develop their theatrical abilities.</p>
-      </div>
-      
-      <div class="department-card">
-        <h3>Finance & Sponsorship</h3>
-        <p><strong>Core Responsibilities:</strong></p>
-        <div class="responsibilities-grid">
-          <ul class="responsibilities-list">
-            <li>Budget planning and financial management</li>
-            <li>Fundraising initiatives and campaigns</li>
-            <li>Sponsor acquisition and relationship management</li>
-            <li>Ticket sales and box office management</li>
-            <li>Resource allocation and cost control</li>
-            <li>Financial reporting and accountability</li>
-          </ul>
-          <div>
-            <p><strong>Sample Activities:</strong></p>
-            <ul class="activities-list">
-              <li>Production budgeting</li>
-              <li>Sponsor proposal development</li>
-              <li>Fundraising events</li>
-              <li>Ticket sales campaigns</li>
-              <li>Financial reports</li>
-              <li>Sponsor recognition programs</li>
-              <li>Grant applications</li>
-              <li>Merchandise sales</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>Skills Developed:</strong> Financial management, budgeting, fundraising, negotiation, sponsor relations, salesmanship, accountability, strategic planning, business communication.</p>
-        <p>The practical backbone ensuring DRAMSOC has the resources to bring ambitious theatrical visions to life sustainably.</p>
-      </div>
-      
-      <div class="department-card">
-        <h3>Scriptwriting & Research</h3>
-        <p><strong>Core Responsibilities:</strong></p>
-        <div class="responsibilities-grid">
-          <ul class="responsibilities-list">
-            <li>Original script development and playwriting</li>
-            <li>Script adaptation and translation</li>
-            <li>Historical and contextual research for productions</li>
-            <li>Dramaturgy and script analysis</li>
-            <li>Script reading and evaluation</li>
-            <li>Literary management and archives</li>
-          </ul>
-          <div>
-            <p><strong>Sample Activities:</strong></p>
-            <ul class="activities-list">
-              <li>Playwriting workshops</li>
-              <li>Script drafts and revisions</li>
-              <li>Research presentations</li>
-              <li>Dramaturgical notes</li>
-              <li>Historical context research</li>
-              <li>Script reading sessions</li>
-              <li>Writer's rooms</li>
-              <li>Documentation of productions</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>Skills Developed:</strong> Creative writing, research skills, analytical thinking, storytelling, cultural awareness, literary analysis, attention to detail, historical understanding, critical thinking.</p>
-        <p>The literary heart of DRAMSOC, ensuring our productions are intellectually rigorous, culturally informed, and artistically original.</p>
-      </div>
-      
-      <div class="department-card">
-        <h3>Costume & Makeup</h3>
-        <p><strong>Core Responsibilities:</strong></p>
-        <div class="responsibilities-grid">
-          <ul class="responsibilities-list">
-            <li>Costume design and creation</li>
-            <li>Makeup design for characters</li>
-            <li>Period and character research</li>
-            <li>Wardrobe management and maintenance</li>
-            <li>Quick changes and backstage organization</li>
-            <li>Special effects makeup</li>
-          </ul>
-          <div>
-            <p><strong>Sample Activities:</strong></p>
-            <ul class="activities-list">
-              <li>Costume sketches and design boards</li>
-              <li>Fabric selection and shopping</li>
-              <li>Sewing and alterations</li>
-              <li>Makeup tests and application tutorials</li>
-              <li>Wig styling</li>
-              <li>Accessory creation</li>
-              <li>Costume fittings</li>
-              <li>Laundry and repairs</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>Skills Developed:</strong> Costume design, sewing and fabrication, makeup artistry, color theory, historical fashion knowledge, attention to detail, creativity, time management, practical problem-solving.</p>
-        <p>The visual storytellers who transform actors into characters through the magic of costume and makeup artistry.</p>
-      </div>
-      
-      <div style="text-align: center; margin-top: 40px;">
-        <h3>Join a Department</h3>
-        <p>Every department welcomes new members, regardless of experience level. Whether you're a complete beginner or have previous expertise, there's a place for you in DRAMSOC. Our senior members provide mentorship and training to help you develop your skills.</p>
-        <a class="btn btn-gold" href="#join">Join DRAMSOC Today</a>
-      </div>
-      
-      <div class="department-process">
-        <h3>How Departments Work Together</h3>
-        <p>While each department has specialized responsibilities, the magic of theatre happens when all departments collaborate seamlessly. A typical production involves:</p>
-        
-        <div class="process-steps">
-          <div class="process-step">
-            <h4>Pre-Production</h4>
-            <p>Directing & Production leads script selection, with input from Scriptwriting & Research. Finance & Sponsorship develops the budget while PR & Marketing plans the publicity campaign. Technical begins design concepts and Costume & Makeup starts research.</p>
-          </div>
-          
-          <div class="process-step">
-            <h4>Rehearsal Period</h4>
-            <p>Directing & Production works with actors while Training & Development provides supplementary skills workshops. Technical builds sets and programs lighting. Costume & Makeup creates and fits costumes. PR & Marketing shoots promotional content.</p>
-          </div>
-          
-          <div class="process-step">
-            <h4>Tech Week</h4>
-            <p>All departments intensify collaboration. Technical integrates all technical elements. Costume & Makeup finalizes all looks and organizes quick changes. Directing & Production coordinates tech and dress rehearsals. PR & Marketing amplifies publicity.</p>
-          </div>
-          
-          <div class="process-step">
-            <h4>Performance Run</h4>
-            <p>All departments support live performances, troubleshoot issues, and ensure smooth operations night after night.</p>
-          </div>
-          
-          <div class="process-step">
-            <h4>Post-Production</h4>
-            <p>Departments document the production, evaluate successes and challenges, and begin planning for the next show.</p>
-          </div>
-        </div>
-        
-        <blockquote style="font-style: italic; margin-top: 30px; border-left: 4px solid var(--gold); padding-left: 20px;">
-          "Theatre is the ultimate collaborative art form. In DRAMSOC, we don't just make theatre - we build family."
-        </blockquote>
-      </div>
-    </section>
-    
-    <!-- Alumni Section -->
-    <section id="alumni" class="section">
-      <h2>Our Alumni</h2>
-      <div class="alumni-intro">
-        <h3>Where Are They Now?</h3>
-        <p>DRAMSOC alumni have gone on to achieve remarkable success in theatre, film, television, media, business, law, education, and countless other fields. The skills developed through drama - confidence, communication, collaboration, creativity, and critical thinking - translate powerfully to any career path.</p>
-      </div>
-      
-      <div class="alumni-categories">
-        <div class="alumni-category">
-          <h3>Film & Television</h3>
-          <p>Several of our alumni have pursued successful careers in the film and television industry, working as actors, directors, producers, cinematographers, and screenwriters. They've appeared in local and international productions, bringing the storytelling skills honed at DRAMSOC to screens around the world.</p>
-        </div>
-        
-        <div class="alumni-category">
-          <h3>Theatre & Performing Arts</h3>
-          <p>Many DRAMSOC members have continued in professional theatre, working with major theatre companies, directing acclaimed productions, teaching drama, and establishing their own theatre groups. They carry forward the spirit of excellence and innovation that defines DRAMSOC.</p>
-        </div>
-        
-        <div class="alumni-category">
-          <h3>Media & Communications</h3>
-          <p>DRAMSOC's emphasis on communication and public performance has equipped alumni for success in journalism, public relations, broadcasting, content creation, and digital media. They're telling stories across multiple platforms and reaching audiences worldwide.</p>
-        </div>
-        
-        <div class="alumni-category">
-          <h3>Business & Leadership</h3>
-          <p>The leadership, teamwork, and project management skills developed through theatre productions have proven invaluable in business. Alumni hold leadership positions in corporations, run successful businesses, and excel in diverse professional fields.</p>
-        </div>
-        
-        <div class="alumni-category">
-          <h3>Education & Arts Administration</h3>
-          <p>Some alumni have become educators, teaching drama and theatre arts, inspiring the next generation of performers and storytellers. Others work in arts administration, managing cultural institutions and supporting the arts sector.</p>
-        </div>
-        
-        <div class="alumni-category">
-          <h3>Diverse Professional Fields</h3>
-          <p>DRAMSOC alumni succeed in law, medicine, engineering, finance, diplomacy, and more. The confidence, public speaking skills, emotional intelligence, and creative problem-solving developed through drama are assets in any profession.</p>
-        </div>
-      </div>
-      
-      <div class="alumni-testimonial">
-        <p>"DRAMSOC wasn't just about acting - it was about discovering who I am, building lifelong friendships, and developing skills that have served me in every aspect of my life. The confidence I gained on stage translated directly to confidence in boardrooms, presentations, and leadership roles."</p>
-        <p style="text-align: right; margin-top: 15px;">- A DRAMSOC Alumnus</p>
-      </div>
-      
-      <div class="alumni-category">
-        <h3>Alumni Network</h3>
-        <p>DRAMSOC maintains a vibrant alumni network. Former members stay connected through social media, alumni events, mentorship programs, and by returning to support current productions. Our alumni community spans generations and continents, united by the shared experience of bringing stories to life on the Strathmore stage.</p>
-      </div>
-      
-      <div style="text-align: center; margin-top: 40px;">
-        <h3>Are You a DRAMSOC Alumnus?</h3>
-        <p>We'd love to hear from you! Share your story, stay connected with fellow alumni, and continue to be part of the DRAMSOC family. Your journey inspires current members and shows them the incredible possibilities that lie ahead.</p>
-        
-        <div class="alumni-actions">
-          <a class="btn" href="https://forms.gle/your-alumni-form" target="_blank">Alumni Sign-Up Form</a>
-          <a class="btn" href="#contact">Contact Us</a>
-        </div>
-      </div>
-      
-      <div class="alumni-category">
-        <h3>Give Back to DRAMSOC</h3>
-        <p>Alumni support helps DRAMSOC continue its tradition of excellence. Whether through mentorship, guest workshops, sponsorship, or simply attending shows and cheering on current members, your involvement makes a difference. Consider:</p>
+      <div class="about-section">
+        <h3>What We Do</h3>
         <ul class="impact-list">
-          <li>Mentoring current DRAMSOC members</li>
-          <li>Leading workshops in your area of expertise</li>
-          <li>Sponsoring productions or scholarships</li>
-          <li>Attending shows and supporting current work</li>
-          <li>Sharing job opportunities and internships</li>
-          <li>Guest speaking or directing</li>
+          <li><strong>Productions:</strong> Annual theatrical plays and short films that address social issues and entertain audiences.</li>
+          <li><strong>Training:</strong> Workshops and mentorship programs in acting, directing, cinematography, and more.</li>
+          <li><strong>Outreach:</strong> Community programs that use drama to educate and inspire underserved populations.</li>
+          <li><strong>Events:</strong> Open mic nights, and collaborative projects with other clubs and organizations.</li>
         </ul>
       </div>
-    </section>
-
-    <!-- Rest of the original sections (productions, articles, join, contact) -->
-    <section id="productions" class="section">
-      <h2>Recent Productions</h2>
-      <div class="card-grid">
-        <div class="card">
-          <img src="images/productions/The Waiting Room (2).jpg" alt="Waiting Room Poster" loading="lazy" />
-          <h3>The Waiting Room</h3>
-          <p>Family secrets unravel in a hospital waiting room.</p>
-          <button class="btn learn-more-btn" onclick="showProduction('waiting-room')">Learn More</button>
-        </div>
-        <div class="card">
-          <img src="images/productions/The Homecoming (1).jpg" alt="Homecoming Poster" loading="lazy" />
-          <h3>The Homecoming</h3>
-          <p>A comedic but tense family reunion in Nairobi.</p>
-          <button class="btn learn-more-btn" onclick="showProduction('homecoming')">Learn More</button>
-        </div>
-        <div class="card">
-          <img src="images/productions/The Samaritan (1).jpg" alt="Samaritan Poster" loading="lazy" />
-          <h3>The Samaritan</h3>
-          <p>When justice meets corruption, who wins?</p>
-          <button class="btn learn-more-btn" onclick="showProduction('samaritan')">Learn More</button>
-        </div>
+      
+      <div class="about-section">
+        <h3>Our Impact</h3>
+        <p>Over the years, DRAMSOC has:</p>
+        <ul class="impact-list">
+          <li>Empowered young talent, with many alumni pursuing careers in theatre, film, and media.</li>
+          <li>Addressed critical social issues such as mental health, gender equality, and environmental conservation through impactful productions.</li>
+          <li>Built a strong alumni network that continues to support and mentor current members.</li>
+        </ul>
       </div>
-      <p style="color:var(--gold);text-align:center;">2023: Major Barbara | 2022: Accidental Death of an Anarchist</p>
-      <!-- Production Modal -->
-      <div id="productionModal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div>
-          <span id="productionClose" style="position: absolute; top: 14px; right: 20px; font-size: 2.3em; color: var(--gold); cursor: pointer; z-index:10;">×</span>
-          <div id="productionModalContent"></div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="articles" class="section">
-      <h2>Articles & Updates</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>The Rise of Contemporary Theatre in Kenya</h3>
-          <p>Discover how modern Kenyan playwrights are transforming traditional stage with innovative stories and styles that connect with the youth while celebrating heritage.</p>
-          <button class="btn learn-more-btn" onclick="showArticle('contemporary-theatre')">Read More</button>
-        </div>
-        <div class="card">
-          <h3>Behind the Scenes: Crafting a Stage Play</h3>
-          <p>Go behind the curtains with our directors and stage managers as they share insights into script adaptation, set design, and stage coordination for a successful production.</p>
-          <button class="btn learn-more-btn" onclick="showArticle('crafting-stage-play')">Read More</button>
-        </div>
-        <div class="card">
-          <h3>The Power of Drama in Social Change</h3>
-          <p>Explore how drama in Kenya is addressing social issues, inspiring community discussions, and influencing positive change through powerful storytelling.</p>
-          <button class="btn learn-more-btn" onclick="showArticle('drama-social-change')">Read More</button>
-        </div>
-      </div>
+    </div>
+  </section>
   
-      <!-- Newsletter Signup -->
-      <div style="max-width: 600px; margin: 40px auto; text-align: center;">
-        <h3 style="color: var(--gold);">Stay Updated</h3>
-        <p>Subscribe to our newsletter for the latest news, events, and audition information.</p>
-        <form class="newsletter-form" id="newsletterForm">
-          <input type="email" placeholder="Your email address" required>
-          <button type="submit" class="btn">Subscribe</button>
-        </form>
-      </div>
-    </section>
+  <!-- Our Team Section -->
+  <section id="team" class="section">
+    <h2>Our Team</h2>
+    <div class="team-intro">
+      <h3>The Passionate Leaders Behind DRAMSOC</h3>
+      <p>Meet the dedicated leaders who guide DRAMSOC towards excellence in theatrical arts, foster community, and ensure every production reaches its full potential.</p>
+    </div>
     
-    <!-- Join Us Section -->
-    <section id="join" class="section join-section">
-      <h2 style="text-align: center;">Join DRAMSOC</h2>
+    <div class="team-category">
+      <h3>Leadership Team 2024/2025</h3>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" loading="lazy" />
+          <h4>Dan Kakuru</h4>
+          <div class="position">President</div>
+          <p>Dan leads DRAMSOC with vision and dedication, overseeing all society operations, representing DRAMSOC to the university and external partners, and ensuring the society's strategic direction aligns with our mission of theatrical excellence.</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" loading="lazy" />
+          <h4>Leila Kaisa</h4>
+          <div class="position">Vice President</div>
+          <p>Leila supports the President in all activities, steps in during absences, and plays a crucial role in member engagement and community building. She ensures smooth operations and maintains the vibrant DRAMSOC culture.</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="images/team/Joe Abala.png" alt="Joe Abala" loading="lazy" />
+          <h4>Joe Abala</h4>
+          <div class="position">Organizing Secretary General</div>
+          <p>Joe manages all organizational aspects, coordinates meetings and events, maintains member records, and ensures efficient communication within the society. His organizational skills keep DRAMSOC running smoothly.</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" loading="lazy" />
+          <h4>Cherise Chomba</h4>
+          <div class="position">Secretary General</div>
+          <p>Cherise handles correspondence, documentation, and administrative duties. She maintains society records, prepares meeting minutes, and ensures all documentation supports DRAMSOC's professional operations.</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" loading="lazy" />
+          <h4>Paula Nimurungi</h4>
+          <div class="position">Financial Manager</div>
+          <p>Paula oversees all financial matters, manages budgets, handles fundraising initiatives, and ensures fiscal responsibility. Her financial acumen enables DRAMSOC to bring ambitious productions to life sustainably.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="team-category">
+      <h3>Production Team</h3>
+      <p>Every production features a dedicated creative and technical team assembled specifically for that show. Our production teams typically include:</p>
+      
+      <div class="production-roles">
+        <div class="role-card">
+          <h4>Director</h4>
+          <p>The artistic visionary who interprets the script, guides actors, coordinates all creative elements, and shapes the overall production. Directors work closely with all departments to realize their creative vision.</p>
+        </div>
+        
+        <div class="role-card">
+          <h4>Stage Manager</h4>
+          <p>The organizational backbone of any production, managing rehearsals, calling cues during performances, coordinating backstage operations, and ensuring everything runs smoothly from tech week through closing night.</p>
+        </div>
+        
+        <div class="role-card">
+          <h4>Cast</h4>
+          <p>Our talented actors who breathe life into characters, undergo rigorous rehearsals, develop chemistry as an ensemble, and deliver powerful performances that captivate audiences night after night.</p>
+        </div>
+        
+        <div class="role-card">
+          <h4>Technical Crew</h4>
+          <p>The skilled technicians managing lighting, sound, set construction, props, and special effects. They create the physical and atmospheric world that supports the storytelling and enhances the audience experience.</p>
+        </div>
+        
+        <div class="role-card">
+          <h4>Costume & Makeup Team</h4>
+          <p>Artists who design and create costumes, apply makeup, manage wardrobe, and handle quick changes. They transform actors into characters through visual storytelling and period-appropriate styling.</p>
+        </div>
+        
+        <div class="role-card">
+          <h4>PR & Marketing Team</h4>
+          <p>The publicity force behind every show, creating promotional materials, managing social media campaigns, engaging audiences, documenting the production process, and ensuring strong ticket sales.</p>
+        </div>
+      </div>
+      
+      <p style="text-align: center; margin-top: 20px;"><em>Production teams are announced for each show. Check our social media and articles section for updates on upcoming productions and their creative teams!</em></p>
+    </div>
+    
+    <div class="team-category">
+      <h3>Behind the Scenes</h3>
+      <p>DRAMSOC wouldn't exist without the countless hours of work from our dedicated members. From late-night rehearsals to early-morning set builds, from costume fittings to lighting plots, every member contributes their unique talents to create theatrical magic.</p>
+      
+      <div style="text-align: center; margin-top: 30px;">
+        <h4>Want to Be Part of the Team?</h4>
+        <p>Whether you dream of performing on stage, directing productions, managing technical elements, or supporting behind the scenes, DRAMSOC has a place for you. Join us and discover your theatrical passion!</p>
+        <a class="btn btn-gold" href="#join" onclick="showSection('join')">Join DRAMSOC Today</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Departments Section -->
+  <section id="departments" class="section">
+    <h2>Our Departments</h2>
+    <div class="departments-intro">
+      <h3>The Backbone of DRAMSOC Excellence</h3>
+      <p>DRAMSOC operates through specialized departments, each contributing unique expertise to create theatrical magic. Our department structure ensures that every production receives professional attention in all aspects - from concept to curtain call.</p>
+    </div>
+    
+    <div class="department-card">
+      <h3>Directing & Production</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <div class="responsibilities-grid">
+        <ul class="responsibilities-list">
+          <li>Overall artistic vision and direction for productions</li>
+          <li>Script selection and interpretation</li>
+          <li>Casting actors and assembling creative teams</li>
+          <li>Blocking, staging, and choreography</li>
+          <li>Rehearsal scheduling and management</li>
+          <li>Coordinating all departments</li>
+        </ul>
+        <div>
+          <p><strong>Sample Activities:</strong></p>
+          <ul class="activities-list">
+            <li>Directors' workshops</li>
+            <li>Script analysis sessions</li>
+            <li>Blocking rehearsals</li>
+            <li>Character development exercises</li>
+            <li>Production meetings</li>
+            <li>Tech rehearsals</li>
+            <li>Dress rehearsals</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Skills Developed:</strong> Leadership, creative vision, communication, collaboration, time management, artistic interpretation, decision-making under pressure.</p>
+      <p>This department shapes the artistic heart of every production, transforming words on a page into living, breathing theatre.</p>
+    </div>
+    
+    <div class="department-card">
+      <h3>Technical Theatre</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <div class="responsibilities-grid">
+        <ul class="responsibilities-list">
+          <li>Lighting design and operation</li>
+          <li>Sound design and audio engineering</li>
+          <li>Set construction and stage management</li>
+          <li>Props creation and management</li>
+          <li>Special effects and technical innovations</li>
+          <li>Safety protocols and equipment maintenance</li>
+        </ul>
+        <div>
+          <p><strong>Sample Activities:</strong></p>
+          <ul class="activities-list">
+            <li>Lighting plots and programming</li>
+            <li>Sound cue creation</li>
+            <li>Set building workshops</li>
+            <li>Props fabrication</li>
+            <li>Technical run-throughs</li>
+            <li>Equipment training</li>
+            <li>Troubleshooting technical issues</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Skills Developed:</strong> Technical proficiency, problem-solving, attention to detail, safety awareness, teamwork, adaptability, creative technical solutions, electrical and carpentry skills.</p>
+      <p>The unseen heroes who create the atmosphere, mood, and physical world that brings each production to life.</p>
+    </div>
+    
+    <div class="department-card">
+      <h3>PR & Marketing</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <div class="responsibilities-grid">
+        <ul class="responsibilities-list">
+          <li>Publicity campaigns and promotional strategies</li>
+          <li>Social media management (Instagram, YouTube, TikTok)</li>
+          <li>Poster and program design</li>
+          <li>Press releases and media relations</li>
+          <li>Audience engagement and community outreach</li>
+          <li>Photography and videography documentation</li>
+        </ul>
+        <div>
+          <p><strong>Sample Activities:</strong></p>
+          <ul class="activities-list">
+            <li>Social media content creation</li>
+            <li>Poster photoshoots</li>
+            <li>Video trailers</li>
+            <li>Press kit development</li>
+            <li>Opening night coverage</li>
+            <li>Behind-the-scenes content</li>
+            <li>Audience surveys</li>
+            <li>Sponsor presentations</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Skills Developed:</strong> Marketing strategy, graphic design, copywriting, social media management, photography/videography, public relations, brand management, analytics.</p>
+      <p>The storytellers who ensure the world knows about DRAMSOC's incredible work and brings audiences through our doors.</p>
+    </div>
+    
+    <div class="department-card">
+      <h3>Training & Development</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <div class="responsibilities-grid">
+        <ul class="responsibilities-list">
+          <li>Acting workshops and technique classes</li>
+          <li>Voice and movement training</li>
+          <li>Technical theatre training programs</li>
+          <li>Mentorship and skill development</li>
+          <li>Audition preparation sessions</li>
+          <li>Continuous learning initiatives</li>
+        </ul>
+        <div>
+          <p><strong>Sample Activities:</strong></p>
+          <ul class="activities-list">
+            <li>Weekly acting workshops</li>
+            <li>Voice projection exercises</li>
+            <li>Movement and physicality training</li>
+            <li>Improvisation sessions</li>
+            <li>Character work</li>
+            <li>Script reading groups</li>
+            <li>Masterclasses with guest artists</li>
+            <li>Technical skills workshops</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Skills Developed:</strong> Teaching and mentorship, curriculum development, theatrical pedagogy, performance techniques, communication, patience, organizational skills, empathy.</p>
+      <p>The foundation of DRAMSOC's excellence, nurturing talent and ensuring every member has opportunities to grow and develop their theatrical abilities.</p>
+    </div>
+    
+    <div class="department-card">
+      <h3>Finance & Sponsorship</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <div class="responsibilities-grid">
+        <ul class="responsibilities-list">
+          <li>Budget planning and financial management</li>
+          <li>Fundraising initiatives and campaigns</li>
+          <li>Sponsor acquisition and relationship management</li>
+          <li>Ticket sales and box office management</li>
+          <li>Resource allocation and cost control</li>
+          <li>Financial reporting and accountability</li>
+        </ul>
+        <div>
+          <p><strong>Sample Activities:</strong></p>
+          <ul class="activities-list">
+            <li>Production budgeting</li>
+            <li>Sponsor proposal development</li>
+            <li>Fundraising events</li>
+            <li>Ticket sales campaigns</li>
+            <li>Financial reports</li>
+            <li>Sponsor recognition programs</li>
+            <li>Grant applications</li>
+            <li>Merchandise sales</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Skills Developed:</strong> Financial management, budgeting, fundraising, negotiation, sponsor relations, salesmanship, accountability, strategic planning, business communication.</p>
+      <p>The practical backbone ensuring DRAMSOC has the resources to bring ambitious theatrical visions to life sustainably.</p>
+    </div>
+    
+    <div class="department-card">
+      <h3>Scriptwriting & Research</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <div class="responsibilities-grid">
+        <ul class="responsibilities-list">
+          <li>Original script development and playwriting</li>
+          <li>Script adaptation and translation</li>
+          <li>Historical and contextual research for productions</li>
+          <li>Dramaturgy and script analysis</li>
+          <li>Script reading and evaluation</li>
+          <li>Literary management and archives</li>
+        </ul>
+        <div>
+          <p><strong>Sample Activities:</strong></p>
+          <ul class="activities-list">
+            <li>Playwriting workshops</li>
+            <li>Script drafts and revisions</li>
+            <li>Research presentations</li>
+            <li>Dramaturgical notes</li>
+            <li>Historical context research</li>
+            <li>Script reading sessions</li>
+            <li>Writer's rooms</li>
+            <li>Documentation of productions</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Skills Developed:</strong> Creative writing, research skills, analytical thinking, storytelling, cultural awareness, literary analysis, attention to detail, historical understanding, critical thinking.</p>
+      <p>The literary heart of DRAMSOC, ensuring our productions are intellectually rigorous, culturally informed, and artistically original.</p>
+    </div>
+    
+    <div class="department-card">
+      <h3>Costume & Makeup</h3>
+      <p><strong>Core Responsibilities:</strong></p>
+      <div class="responsibilities-grid">
+        <ul class="responsibilities-list">
+          <li>Costume design and creation</li>
+          <li>Makeup design for characters</li>
+          <li>Period and character research</li>
+          <li>Wardrobe management and maintenance</li>
+          <li>Quick changes and backstage organization</li>
+          <li>Special effects makeup</li>
+        </ul>
+        <div>
+          <p><strong>Sample Activities:</strong></p>
+          <ul class="activities-list">
+            <li>Costume sketches and design boards</li>
+            <li>Fabric selection and shopping</li>
+            <li>Sewing and alterations</li>
+            <li>Makeup tests and application tutorials</li>
+            <li>Wig styling</li>
+            <li>Accessory creation</li>
+            <li>Costume fittings</li>
+            <li>Laundry and repairs</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Skills Developed:</strong> Costume design, sewing and fabrication, makeup artistry, color theory, historical fashion knowledge, attention to detail, creativity, time management, practical problem-solving.</p>
+      <p>The visual storytellers who transform actors into characters through the magic of costume and makeup artistry.</p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <h3>Join a Department</h3>
+      <p>Every department welcomes new members, regardless of experience level. Whether you're a complete beginner or have previous expertise, there's a place for you in DRAMSOC. Our senior members provide mentorship and training to help you develop your skills.</p>
+      <a class="btn btn-gold" href="#join" onclick="showSection('join')">Join DRAMSOC Today</a>
+    </div>
+    
+    <div class="department-process">
+      <h3>How Departments Work Together</h3>
+      <p>While each department has specialized responsibilities, the magic of theatre happens when all departments collaborate seamlessly. A typical production involves:</p>
+      
+      <div class="process-steps">
+        <div class="process-step">
+          <h4>Pre-Production</h4>
+          <p>Directing & Production leads script selection, with input from Scriptwriting & Research. Finance & Sponsorship develops the budget while PR & Marketing plans the publicity campaign. Technical begins design concepts and Costume & Makeup starts research.</p>
+        </div>
+        
+        <div class="process-step">
+          <h4>Rehearsal Period</h4>
+          <p>Directing & Production works with actors while Training & Development provides supplementary skills workshops. Technical builds sets and programs lighting. Costume & Makeup creates and fits costumes. PR & Marketing shoots promotional content.</p>
+        </div>
+        
+        <div class="process-step">
+          <h4>Tech Week</h4>
+          <p>All departments intensify collaboration. Technical integrates all technical elements. Costume & Makeup finalizes all looks and organizes quick changes. Directing & Production coordinates tech and dress rehearsals. PR & Marketing amplifies publicity.</p>
+        </div>
+        
+        <div class="process-step">
+          <h4>Performance Run</h4>
+          <p>All departments support live performances, troubleshoot issues, and ensure smooth operations night after night.</p>
+        </div>
+        
+        <div class="process-step">
+          <h4>Post-Production</h4>
+          <p>Departments document the production, evaluate successes and challenges, and begin planning for the next show.</p>
+        </div>
+      </div>
+      
+      <blockquote style="font-style: italic; margin-top: 30px; border-left: 4px solid var(--gold); padding-left: 20px;">
+        "Theatre is the ultimate collaborative art form. In DRAMSOC, we don't just make theatre - we build family."
+      </blockquote>
+    </div>
+  </section>
+  
+  <!-- Alumni Section -->
+  <section id="alumni" class="section">
+    <h2>Our Alumni</h2>
+    <div class="alumni-intro">
+      <h3>Where Are They Now?</h3>
+      <p>DRAMSOC alumni have gone on to achieve remarkable success in theatre, film, television, media, business, law, education, and countless other fields. The skills developed through drama - confidence, communication, collaboration, creativity, and critical thinking - translate powerfully to any career path.</p>
+    </div>
+    
+    <div class="alumni-categories">
+      <div class="alumni-category">
+        <h3>Film & Television</h3>
+        <p>Several of our alumni have pursued successful careers in the film and television industry, working as actors, directors, producers, cinematographers, and screenwriters. They've appeared in local and international productions, bringing the storytelling skills honed at DRAMSOC to screens around the world.</p>
+      </div>
+      
+      <div class="alumni-category">
+        <h3>Theatre & Performing Arts</h3>
+        <p>Many DRAMSOC members have continued in professional theatre, working with major theatre companies, directing acclaimed productions, teaching drama, and establishing their own theatre groups. They carry forward the spirit of excellence and innovation that defines DRAMSOC.</p>
+      </div>
+      
+      <div class="alumni-category">
+        <h3>Media & Communications</h3>
+        <p>DRAMSOC's emphasis on communication and public performance has equipped alumni for success in journalism, public relations, broadcasting, content creation, and digital media. They're telling stories across multiple platforms and reaching audiences worldwide.</p>
+      </div>
+      
+      <div class="alumni-category">
+        <h3>Business & Leadership</h3>
+        <p>The leadership, teamwork, and project management skills developed through theatre productions have proven invaluable in business. Alumni hold leadership positions in corporations, run successful businesses, and excel in diverse professional fields.</p>
+      </div>
+      
+      <div class="alumni-category">
+        <h3>Education & Arts Administration</h3>
+        <p>Some alumni have become educators, teaching drama and theatre arts, inspiring the next generation of performers and storytellers. Others work in arts administration, managing cultural institutions and supporting the arts sector.</p>
+      </div>
+      
+      <div class="alumni-category">
+        <h3>Diverse Professional Fields</h3>
+        <p>DRAMSOC alumni succeed in law, medicine, engineering, finance, diplomacy, and more. The confidence, public speaking skills, emotional intelligence, and creative problem-solving developed through drama are assets in any profession.</p>
+      </div>
+    </div>
+    
+    <div class="alumni-testimonial">
+      <p>"DRAMSOC wasn't just about acting - it was about discovering who I am, building lifelong friendships, and developing skills that have served me in every aspect of my life. The confidence I gained on stage translated directly to confidence in boardrooms, presentations, and leadership roles."</p>
+      <p style="text-align: right; margin-top: 15px;">- A DRAMSOC Alumnus</p>
+    </div>
+    
+    <div class="alumni-category">
+      <h3>Alumni Network</h3>
+      <p>DRAMSOC maintains a vibrant alumni network. Former members stay connected through social media, alumni events, mentorship programs, and by returning to support current productions. Our alumni community spans generations and continents, united by the shared experience of bringing stories to life on the Strathmore stage.</p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <h3>Are You a DRAMSOC Alumnus?</h3>
+      <p>We'd love to hear from you! Share your story, stay connected with fellow alumni, and continue to be part of the DRAMSOC family. Your journey inspires current members and shows them the incredible possibilities that lie ahead.</p>
+      
+      <div class="alumni-actions">
+        <a class="btn" href="https://forms.gle/your-alumni-form" target="_blank">Alumni Sign-Up Form</a>
+        <a class="btn" href="#contact" onclick="showSection('contact')">Contact Us</a>
+      </div>
+    </div>
+    
+    <div class="alumni-category">
+      <h3>Give Back to DRAMSOC</h3>
+      <p>Alumni support helps DRAMSOC continue its tradition of excellence. Whether through mentorship, guest workshops, sponsorship, or simply attending shows and cheering on current members, your involvement makes a difference. Consider:</p>
+      <ul class="impact-list">
+        <li>Mentoring current DRAMSOC members</li>
+        <li>Leading workshops in your area of expertise</li>
+        <li>Sponsoring productions or scholarships</li>
+        <li>Attending shows and supporting current work</li>
+        <li>Sharing job opportunities and internships</li>
+        <li>Guest speaking or directing</li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- Join Section -->
+  <section id="join" class="section">
+    <h2>Join DRAMSOC</h2>
+    <div class="join-section">
       <div class="card-grid">
         <div class="card">
           <h3>For Students</h3>
@@ -1041,107 +1169,81 @@
           <button class="btn" onclick="showAuditionInfo()">Learn More</button>
         </div>
       </div>
-    </section>
-    
-    <!-- Article Modal -->
-    <div id="articleModal" aria-hidden="true" role="dialog" aria-modal="true">
-      <div>
-        <button id="articleClose" onclick="closeArticle()" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
-        <div id="articleModalContent"></div>
-      </div>
     </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 20px;">
+      Have questions or want to get involved? Reach out to us through any of our social media channels or email us at <strong style="color: var(--gold);">strathmoredramasociety@strathmore.edu</strong>
+    </p>
+    <div class="social-icons">
+      <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;" loading="lazy">
+      </a>
+      <a href="https://www.youtube.com/@StrathmoreDramaSociety" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;" loading="lazy">
+      </a>
+      <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;" loading="lazy">
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Strathmore Drama Society (DRAMSOC)
+</footer>
+
+<script>
+  // Dashboard navigation functionality
+  function showSection(sectionId) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+      section.classList.remove('active');
+    });
     
-    <section id="contact" class="section">
-      <h2>Contact Us</h2>
-      <p style="text-align: center; max-width: 600px; margin: 0 auto 20px;">
-        Have questions or want to get involved? Reach out to us through any of our social media channels or email us at <strong style="color: var(--gold);">strathmoredramasociety@strathmore.edu</strong>
-      </p>
-      <div class="social-icons" style="margin-top:8px; display:flex; gap:15px; justify-content: center;">
-        <a href="https://instagram.com/strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img src="images/social/Instagram.jpg" alt="Instagram" width="32" height="32" style="display:block;" loading="lazy">
-        </a>
-        <a href="https://www.youtube.com/@StrathmoreDramaSociety" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <img src="images/social/Youtube.webp" alt="YouTube" width="32" height="32" style="display:block;" loading="lazy">
-        </a>
-        <a href="https://www.tiktok.com/@strathmore.drama.society" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <img src="images/social/Tiktok.jpg" alt="TikTok" width="32" height="32" style="display:block;" loading="lazy">
-        </a>
-      </div>
-    </section>
-  </main>
-  
-  <footer>
-    &copy; 2025 Strathmore Drama Society (DRAMSOC)
-  </footer>
-  
-  <!-- JavaScript for modal functionality -->
-  <script>
-     // Preload critical images
-    function preloadCriticalImages() {
-      const criticalImages = [
-        'images/logo/No background white logo.png',
-        'images/productions/The Waiting Room (2).jpg',
-        'images/productions/The Homecoming (1).jpg',
-        'images/productions/The Samaritan (1).jpg'
-      ];
-      
-      criticalImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-      });
+    // Show the selected section
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+      targetSection.classList.add('active');
     }
     
-    // Newsletter form handler
-    document.addEventListener('DOMContentLoaded', function() {
-      preloadCriticalImages();
-      
-      const newsletterForm = document.getElementById('newsletterForm');
-      if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          const email = this.querySelector('input[type="email"]').value;
-          alert(`Thank you for subscribing with ${email}! You'll receive updates about DRAMSOC events and productions.`);
-          this.reset();
-        });
+    // Update active nav link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('data-section') === sectionId) {
+        link.classList.add('active');
       }
     });
     
-    // Audition info modal
-    function showAuditionInfo() {
-      const modal = document.getElementById('articleModal');
-      const contentDiv = document.getElementById('articleModalContent');
-      contentDiv.innerHTML = `
-        <h2>Audition Information</h2>
-        <p><em>Updated: March 2025</em></p>
-        <p>DRAMSOC holds auditions for each of our productions. We welcome performers of all experience levels - from complete beginners to seasoned actors!</p>
-        
-        <h3 style="color: var(--gold); margin-top: 20px;">What to Expect</h3>
-        <ul>
-          <li><strong>No preparation necessary:</strong> We provide sides (short script excerpts) for you to read at the audition</li>
-          <li><strong>Optional monologue:</strong> If you'd like to prepare something, a 1-2 minute contemporary monologue is welcome</li>
-          <li><strong>Cold readings:</strong> You'll be asked to read from the script with other auditionees</li>
-          <li><strong>Movement/dance:</strong> Some productions may include simple movement exercises</li>
-        </ul>
-        
-        <h3 style="color: var(--gold); margin-top: 20px;">Audition Tips</h3>
-        <ul>
-          <li>Arrive 10-15 minutes early to fill out paperwork</li>
-          <li>Wear comfortable clothing you can move in</li>
-          <li>Bring water and any necessary medications</li>
-          <li>Be prepared to list any scheduling conflicts</li>
-          <li>Relax and be yourself - we're looking for personality as much as talent!</li>
-        </ul>
-        
-        <h3 style="color: var(--gold); margin-top: 20px;">Upcoming Auditions</h3>
-        <p>Check our social media channels for announcements about upcoming audition dates and production information.</p>
-        
-        <p style="margin-top: 30px; font-style: italic;">Questions? Contact us at <strong>strathmoredramasociety@strathmore.edu</strong> or message us on social media.</p>
-      `;
-      modal.style.display = "block";
-      modal.setAttribute('aria-hidden','false');
-      lockBodyScroll();
-      pushModalState();
-    }
-  </script>
+    // Scroll to top of page
+    window.scrollTo(0, 0);
+  }
+  
+  // Initialize navigation
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set up nav link click handlers
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const sectionId = this.getAttribute('data-section');
+        showSection(sectionId);
+      });
+    });
+    
+    // Show home section by default
+    showSection('home');
+  });
+  
+  // Placeholder functions for modal functionality
+  function showAuditionInfo() {
+    alert("Audition information will be displayed here. Check our social media for upcoming audition dates!");
+  }
+</script>
 </body>
 </html>
