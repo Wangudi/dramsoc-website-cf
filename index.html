@@ -19,7 +19,7 @@
       margin: 0;
       overflow-x: hidden;
     }
-     header {
+    header {
       background: linear-gradient(90deg, #1c1c1c, #000000);
       color: var(--gold);
       display: flex;
@@ -38,7 +38,9 @@
       display: inline-block;
       object-fit: contain;
     }
-    /* Nav - default (desktop) */
+    
+    /* ================= NEW: DASHBOARD NAVIGATION ================= */
+    /* Desktop Navigation */
     nav {
       margin-left: auto;
       display: flex;
@@ -52,11 +54,51 @@
       font-weight: 500;
       font-size: 1em;
       transition: color 0.2s;
+      padding: 8px 12px;
+      border-radius: 4px;
     }
     nav a:hover {
       color: #fff;
+      background: rgba(255, 215, 0, 0.1);
       text-shadow: 0 0 8px #ffd700aa;
     }
+    
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5em;
+        padding: 1em;
+      }
+      
+      nav {
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      
+      nav a {
+        margin: 0;
+        padding: 6px 10px;
+        font-size: 0.9em;
+        text-align: center;
+        flex: 1 0 auto;
+        max-width: 120px;
+      }
+    }
+    
+    /* Extra small screens */
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.85em;
+        padding: 5px 8px;
+      }
+    }
+
+    /* ================= REST OF ORIGINAL STYLES ================= */
     .hero {
       background: linear-gradient(135deg, #222144, #b80000 100%);
       min-height: 50vh;
@@ -139,95 +181,6 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-   /* ================= NEW: Toggle / Slide-in menu (works on ALL devices) ================= */
-.menu-toggle { 
-  display: block;               /* always visible */
-  font-size: 28px; 
-  color: var(--gold); 
-  cursor: pointer; 
-  margin-left: auto; 
-  user-select: none; 
-  z-index: 1300; 
-  background: transparent; 
-  border: none; 
-  padding: 0 0.5rem;
-}
-.overlay { 
-  position: fixed; inset: 0; 
-  background: rgba(0,0,0,0.45); 
-  opacity: 0; pointer-events: none; 
-  transition: opacity .32s ease; 
-  z-index: 1250; 
-}
-.overlay.active { opacity: 1; pointer-events: all; }
-
-/* Nav panel – hidden off-screen until toggled */
-nav {
-  position: fixed;
-  top: 0; right: -260px;          /* hidden */
-  width: 260px; height: 100vh;
-  background: rgba(0,0,0,0.95);
-  box-shadow: -8px 0 30px rgba(0,0,0,0.6);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: flex-start;
-  padding-top: 84px; gap: 12px;
-  transition: right .32s cubic-bezier(.2,.9,.2,1);
-  z-index: 1300;
-  overflow-y: auto;
-}
-nav.menu-active { right: 0; }
-
-nav a {
-  margin: 0; color: var(--gold); font-size: .95em;
-  padding: 12px 20px; width: 80%; text-align: center;
-  border-bottom: 1px solid rgba(255,215,0,0.04);
-  letter-spacing: .1px;
-}
-nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
-
-nav .close-panel {
-  position: absolute; top: 12px; right: 12px;
-  font-size: 28px; color: var(--gold);
-  background: transparent; border: none; cursor: pointer;
-  z-index: 1310;
-}
-
-/* ---- No more separate desktop nav ---- */
-@media (min-width: 701px) {
-  /* Desktop still uses the same slide-in panel – just a bit wider */
-  nav { width: 300px; right: -300px; }
-  nav.menu-active { right: 0; }
-}
-      /* stacked items; smaller font; gold color */
-      nav a {
-        margin: 0;
-        color: var(--gold);
-        font-size: 0.95em;
-        padding: 12px 20px;
-        width: 50%;
-        text-align: center;
-        border-bottom: 1px solid rgba(255,215,0,0.04);
-        letter-spacing: 0.1px;
-      }
-      nav a:hover { color: #fff; background: rgba(255,215,0,0.03); }
-      /* close (×) button inside panel - hidden in desktop */
-      nav .close-panel {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        font-size: 28px;
-        color: var(--gold);
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index:1310;
-      }
-    }
-    /* end toggle styles */
-    @media(max-width:700px){
-      header { flex-direction: column; align-items: flex-start; gap:0.5em; }
-      nav { margin:0; }
-    }
     /* === ONLY FIX: Mobile image wrap in production modal === */
     @media (max-width: 600px) {
       #productionModal > div > div > div[style*="display:flex"] {
@@ -312,30 +265,16 @@ nav .close-panel {
 <header>
   <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
 
-  <!-- Hamburger toggle – visible on ALL screens (including laptop) -->
-  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
-    ☰
-  </button>
-
-  <!-- Navigation becomes the slide-in panel on every breakpoint -->
-  <nav id="mainNav" aria-label="Primary navigation" aria-hidden="true">
-    <button class="close-panel" id="closePanel" aria-label="Close menu">×</button>
-
-    <!-- ***** ALL DASHBOARD SECTIONS ARE NOW LINKS IN THE MENU ***** -->
+  <!-- Dashboard Navigation -->
+  <nav id="mainNav" aria-label="Primary navigation">
     <a href="#home" class="nav-link">Home</a>
     <a href="#about" class="nav-link">About Us</a>
-    <a href="#productions" class="nav-link">Recent Productions</a>
-    <a href="team.html" class="nav-link">Team</a>
-    <a href="departments.html" class="nav-link">Departments</a>
-    <a href="alumni.html" class="nav-link">Alumni</a>
-    <a href="#articles" class="nav-link">Articles</a>
-    <a href="#social" class="nav-link">Social Media</a>
-    <a href="#join" class="nav-link">Join Us</a>
-    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#team" class="nav-link">Our Team</a>
+    <a href="#departments" class="nav-link">Departments</a>
+    <a href="#alumni" class="nav-link">Alumni</a>
+    <a href="#contact" class="nav-link">Contact Us</a>
   </nav>
 </header>
-  <!-- Overlay -->
-  <div class="overlay" id="overlay" aria-hidden="true"></div>
 
   <main>
     <section id="home" class="hero">
@@ -428,6 +367,33 @@ nav .close-panel {
         <a href="team.html" class="btn">View Full Team Details</a>
       </div>
     </section>
+    <section id="departments" class="section">
+      <h2>Departments</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Acting</h3>
+          <p>Our acting department focuses on developing performance skills, character development, and stage presence through workshops and productions.</p>
+        </div>
+        <div class="card">
+          <h3>Directing</h3>
+          <p>The directing department works on script analysis, blocking, and guiding actors to bring stories to life on stage.</p>
+        </div>
+        <div class="card">
+          <h3>Production</h3>
+          <p>Our production team handles set design, lighting, sound, costumes, and all technical aspects of our performances.</p>
+        </div>
+      </div>
+    </section>
+    <section id="alumni" class="section">
+      <h2>Alumni</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Our Alumni Network</h3>
+          <p>DRAMSOC alumni have gone on to successful careers in theatre, film, television, and other creative industries.</p>
+          <p>We maintain strong connections with our alumni who often return to mentor current members and participate in special productions.</p>
+        </div>
+      </div>
+    </section>
     <section id="articles" class="section">
       <h2>Articles & Updates</h2>
       <div class="card-grid">
@@ -447,7 +413,6 @@ nav .close-panel {
           <button class="btn learn-more-btn" onclick="showArticle('drama-social-change')">Read More</button>
         </div>
       </div>
-    </section>
   
       <!-- Newsletter Signup -->
       <div style="max-width: 600px; margin: 40px auto; text-align: center;">
@@ -907,60 +872,6 @@ nav .close-panel {
     });
   </script>
 
-  <!-- NEW: Toggle JS (hamburger icon to cross icon) -->
-  <script>
-    (function(){
-      const toggle = document.getElementById('menuToggle');
-      const nav = document.getElementById('mainNav');
-      const closeBtn = document.getElementById('closePanel');
-      const overlay = document.getElementById('overlay');
-      function openMenu(){
-        nav.classList.add('menu-active');
-        nav.setAttribute('aria-hidden','false');
-        toggle.setAttribute('aria-expanded','true');
-        if (closeBtn) closeBtn.style.display = 'block';
-        overlay.classList.add('active');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        toggle.textContent = '×'; // Cross when menu is open
-      }
-      function closeMenu(){
-        nav.classList.remove('menu-active');
-        nav.setAttribute('aria-hidden','true');
-        toggle.setAttribute('aria-expanded','false');
-        if (closeBtn) closeBtn.style.display = 'none';
-        overlay.classList.remove('active');
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        toggle.textContent = '☰'; // Hamburger when menu is closed
-      }
-      window.closeMenu = closeMenu;
-      toggle.addEventListener('click', function(e){ if (nav.classList.contains('menu-active')) closeMenu(); else openMenu(); });
-      toggle.addEventListener('keydown', function(e){ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle.click(); } });
-      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-      overlay.addEventListener('click', closeMenu);
-      
-      // NEW: Improved navigation link handling
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          // Close the menu
-          closeMenu();
-        });
-      });
-      
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && nav.classList.contains('menu-active')) closeMenu();
-      });
-      document.addEventListener('click', function(e){
-        const isSmall = window.matchMedia('(max-width:700px)').matches;
-        if (!isSmall) return;
-        const clickedInside = nav.contains(e.target) || toggle.contains(e.target) || overlay.contains(e.target);
-        if (!clickedInside && nav.classList.contains('menu-active')) closeMenu();
-      });
-    })();
-  </script>
-  
   <!-- NEW: Additional functionality -->
   <script>
     // Preload critical images
