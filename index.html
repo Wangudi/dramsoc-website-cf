@@ -331,13 +331,6 @@ nav .close-panel {
       header { flex-direction: column; align-items: flex-start; gap:0.5em; }
       nav { margin:0; }
     }
-    <div id="teamModal" aria-hidden="true" role="dialog" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(20,16,30,0.96); z-index:9999; align-items:center; justify-content:center;">
-  <div style="background:#222; color:#ffd700; max-width:95vw; width:400px; padding:2em; border-radius:14px; box-shadow:0 4px 32px #000; position:relative; overflow-y:auto; max-height:90vh;">
-    <button onclick="closeTeam()" aria-label="Close" style="position:absolute;top:10px;right:16px;font-size:2em;color:#ffd700;background:none;border:none;cursor:pointer;">×</button>
-    <div id="teamModalContent"></div>
-  </div>
-</div>
-
     /* === ONLY FIX: Mobile image wrap in production modal === */
     @media (max-width: 600px) {
       #productionModal > div > div > div[style*="display:flex"] {
@@ -384,8 +377,8 @@ nav .close-panel {
     <a href="#about">About Us</a>
     <a href="#productions">Recent Productions</a>
     <a href="#team" onclick="showTeam(); return false;">Team</a>
-    <a href="#departments" onclick="showDepartments(); return false;">Departments</a>
-    <a href="#alumni" onclick="showAlumni(); return false;">Alumni</a>
+<a href="#departments" onclick="showDepartments(); return false;">Departments</a>
+<a href="#alumni" onclick="showAlumni(); return false;">Alumni</a>
     <a href="#articles">Articles</a>
     <a href="#contact">Contact</a>
     <a href="#join">Join Us</a>
@@ -393,24 +386,27 @@ nav .close-panel {
 </header>
   <!-- Overlay -->
   <div class="overlay" id="overlay" aria-hidden="true"></div>
-  <!-- DEPARTMENTS MODAL -->
-  <div id="departmentsModal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div>
-      <button class="modal-close" onclick="closeDepartments()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
-      <div id="departmentsModalContent"></div>
-    </div>
-  </div>
-
-  <!-- ALUMNI MODAL -->
-  <div id="alumniModal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div>
-      <button class="modal-close" onclick="closeAlumni()" aria-label="Close" style="position:absolute; top:12px; right:16px; font-size:2em; background:none; border:none; color:var(--gold); cursor:pointer; z-index:10;">×</button>
-      <div id="alumniModalContent"></div>
-    </div>
-  </div>
-
   <!-- TEAM MODAL -->
-<a href="#team" onclick="showTeam(); return false;">Team</a>
+<div id="teamModal" style="display:none;" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <button onclick="closeTeam()" class="modal-close">&times;</button>
+    <div id="teamModalContent"></div>
+  </div>
+</div>
+<!-- DEPARTMENTS MODAL -->
+<div id="departmentsModal" style="display:none;" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <button onclick="closeDepartments()" class="modal-close">&times;</button>
+    <div id="departmentsModalContent"></div>
+  </div>
+</div>
+<!-- ALUMNI MODAL -->
+<div id="alumniModal" style="display:none;" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <button onclick="closeAlumni()" class="modal-close">&times;</button>
+    <div id="alumniModalContent"></div>
+  </div>
+</div>
 
   <main>
     <section id="home" class="hero">
@@ -1384,41 +1380,3 @@ nav .close-panel {
   </script>
 </body>
 </html>
-function showTeam() {
-  const modal = document.getElementById('teamModal');
-  const content = document.getElementById('teamModalContent');
-  content.innerHTML = `
-    <h2 style="text-align:center; margin-bottom:8px;">Our Team</h2>
-    <h3 style="text-align:center;">The Passionate Leaders Behind DRAMSOC</h3>
-    <h4>Leadership Team 2024/2025</h4>
-    <ul style="color:#fff;">
-      <li><strong style="color:#ffd700;">Dan Kakuru</strong>: President — Dan leads DRAMSOC with vision and dedication...</li>
-      <li><strong style="color:#ffd700;">Leila Kaisa</strong>: Vice President — Leila supports the President in all activities...</li>
-      <li><strong style="color:#ffd700;">Joe Abala</strong>: Organizing Secretary General — Joe manages all organizational aspects...</li>
-      <li><strong style="color:#ffd700;">Cherise Chomba</strong>: Secretary General — Cherise handles correspondence...</li>
-      <li><strong style="color:#ffd700;">Paula Nimurungi</strong>: Financial Manager — Paula oversees all financial matters...</li>
-    </ul>
-    <h4>Production Team</h4>
-    <ul style="color:#fff;">
-      <li><strong>Director:</strong> Artistic visionary guiding the production.</li>
-      <li><strong>Stage Manager:</strong> Manages rehearsals and backstage.</li>
-      <li><strong>Cast:</strong> Talented actors rehearsing and performing.</li>
-      <li><strong>Technical Crew:</strong> Manages lights, sound, sets, etc.</li>
-      <li><strong>Costume & Makeup Team:</strong> Designs costumes and makeup.</li>
-      <li><strong>PR & Marketing Team:</strong> Promotes and manages publicity.</li>
-    </ul>
-    <h4 style="margin-top:1em;">Want to Be Part of the Team?</h4>
-    <p>Whether you want to perform, direct, manage tech, or support behind the scenes, there's a place for you!<br>
-      <a href="https://wangudi.github.io/join" target="_blank" style="color:#ffd700;text-decoration:underline;">Join DRAMSOC Today</a>
-    </p>
-  `;
-  modal.style.display = "flex";
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden"; // Prevent background scroll
-}
-function closeTeam() {
-  document.getElementById('teamModal').style.display = "none";
-  document.getElementById('teamModal').setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-}
-
