@@ -431,16 +431,16 @@ nav .close-panel {
     <button class="close-panel" id="closePanel" aria-label="Close menu">×</button>
 
     <!-- ***** ALL DASHBOARD SECTIONS ARE NOW LINKS IN THE MENU ***** -->
-    <a href="#home" onclick="closeMenu()">Home</a>
-    <a href="#about" onclick="closeMenu()">About Us</a>
-    <a href="#productions" onclick="closeMenu()">Recent Productions</a>
-    <a href="#team" onclick="showTeam(); closeMenu(); return false;">Team</a>
-    <a href="#departments" onclick="showDepartments(); closeMenu(); return false;">Departments</a>
-    <a href="#alumni" onclick="showAlumni(); closeMenu(); return false;">Alumni</a>
-    <a href="#articles" onclick="closeMenu()">Articles</a>
-    <a href="#social" onclick="closeMenu()">Social Media</a>
-    <a href="#join" onclick="closeMenu()">Join Us</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#about" class="nav-link">About Us</a>
+    <a href="#productions" class="nav-link">Recent Productions</a>
+    <a href="#team" class="nav-link" data-modal="team">Team</a>
+    <a href="#departments" class="nav-link" data-modal="departments">Departments</a>
+    <a href="#alumni" class="nav-link" data-modal="alumni">Alumni</a>
+    <a href="#articles" class="nav-link">Articles</a>
+    <a href="#social" class="nav-link">Social Media</a>
+    <a href="#join" class="nav-link">Join Us</a>
+    <a href="#contact" class="nav-link">Contact</a>
   </nav>
 </header>
   <!-- Overlay -->
@@ -1479,11 +1479,38 @@ nav .close-panel {
       toggle.addEventListener('keydown', function(e){ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle.click(); } });
       if (closeBtn) closeBtn.addEventListener('click', closeMenu);
       overlay.addEventListener('click', closeMenu);
-      nav.addEventListener('click', function(e){
-        if (e.target && e.target.tagName === 'A') {
+      
+      // NEW: Improved navigation link handling
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          const modalType = this.getAttribute('data-modal');
+          
+          // Close the menu
           closeMenu();
-        }
+          
+          // Handle modal links
+          if (modalType) {
+            e.preventDefault();
+            switch(modalType) {
+              case 'team':
+                showTeam();
+                break;
+              case 'departments':
+                showDepartments();
+                break;
+              case 'alumni':
+                showAlumni();
+                break;
+            }
+          } else {
+            // Regular anchor links will scroll to the section
+            // The default behavior will handle this
+          }
+        });
       });
+      
       document.addEventListener('keydown', function(e){
         if (e.key === 'Escape' && nav.classList.contains('menu-active')) closeMenu();
       });
