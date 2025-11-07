@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Team - DRAMSOC</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #ffd700;
+      --red: #b80000;
+      --bg: #111111;
+    }
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(90deg, #1c1c1c, #000000);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding: 0.4em 1.5em;
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+    }
+    .site-logo {
+      width: 120px;
+      height: 120px;
+      display: inline-block;
+      object-fit: contain;
+    }
+    nav {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    nav a {
+      color: var(--gold);
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px #ffd700aa;
+    }
+    .section { padding: 90px 36px; max-width: 1200px; margin: 0 auto; }
+    h1,h2,h3 { font-family: "Lora", serif; color: var(--gold); }
+    .team-grid { display:flex; gap:2em; flex-wrap:wrap; justify-content:center; }
+    .team-card { 
+      background:#262626; 
+      border-radius:8px; 
+      padding:1em 2.5em 1.4em; 
+      text-align:center; 
+      width:396px; 
+      max-width:95vw; 
+      box-sizing:border-box; 
+      margin:0 auto; 
+    }
+    .team-card img { 
+      width:200px; 
+      height:200px; 
+      border-radius:0; 
+      object-fit:cover; 
+      margin-bottom:8px; 
+    }
+    .team-card b { 
+      display:block; 
+      font-size:1.1em; 
+      margin-bottom:6px; 
+      color:var(--gold); 
+    }
+    .team-card .role { 
+      font-size:0.9em; 
+      color:#ddd; 
+      margin-top:2px; 
+    }
+    .team-member {
+      background:#2a2a3a; 
+      border-radius:10px; 
+      padding:1.4em; 
+      margin:1.2em 0;
+      box-shadow:0 3px 16px rgba(0,0,0,0.3);
+    }
+    .team-member h4 {
+      color:var(--gold); 
+      margin:0 0 6px 0; 
+      font-size:1.25em;
+    }
+    .team-member .title {
+      color:#ccc; 
+      font-style:italic; 
+      font-size:0.95em; 
+      margin-bottom:10px;
+    }
+    .btn { 
+      background: var(--gold); 
+      color:#111; 
+      border:none; 
+      border-radius:6px; 
+      padding:13px 2em; 
+      font-weight:700; 
+      margin-top:10px; 
+      font-size:1em; 
+      cursor:pointer; 
+      transition: background 0.22s, color 0.18s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover { 
+      background: var(--red); 
+      color:#fff; 
+    }
+    footer { 
+      background:#111; 
+      color:var(--gold); 
+      text-align:center; 
+      padding:30px 5px; 
+      margin-top:36px; 
+    }
+    .hero {
+      background: linear-gradient(135deg, #222144, #b80000 100%);
+      min-height: 30vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 64px 18px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#productions">Productions</a>
+    <a href="team.html">Team</a>
+    <a href="departments.html">Departments</a>
+    <a href="alumni.html">Alumni</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Our Team</h1>
+    <p style="font-size: 1.2em; color: #ccc;">The Passionate Leaders Behind DRAMSOC</p>
+  </section>
+
+  <section class="section">
+    <h2 style="text-align:center; margin-bottom:8px;">Leadership Team 2024/2025</h2>
+    <p style="text-align:center; font-style:italic; color:#ccc; margin-bottom:32px;">
+      Meet the dedicated leaders who guide DRAMSOC towards excellence in theatrical arts, foster community, and ensure every production reaches its full potential.
+    </p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="images/team/Dan Kakuru.png" alt="Dan Kakuru" loading="lazy" />
+        <b>Dan Kakuru</b>
+        <div class="role">President</div>
+        <p>Dan leads DRAMSOC with vision and dedication, overseeing all society operations, representing DRAMSOC to the university and external partners, and ensuring the society's strategic direction aligns with our mission of theatrical excellence.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team/Leila Kaisa.png" alt="Leila Kaisa" loading="lazy" />
+        <b>Leila Kaisa</b>
+        <div class="role">Vice President</div>
+        <p>Leila supports the President in all activities, steps in during absences, and plays a crucial role in member engagement and community building. She ensures smooth operations and maintains the vibrant DRAMSOC culture.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team/Joe Abala.png" alt="Joe Abala" loading="lazy" />
+        <b>Joe Abala</b>
+        <div class="role">Organizing Secretary General</div>
+        <p>Joe manages all organizational aspects, coordinates meetings and events, maintains member records, and ensures efficient communication within the society. His organizational skills keep DRAMSOC running smoothly.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team/Cherise Chomba.png" alt="Cherise Chomba" loading="lazy" />
+        <b>Cherise Chomba</b>
+        <div class="role">Secretary General</div>
+        <p>Cherise handles correspondence, documentation, and administrative duties. She maintains society records, prepares meeting minutes, and ensures all documentation supports DRAMSOC's professional operations.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team/Paula Nimurungi.png" alt="Paula Nimurungi" loading="lazy" />
+        <b>Paula Nimurungi</b>
+        <div class="role">Financial Manager</div>
+        <p>Paula oversees all financial matters, manages budgets, handles fundraising initiatives, and ensures fiscal responsibility. Her financial acumen enables DRAMSOC to bring ambitious productions to life sustainably.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 style="text-align:center;">Production Team</h2>
+    <p style="text-align:center; margin-bottom:32px;">
+      Every production features a dedicated creative and technical team assembled specifically for that show. Our production teams typically include:
+    </p>
+
+    <div class="team-member">
+      <h4>Director</h4>
+      <p class="title">The Artistic Visionary</p>
+      <p>The artistic visionary who interprets the script, guides actors, coordinates all creative elements, and shapes the overall production. Directors work closely with all departments to realize their creative vision.</p>
+    </div>
+
+    <div class="team-member">
+      <h4>Stage Manager</h4>
+      <p class="title">The Organizational Backbone</p>
+      <p>The organizational backbone of any production, managing rehearsals, calling cues during performances, coordinating backstage operations, and ensuring everything runs smoothly from tech week through closing night.</p>
+    </div>
+
+    <div class="team-member">
+      <h4>Cast</h4>
+      <p class="title">Our Talented Actors</p>
+      <p>Our talented actors who breathe life into characters, undergo rigorous rehearsals, develop chemistry as an ensemble, and deliver powerful performances that captivate audiences night after night.</p>
+    </div>
+
+    <div class="team-member">
+      <h4>Technical Crew</h4>
+      <p class="title">The Skilled Technicians</p>
+      <p>The skilled technicians managing lighting, sound, set construction, props, and special effects. They create the physical and atmospheric world that supports the storytelling and enhances the audience experience.</p>
+    </div>
+
+    <div class="team-member">
+      <h4>Costume & Makeup Team</h4>
+      <p class="title">The Visual Storytellers</p>
+      <p>Artists who design and create costumes, apply makeup, manage wardrobe, and handle quick changes. They transform actors into characters through visual storytelling and period-appropriate styling.</p>
+    </div>
+
+    <div class="team-member">
+      <h4>PR & Marketing Team</h4>
+      <p class="title">The Publicity Force</p>
+      <p>The publicity force behind every show, creating promotional materials, managing social media campaigns, engaging audiences, documenting the production process, and ensuring strong ticket sales.</p>
+    </div>
+
+    <p style="margin-top:24px; font-style:italic; text-align:center;">
+      Production teams are announced for each show. Check our social media and articles section for updates on upcoming productions and their creative teams!
+    </p>
+  </section>
+
+  <section class="section">
+    <h2 style="text-align:center;">Behind the Scenes</h2>
+    <p style="text-align:center; max-width:800px; margin:0 auto; line-height:1.7;">
+      DRAMSOC wouldn't exist without the countless hours of work from our dedicated members. From late-night rehearsals to early-morning set builds, from costume fittings to lighting plots, every member contributes their unique talents to create theatrical magic.
+    </p>
+  </section>
+
+  <section class="section" style="text-align:center;">
+    <h2>Want to Be Part of the Team?</h2>
+    <p style="max-width:700px; margin:0 auto 20px; line-height:1.6;">
+      Whether you dream of performing on stage, directing productions, managing technical elements, or supporting behind the scenes, DRAMSOC has a place for you. Join us and discover your theatrical passion!
+    </p>
+    <a href="index.html#join" class="btn">Join DRAMSOC Today</a>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Strathmore Drama Society (DRAMSOC)
+</footer>
+</body>
+</html>
