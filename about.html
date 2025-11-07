@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - DRAMSOC</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600,400|Lora:700,400" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #ffd700;
+      --red: #b80000;
+      --bg: #111111;
+    }
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(90deg, #1c1c1c, #000000);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding: 0.4em 1.5em;
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+    }
+    .site-logo {
+      width: 120px;
+      height: 120px;
+      display: inline-block;
+      object-fit: contain;
+    }
+    a.back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1.1em;
+      margin-left: auto;
+      padding: 8px 16px;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    a.back-link:hover {
+      background: var(--gold);
+      color: #111;
+    }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1, h2, h3 {
+      font-family: "Lora", serif;
+      color: var(--gold);
+    }
+    h1 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #ccc;
+      font-style: italic;
+      font-size: 1.2em;
+      margin-bottom: 40px;
+    }
+    .section-box {
+      background: #222;
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 8px;
+      border-left: 4px solid var(--gold);
+    }
+    .section-box h2 {
+      margin-top: 0;
+    }
+    .section-box h3 {
+      color: var(--gold);
+      margin-top: 20px;
+    }
+    .section-box p {
+      line-height: 1.8;
+      color: #ddd;
+    }
+    .section-box ul {
+      line-height: 1.8;
+      color: #ddd;
+      margin-left: 20px;
+    }
+    .section-box li {
+      margin-bottom: 10px;
+    }
+    footer {
+      background: #111;
+      color: var(--gold);
+      text-align: center;
+      padding: 30px 5px;
+      margin-top: 60px;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      .section-box {
+        padding: 20px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      a.back-link {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/logo/No background white logo.png" alt="DRAMSOC Logo" class="site-logo" />
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
+  </header>
+
+  <main>
+    <h1>Who We Are</h1>
+    <h2 class="subtitle">The Strathmore Drama Society</h2>
+
+    <div class="section-box">
+      <p>DRAMSOC is a vibrant student-led organization at Strathmore University, dedicated to nurturing artistic talent, fostering creativity, and driving social impact through theatre and film. Established in 2006, DRAMSOC has grown into a leading platform for students to explore, develop, and showcase their theatrical and cinematic talents.</p>
+      <p>Since its inception, it has trained and nurtured hundreds of students in acting, directing, scriptwriting, and technical theatre. We have driven social impact through drama and expanded its reach beyond Strathmore University, engaging communities across Kenya through outreach programs and performances.</p>
+    </div>
+
+    <div class="section-box">
+      <h2>Our Mission</h2>
+      <p>To provide a dynamic platform for students and the community to explore, develop, and showcase their theatrical and cinematic talents while using drama as a tool for education, social change, and entertainment.</p>
+    </div>
+
+    <div class="section-box">
+      <h2>Our Vision</h2>
+      <p>To be a premier arts institution in Kenya and beyond, inspiring creativity, fostering cultural dialogue, and empowering individuals to use the transformative power of theatre and film for personal and societal growth.</p>
+    </div>
+
+    <div class="section-box">
+      <h2>Our Motto</h2>
+      <p style="font-size: 1.3em; font-weight: bold; color: var(--gold);">Take It to the Next Level!</p>
+    </div>
+
+    <div class="section-box">
+      <h2>Our Core Values</h2>
+      <h3>Quality</h3>
+      <p>Excellence in all productions and programs.</p>
+      <h3>Integrity</h3>
+      <p>Transparency and accountability in all operations.</p>
+      <h3>Creativity</h3>
+      <p>Innovation in storytelling and artistic expression.</p>
+      <h3>Honesty</h3>
+      <p>Authenticity in all interactions and engagements.</p>
+    </div>
+
+    <div class="section-box">
+      <h2>What We Do</h2>
+      <h3>Productions</h3>
+      <p>Annual theatrical plays and short films that address social issues and entertain audiences.</p>
+      <h3>Training</h3>
+      <p>Workshops and mentorship programs in acting, directing, cinematography, and more.</p>
+      <h3>Outreach</h3>
+      <p>Community programs that use drama to educate and inspire underserved populations.</p>
+      <h3>Events</h3>
+      <p>Open mic nights, and collaborative projects with other clubs and organizations.</p>
+    </div>
+
+    <div class="section-box">
+      <h2>Our Impact</h2>
+      <p>Over the years, DRAMSOC has:</p>
+      <ul>
+        <li><strong>Empowered young talent</strong>, with many alumni pursuing careers in theatre, film, and media.</li>
+        <li><strong>Addressed critical social issues</strong> such as mental health, gender equality, and environmental conservation through impactful productions.</li>
+        <li><strong>Built a strong alumni network</strong> that continues to support and mentor current members.</li>
+      </ul>
+    </div>
+
+    <div class="section-box" style="text-align: center; background: linear-gradient(120deg, #251544, #423b79 80%);">
+      <h2>Join Us</h2>
+      <p>Whether you dream of performing on stage, directing productions, managing technical elements, or supporting behind the scenes, DRAMSOC has a place for you.</p>
+      <a href="index.html#join" style="display: inline-block; background: var(--gold); color: #111; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 15px;">Join DRAMSOC Today</a>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Strathmore Drama Society (DRAMSOC)
+  </footer>
+</body>
+</html>
