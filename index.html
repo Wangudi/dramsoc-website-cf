@@ -245,9 +245,27 @@
   padding: 80px 18px; /* Increased top padding to ensure visibility */
 }
     
-    h1,h2,h3 { font-family: "Lora", serif; color: var(--gold); }
+    /* ================= ALIGNMENT CHANGES ================= */
+    /* Center align all headers */
+    h1, h2, h3 {
+      font-family: "Lora", serif;
+      color: var(--gold);
+      text-align: center; /* Added center alignment */
+    }
     
-    .motto { color: var(--red); font-size: 1.2em; font-family: "Lora", serif; letter-spacing: 2px; margin-bottom: 18px; }
+    /* Ensure body text remains left-aligned */
+    p, ul, li {
+      text-align: left; /* Explicit left alignment for body text */
+    }
+    
+    .motto {
+      color: var(--red);
+      font-size: 1.2em;
+      font-family: "Lora", serif;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      text-align: center; /* Center align motto */
+    }
     
     .events-upcoming {
       margin: 0 auto 32px auto;
@@ -270,11 +288,26 @@
       justify-content: center;
       animation: scalePulse 2.6s infinite;
       text-shadow: 0 1px 10px #22154488;
+      text-align: center; /* Center align events text */
     }
     
-    .events-upcoming-title { color: var(--gold); margin-bottom: 20px; font-size: 1.3em; font-family: inherit; font-style: normal; font-weight: bold; letter-spacing: 2px; text-shadow: 0 2px 12px #423b7977; }
+    .events-upcoming-title {
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-size: 1.3em;
+      font-family: inherit;
+      font-style: normal;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #423b7977;
+      text-align: center; /* Center align events title */
+    }
     
-    .events-message { font-size: 1.06em; opacity: 0.88; }
+    .events-message {
+      font-size: 1.06em;
+      opacity: 0.88;
+      text-align: center; /* Center align events message */
+    }
     
     @keyframes scalePulse { 0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)} }
     
@@ -429,6 +462,7 @@
       border: 1px solid #444;
       background: #222;
       color: white;
+      text-align: left; /* Keep form inputs left-aligned */
     }
 /* Make Articles and Recent Productions cards match Team cards */
 .card {
@@ -466,12 +500,14 @@
   font-size: 1.1em;
   margin-bottom: 6px;
   color: var(--gold);
+  text-align: center; /* Center align card headers */
 }
 
 .card p {
   font-size: 0.9em;
   color: #ddd;
   margin-top: 2px;
+  text-align: left; /* Left align card body text */
 }
     /* Increase all font sizes globally */
 body {
@@ -480,30 +516,37 @@ body {
 
 h1 {
   font-size: 2.8em; /* Increased */
+  text-align: center; /* Center align h1 */
 }
 
 h2 {
   font-size: 2.2em; /* Increased */
+  text-align: center; /* Center align h2 */
 }
 
 h3 {
   font-size: 1.6em; /* Increased */
+  text-align: center; /* Center align h3 */
 }
 
 .card h3 {
   font-size: 1.4em; /* Increased */
+  text-align: center; /* Center align card headers */
 }
 
 .card p {
   font-size: 1.05em; /* Increased */
+  text-align: left; /* Left align card body text */
 }
 
 .team-card b {
   font-size: 1.2em; /* Increased */
+  text-align: center; /* Center align team names */
 }
 
 .team-card .role {
   font-size: 1em; /* Increased */
+  text-align: center; /* Center align team roles */
 }
 
 .btn, .btn-gold, .learn-more-btn {
@@ -516,18 +559,22 @@ nav a {
 
 .events-upcoming {
   font-size: 1.7em; /* Increased */
+  text-align: center; /* Center align events text */
 }
 
 .events-upcoming-title {
   font-size: 1.4em; /* Increased */
+  text-align: center; /* Center align events title */
 }
 
 .events-message {
   font-size: 1.1em; /* Increased */
+  text-align: center; /* Center align events message */
 }
 
 .motto {
   font-size: 1.3em; /* Increased */
+  text-align: center; /* Center align motto */
 }
 
 /* Mobile adjustments to maintain proportions */
@@ -538,36 +585,23 @@ nav a {
   
   h1 {
     font-size: 2.2em;
+    text-align: center; /* Center align h1 on mobile */
   }
   
   h2 {
     font-size: 1.8em;
+    text-align: center; /* Center align h2 on mobile */
   }
   
   h3 {
     font-size: 1.4em;
+    text-align: center; /* Center align h3 on mobile */
   }
   
   .events-upcoming {
     font-size: 1.4em;
+    text-align: center; /* Center align events on mobile */
   }
-}
-
-/* ================= NEW: CENTER HEADERS & JUSTIFY BODY TEXT ================= */
-/* Center align all headers */
-h1, h2, h3, h4, h5, h6 {
-  text-align: center;
-}
-
-/* Justify all body text */
-p, li, .card p, .team-card .role, .modal p, .modal li {
-  text-align: justify;
-}
-
-/* Ensure specific elements maintain center alignment */
-.events-upcoming, .events-upcoming-title, .events-message,
-footer, .newsletter-form, .social-icons {
-  text-align: center;
 }
   </style>
 </head>
