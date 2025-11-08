@@ -168,46 +168,46 @@
       }
     }
 
-    /* ================= MODAL STYLES ================= */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 10000;
-      overflow: auto;
-      padding: 1rem;
-    }
-    
-    .modal-content {
-      max-width: 95vw;
-      width: 100%;
-      margin: 0 auto;
-      background: #222144;
-      border-radius: 16px;
-      padding: 24px 20px;
-      position: relative;
-      box-sizing: border-box;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      color: #fff;
-    }
-    
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      font-size: 2em;
-      background: none;
-      border: none;
-      color: var(--gold);
-      cursor: pointer;
-      z-index: 10;
-    }
-    
+   /* ================= MODAL STYLES ================= */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+  overflow: auto;
+  padding: 1rem;
+  padding-top: 70px; /* Match desktop header height */
+}
+
+/* Mobile modal padding */
+@media (max-width: 768px) {
+  .modal {
+    padding-top: 140px; /* Match mobile header height */
+  }
+}
+
+.modal-content {
+  max-width: 95vw;
+  width: 100%;
+  margin: 0 auto;
+  background: #222144;
+  border-radius: 16px;
+  padding: 24px 20px;
+  position: relative;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  color: #fff;
+}
+
+/* Remove modal close buttons */
+.modal-close {
+  display: none; /* Hide the close buttons */
+}
     .modal h2 {
       color: var(--gold);
       margin-top: 0;
@@ -636,7 +636,6 @@
   <!-- About Us Modal -->
   <div id="aboutModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('aboutModal')">×</button>
       <h2>About Us</h2>
       
       <div class="modal-section">
@@ -694,7 +693,6 @@
   <!-- Our Team Modal -->
   <div id="teamModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('teamModal')">×</button>
       <h2>Our Team</h2>
       <p><em>The Passionate Leaders Behind DRAMSOC</em></p>
       
@@ -742,7 +740,6 @@
   <!-- Departments Modal -->
   <div id="departmentsModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('departmentsModal')">×</button>
       <h2>Our Departments</h2>
       <p><em>The Backbone of DRAMSOC Excellence</em></p>
       
@@ -883,7 +880,6 @@
   <!-- Alumni Modal -->
   <div id="alumniModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal('alumniModal')">×</button>
       <h2>Our Alumni</h2>
       <p><em>Where Are They Now?</em></p>
       
