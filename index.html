@@ -84,73 +84,80 @@
       border: 1px solid var(--gold);
     }
    
-   /* Mobile Navigation - Made much thinner */
+   /* Mobile Navigation - Column layout */
 @media (max-width: 768px) {
   body {
-    padding-top: 80px; /* Reduced from 80px for thinner mobile header */
+    padding-top: 80px; /* Keep same as before */
   }
   
   header {
-    flex-direction: row; /* Keep horizontal layout on mobile */
+    flex-direction: column; /* Only change this line */
     align-items: center;
-    gap: 0.5em; /* Reduced gap */
-    padding: 0.3em 0.8em; /* Reduced padding significantly */
-    height: 100px; /* Fixed height for consistency */
-    min-height: 100px; /* Ensure minimum height */
+    gap: 0.5em; /* Keep same */
+    padding: 0.3em 0.8em; /* Keep same */
+    height: 100px; /* Keep same */
+    min-height: 100px; /* Keep same */
   }
   
   .site-logo {
-    width: 100px; /* Smaller logo on mobile */
-    height: 100px;
+    width: 100px; /* Keep same */
+    height: 100px; /* Keep same */
   }
   
   nav {
-    margin: 0 0 0 auto; /* Push to right side */
-    width: auto; /* Don't take full width */
-    justify-content: flex-end; /* Align to right */
-    flex-wrap: nowrap; /* Keep items in one line */
-    gap: 0.3rem; /* Reduced gap */
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    margin: 0; /* Change from auto to 0 */
+    width: 100%; /* Change from auto to 100% */
+    justify-content: center; /* Change from flex-end to center */
+    flex-wrap: wrap; /* Change from nowrap to wrap */
+    gap: 0.3rem; /* Keep same */
+    overflow-x: visible; /* Change from auto to visible */
   }
   
   nav a {
     margin: 0;
-    padding: 4px 8px; /* Reduced padding */
-    font-size: 0.85em; /* Slightly smaller font */
+    padding: 4px 8px; /* Keep same */
+    font-size: 0.85em; /* Keep same */
     text-align: center;
-    flex: 0 0 auto; /* Don't grow or shrink */
-    white-space: nowrap; /* Prevent text wrapping */
+    flex: 0 0 auto; /* Keep same */
+    white-space: nowrap; /* Keep same */
   }
 }
 
-/* Extra small screens */
+/* Extra small screens - keep everything same except layout */
 @media (max-width: 480px) {
   body {
-    padding-top: 80px; /* Even smaller padding */
+    padding-top: 80px; /* Keep same */
   }
   
   header {
-    height: 55px;
-    min-height: 55px;
-    padding: 0.2em 0.5em; /* Minimal padding */
+    height: 55px; /* Keep same */
+    min-height: 55px; /* Keep same */
+    padding: 0.2em 0.5em; /* Keep same */
+    flex-direction: column; /* Add this */
   }
   
   .site-logo {
-    width: 70px; /* Even smaller logo */
-    height: 70px;
+    width: 70px; /* Keep same */
+    height: 70px; /* Keep same */
+  }
+  
+  nav {
+    margin: 0; /* Change to 0 */
+    width: 100%; /* Change to 100% */
+    justify-content: center; /* Change to center */
+    flex-wrap: wrap; /* Change to wrap */
   }
   
   nav a {
-    font-size: 0.8em;
-    padding: 3px 6px;
+    font-size: 0.8em; /* Keep same */
+    padding: 3px 6px; /* Keep same */
   }
 }
 
-/* Very small screens - horizontal scroll for nav */
+/* Remove the width restriction */
 @media (max-width: 360px) {
   nav {
-    max-width: 200px; /* Limit width to force horizontal scroll */
+    max-width: none; /* Remove the 200px restriction */
   }
 }
     /* Extra small screens */
