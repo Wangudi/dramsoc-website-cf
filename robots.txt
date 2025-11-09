@@ -2,14 +2,7 @@ User-agent: *
 Allow: /
 Sitemap: https://dramsoc-website-cf.pages.dev/sitemap.xml
 
-# Cloudflare Pages specific - allow crawling
-User-agent: *
-Disallow: /_next/
-Allow: /_next/static/css/
-Allow: /_next/static/chunks/
-Allow: /_next/static/media/
-
-# Allow all other resources
+# Allow search engines to crawl all content
 Allow: /images/
 Allow: /css/
 Allow: /js/
