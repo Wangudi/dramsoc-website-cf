@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://strathmoredramasociety.com/</loc>
+    <loc>https://dramsoc-website-cf.pages.dev/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://strathmoredramasociety.com/about.html</loc>
+    <loc>https://dramsoc-website-cf.pages.dev/#about</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://strathmoredramasociety.com/team.html</loc>
+    <loc>https://dramsoc-website-cf.pages.dev/#productions</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dramsoc-website-cf.pages.dev/#team</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://strathmoredramasociety.com/departments.html</loc>
+    <loc>https://dramsoc-website-cf.pages.dev/#departments</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://strathmoredramasociety.com/alumni.html</loc>
+    <loc>https://dramsoc-website-cf.pages.dev/#alumni</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dramsoc-website-cf.pages.dev/#contact</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
